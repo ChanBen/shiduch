@@ -1,0 +1,105 @@
+
+
+<div id="mare">
+  <label class=" col-form-label text-md-right font-bold">מראה כללי</label>
+
+
+  <div *ngFor="let item of HightAndWight(); index as i">
+
+      <div dir="rtl" class="form-group row  flex-row-reverse" style="margin-right: 100px;">
+          <div class="col-md-5">
+              <input type="number" [(ngModel)]="item.selfValue" class="form-control" name="height-{{i}}">
+          </div>
+          <label *ngIf="item.CriteriaId==17" for="height" class=" col-form-label text-md-right">גובה</label>
+          <label *ngIf="item.CriteriaId==18" for="height" class=" col-form-label text-md-right">משקל</label>
+      </div>
+
+
+  </div>
+
+
+
+  <div *ngFor="let crit of criterionMare; index as i" dir="rtl" class="form-group row  flex-row-reverse" style="margin-right: 100px;">
+      <div class="col-md-5">
+          <select class="form-control" id="criterionMare" name="criterionMare-{{i}}" [ngModel]="dCandidateService.GetIDListById(crit.CriterionId)"
+              (ngModelChange)="dCandidateService.changeValue(crit.CriterionId,$event)">
+              <option *ngFor="let valueLis of dCandidateService.GetValueList(crit.CriterionId)" [value]="valueLis.ValueListId">
+                  {{valueLis.Value}}</option>
+          </select>
+      </div>
+      <label for="criteria" class=" col-form-label text-md-right"> {{crit.NameCriterion}}</label>
+
+  </div>
+
+
+
+
+</div>
+<div id="description">
+  <label class=" col-form-label text-md-right font-bold">תאור אישיותי</label>
+
+
+  <div dir="rtl" class="form-group row  flex-row-reverse" style="margin-right: 100px;">
+      <div class="col-md-5">
+
+          <input type="number" id="numChozckot" class="form-control" name="numChozckot" [(ngModel)]="numChozckot"
+              (change)="addCHuzckot()">
+      </div>
+      <label for="numChozckot" class=" col-form-label text-md-right">מספר חוזקות</label>
+  </div>
+
+
+  <label class=" col-form-label text-md-right font-bold">:החוזקות שלי</label>
+  <div *ngFor="let item of dCandidateService.getCritMoreLanguage(26); index as ind">
+
+      <div dir="rtl" class="form-group row  flex-row-reverse" style="margin-right: 100px;">
+          <div class="col-md-5">
+              <select class="form-control" id="Chozckot" name="Chozckot11-{{ind}}" [(ngModel)]="item.ValueListId">
+                  <option *ngFor="let valueLis of dCandidateService.GetValueList(26)" [value]="valueLis.ValueListId">
+                      {{valueLis.Value}}</option>
+              </select>
+          </div>
+
+      </div>
+
+
+  </div>
+
+  <div dir="rtl" class="form-group row  flex-row-reverse" style="margin-right: 100px;">
+      <div class="col-md-5">
+
+          <input type="number" id="numChulshot" class="form-control" name="numChulshot" [(ngModel)]="numChulshot"
+              (change)="addCHolshot()">
+      </div>
+      <label for="numChulshot" class=" col-form-label text-md-right">מספר חולשות</label>
+  </div>
+
+
+  <label class=" col-form-label text-md-right font-bold">:החולשות שלי</label>
+  <div *ngFor="let item of dCandidateService.getCritMoreLanguage(27); index as ind">
+
+      <div dir="rtl" class="form-group row  flex-row-reverse" style="margin-right: 100px;">
+          <div class="col-md-5">
+              <select class="form-control" id="Chozckot" name="Chozckot-{{ind}}" [(ngModel)]="item.ValueListId">
+                  <option *ngFor="let valueLis of dCandidateService.GetValueList(27)" [value]="valueLis.ValueListId">
+                      {{valueLis.Value}}</option>
+              </select>
+          </div>
+
+      </div>
+
+
+  </div>
+
+
+
+  <div dir="rtl" class="form-group row  flex-row-reverse" style="margin-right: 100px;">
+        <div class="col-md-5">
+            <input type="text" [(ngModel)]="cand.Candidate.personaldecription" id="personaldecription" class="form-control" name="personaldecription"
+                #CountryId>
+        </div>
+        <label for="personaldecription" class=" col-form-label text-md-right">תאור אישיותי כללי</label>
+    </div>
+
+
+</div>

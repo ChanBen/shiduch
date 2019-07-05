@@ -1,0 +1,27 @@
+<p>
+  documents works!
+</p>
+
+
+<div class="form-group">
+  <!-- <input type="file" class="form-control" name="teacherCV"data-buttonText="צירוף קורות חיים"/> -->
+  <button type="button" name="image" class="btnRegister" md-button (click)="imgFileInput.click()">הוסף תמונה</button>
+  <input hidden  type="file" #imgFileInput (change)="addImage ($event)" />
+
+</div>
+{{imageName}}
+<br>
+<br><br><br><br>
+
+<div class="form-group">
+  <!-- <input type="file" class="form-control" name="teacherCV"data-buttonText="צירוף קורות חיים"/> -->
+  <button type="button" name="doc" class="btnRegister" md-button (click)="docFileInput.click()">הוסף מסמך</button>
+  <input hidden  type="file" #docFileInput (change)="addDoc($event)" />
+
+
+</div>
+<div *ngFor="let item of cand.Documents">{{item.Describe}}</div>
+
+
+
+

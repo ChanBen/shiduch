@@ -1,0 +1,32 @@
+<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<!------ Include the above in your HEAD tag ---------->
+
+<div class="wrapper fadeInDown">
+  <div id="formContent">
+    <!-- Tabs Titles -->
+
+    <!-- Icon -->
+    <div class="fadeIn first">
+     
+      <h1>הרשמה</h1>
+     
+    </div>
+
+    <!-- Login Form -->
+    <form class="input-group-center mb-3" (ngSubmit)="submitregisterForm()">
+      <input type="text"  [(ngModel)]="u.UserName"  id="login" class=" second" name="UserName" placeholder="שם משתמש">
+      <input type="text" [(ngModel)]="u.Password"  id="password" class=" third" name="Password" placeholder="סיסמה">
+      <input type="submit" class="w-40 fourth btn btn-warning btn-lg" value="הרשמה">
+    </form>
+
+   
+   
+
+  </div>
+</div>
+
+
+
+

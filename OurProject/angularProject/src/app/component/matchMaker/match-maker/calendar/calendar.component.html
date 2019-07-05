@@ -1,0 +1,40 @@
+<button (click)="GetMeetingByTz()">:הצג פגישות של</button>
+<input type="text" placeholder="הכנס ת.ז." [(ngModel)]="Tz"> 
+<button (click)="GetMeetingMatcMaker()">: הצג פגישות של מועמד שדכן</button>
+
+<div class='app'>
+
+  <div class='app-top'>
+    <button (click)='toggleVisible()'>toggle visible</button>
+    <button (click)='toggleWeekends()'>toggle weekends</button>
+    <button (click)='gotoPast()'>go to a date in the past</button>
+    (also, click a date/time to add an event)
+  </div>
+
+  <div class='app-calendar' *ngIf="calendarVisible">
+    <full-calendar
+      #calendar
+      defaultView="dayGridMonth"
+      [header]="{
+        left:  'next,prev today' ,
+        center:  'title',
+        right: 'dayGridMonth,timeGridWeek,timeGridDay,listWeek'
+      }"
+      locale='he'
+      dir="rtl"
+      [buttonText]="{
+        today:    'היום',
+        month:    'חודש',
+        week:     'שבוע',
+        day:      'יום',
+        list:     'רשימה'
+      }"
+      [plugins]="calendarPlugins"
+      [weekends]="calendarWeekends"
+      [events]="calendarEvents"
+      (dateClick)="handleDateClick($event)"
+      (eventClick)="handleEventeClick($event)"
+    ></full-calendar>
+  </div>
+
+</div>

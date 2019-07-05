@@ -1,0 +1,56 @@
+<div>מיון</div>
+<label>תעודת זהות </label>
+<input type="text" [(ngModel)]="tz" (keyup)="onkeyupMethod()"><br>
+<label>שם משפחה </label>
+<input type="text" [(ngModel)]="LastName" (keyup)="onkeyupMethod()"><br>
+<label>מין</label>
+<select class="form-control" id="Gender" name="Gender" [(ngModel)]="Gender" (change)="onkeyupMethod()">
+  <option [ngValue]="1">זכר</option>
+  <option [ngValue]="2">נקבה</option>
+  <option [ngValue]="3">זכר ונקבה</option>
+ 
+</select>
+<!-- <label>עיר מגורים</label>
+<input type="text" [(ngModel)]="CityId" (keyup)="onkeyupMethod()"> -->
+
+
+
+
+
+
+<!-- <div *ngFor="let item of onkeyupMethod()" style="  border: 1px solid  #e73cae;">
+  <label> תעודת זהות :{{item.Tz}}</label><br>
+  <label> שם פרטי:{{item.FirstName}}</label><br>
+  <label> שם מישפחה :{{item.LastName}}</label><br>
+  <label> מין :{{getGender(item.Gender)}}</label><br>
+  <label> גיל :{{MatchmakerService.getAgeFromDate(item.BornDate)}}</label><br>
+<button type="button" (click)="Details(item.Tz)">פרטים </button>
+
+</div> -->
+
+
+
+
+<table class="table table-hover" >
+  <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">תעודת זהות </th>
+      <th scope="col">שם פרטי</th>
+      <th scope="col">שם משפחה</th>
+      <th scope="col">מין</th>
+      <th scope="col"> גיל</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let item of onkeyupMethod();index as i" (click)="openModalWithComponent(item.Tz)">
+      <th scope="row">{{i+1}}</th>
+      <td>{{item.Tz}}</td>
+      <td>{{item.FirstName}}</td>
+      <td>{{item.LastName}}</td>
+      <td>{{getGender(item.Gender)}}</td>
+      <td>{{MatchmakerService.getAgeFromDate(item.BornDate)}}</td>
+    </tr>
+  
+  </tbody>
+</table>

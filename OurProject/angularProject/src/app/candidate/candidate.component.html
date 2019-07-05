@@ -1,0 +1,57 @@
+<!-- <form #myform="ngForm">
+<input type="text" #Tz name="Tz" [(ngModel)]="u.Tz"/>model
+<input type="text" #firstName name="firstName" [(ngModel)]="c.model"/>model
+
+  <input type="text" #year name="year" [(ngModel)]="c.year"/>year
+  <input type="submit" value="submit" (click)="onCarAdd()" [disabled]="!myform.form.valid"/>
+</form> -->
+
+
+<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<!------ Include the above in your HEAD tag ---------->
+
+<!-- data-toggle="tab" -->
+<div class="container" dir="rtl">
+  <div class="row">
+    <div class="col-xs-12 ">
+      <nav>
+        <div class="nav nav-tabs nav-fill" id="nav-tab" role="tablist">
+          <!-- <a  class="nav-item nav-link active" id="nav-PersonalInformation-tab" routerLink="pro">פרטים אישים</a> -->
+          <a routerLinkActive="testActive" class="nav-item nav-link" id="nav-description-tab" role="tab" routerLink="pro">פרטים
+            אישיים</a>
+          <a routerLinkActive="testActive" class="nav-item nav-link" id="nav-description-tab" role="tab" routerLink="desc">תאור
+            חיצוני</a>
+          <a routerLinkActive="testActive" class="nav-item nav-link" id="nav-shortcoming-tab" role="tab" routerLink="migbala">מיגבלה</a>
+          <a routerLinkActive="testActive" class="nav-item nav-link" id="nav-Business-tab" role="tab" routerLink="busines">תחום
+            עיסוק</a>
+          <a routerLinkActive="testActive" class="nav-item nav-link" id="nav-MoreDetails-tab" role="tab" routerLink="moreDetailes">פרטים
+            נוספים</a>
+          <a routerLinkActive="testActive" class="nav-item nav-link" id="nav-Documents-tab" role="tab" routerLink="doc">מסמכים</a>
+          <a routerLinkActive="testActive" class="nav-item nav-link" id="nav-criterion-tab" role="tab" routerLink="criterion">קריטריונים</a>
+        </div>
+      </nav>
+
+
+
+      <div class="tab-content py-3 px-3 px-sm-0" id="nav-tabContent">
+        <div class="" id="nav-all">
+          <form dir="rtl" *ngIf="cand" (ngSubmit)="hagashatBakasha()">
+            <router-outlet></router-outlet>
+
+            <button type="button" (click)="saveDetailCandidate()"> שמור </button>
+            <button type="button" (click)="saveAndContinue()"> שמור והמשך </button>
+            <button type="submit"  > הגשת הבקשה </button>
+<!-- *ngIf="router.isRouteActive(router.generate(['/criterion']))" -->
+          </form>
+        </div>
+
+      </div>
+
+    </div>
+  </div>
+</div>
+
+
+

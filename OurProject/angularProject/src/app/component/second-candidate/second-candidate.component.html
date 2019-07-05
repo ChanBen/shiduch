@@ -1,0 +1,29 @@
+<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<!------ Include the above in your HEAD tag ---------->
+
+<!-- data-toggle="tab" -->
+ <div class="container" dir="rtl">
+              <div class="row">
+                <div class="col-xs-12 ">
+                  <nav>
+                    <div class="nav nav-tabs nav-fill" id="nav-tab" role="tablist">
+                      <!-- <a  class="nav-item nav-link active" id="nav-PersonalInformation-tab" routerLink="pro">פרטים אישים</a> -->
+                      <a  routerLinkActive="testActive" class="nav-item nav-link" id="nav-description-tab"  role="tab"  routerLink="suggest">רשימת ההצעות</a>
+                      <a  routerLinkActive="testActive" class="nav-item nav-link" id="nav-description-tab"  role="tab"  routerLink="details">פרטים </a>
+                      <!-- <a  routerLinkActive="testActive" class="nav-item nav-link" id="nav-description-tab"  role="tab"  routerLink="calander">לוח פגישות</a> -->
+                      <a  routerLinkActive="testActive" class="nav-item nav-link" id="nav-description-tab"  role="tab"  routerLink="mailToMatcmaker">תקשורת עם שדכן </a>
+                      
+                    </div>
+                  </nav>
+                  <div class="tab-content py-3 px-3 px-sm-0" id="nav-tabContent">
+                      <div class="" id="nav-all" >
+                          <router-outlet></router-outlet>                   
+                      </div>
+                
+                  </div>
+                
+                </div>
+              </div>
+        </div>

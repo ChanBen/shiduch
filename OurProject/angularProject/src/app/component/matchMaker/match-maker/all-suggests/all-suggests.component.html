@@ -1,0 +1,57 @@
+<p>
+  all-suggests works!
+</p>
+<div>מיון</div>
+<label>תעודת זהות חתן</label>
+<input type="text" [(ngModel)]="tzGroom" (keyup)="onkeyupMethod()">
+<label>תעודת זהות כלה</label>
+<input type="text" [(ngModel)]="tzBride" (keyup)="onkeyupMethod()">
+
+
+
+<div *ngFor="let item of onkeyupMethod()" style="  border: 1px solid  #3ce74a;">
+  <label> תעודת זהות חתן:{{item.tzGroom}}</label><br>
+  <label> תעודת זהות כלה:{{item.tzBride}} </label>
+  <div dir="rtl" class="form-group row  flex-row-reverse" style="margin-right: 100px;">
+    <div class="col-md-5">
+      <select class="form-control" id="Gender" name="Gender" [(ngModel)]="item.StatusGroom">
+        <option [ngValue]="1">לא התיחס להצעה</option>
+        <option [ngValue]="2">לחץ על מעונין</option>
+        <option [ngValue]="3">לחץ על לא מעונין</option>
+        <option [ngValue]="4">נפגש</option>
+        <option [ngValue]="5">סגירת שידוך</option>
+      </select>
+    </div>
+    <label for="Gender" class=" col-form-label text-md-right">סטטוס הצעה חתן</label>
+  </div>
+  <div dir="rtl" class="form-group row  flex-row-reverse" style="margin-right: 100px;">
+    <div class="col-md-5">
+      <select class="form-control" id="Gender" name="Gender" [(ngModel)]="item.StatusBride">
+        <option [ngValue]="1">לא התיחס להצעה</option>
+        <option [ngValue]="2">לחץ על מעונין</option>
+        <option [ngValue]="3">לחץ על לא מעונין</option>
+        <option [ngValue]="4">נפגש</option>
+        <option [ngValue]="5">סגירת שידוך</option>
+
+      </select>
+    </div>
+    <label for="Gender" class=" col-form-label text-md-right">סטטוס הצעה כלה</label>
+  </div>
+
+  <div dir="rtl" class="form-group row  flex-row-reverse" style="margin-right: 100px;">
+    <div class="col-md-5">
+
+      <input type="text" id="description" class="form-control" name="description" [(ngModel)]="item.description">
+    </div>
+    <label for="description" class=" col-form-label text-md-right"> ההערות</label>
+  </div>
+  <div *ngIf="item.StatusBride==4&&item.StatusGroom==4">
+    <label>תאריך פגישה:{{item.MeetingDate}}</label><br>
+    <label>זמן התחלה:{{item.start}} </label><br>
+    <label>זמן סיום:{{item.end1}} </label><br>
+
+  </div>
+  <button type="button" (click)="editMeeting(item)">עדכון פרטי פגישה</button>
+  <button type="button" (click)="Details(item.tzGroom)">פרטים חתן</button>
+  <button type="button" (click)="Details(item.tzBride)">פרטים כלה</button>
+</div>

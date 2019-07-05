@@ -1,0 +1,27 @@
+<!-- <h2 *ngIf="!isNew">Edit event: '{{meeting?.title}}'</h2>
+<h2 *ngIf="isNew">Create new event</h2>
+<form [formGroup]="form">
+  <div class="form-group">
+    <label>Title:
+      <input type="text" formControlName="title"/>
+    </label>
+  </div>
+   <div class="form-group">
+    <label>Start date:
+      <input type="text" formControlName="start"/>
+    </label>
+  </div>
+   <div class="form-group">
+    <label>End date:
+      <input type="text" formControlName="end"/>
+    </label>
+  </div>
+  <div class="form-group">
+    <label>All day:
+      <input type="checkbox" formControlName="allDay"/>
+    </label>
+  </div>
+  <button type="submit" *ngIf="isNew" (click)="onAdd()">Add</button>
+  <button type="submit" *ngIf="!isNew" (click)="onUpdate()">Update</button>
+  <button type="button" (click)="close.emit()">Cancel</button>
+</form> -->

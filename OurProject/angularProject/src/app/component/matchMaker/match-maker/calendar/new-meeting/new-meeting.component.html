@@ -1,0 +1,84 @@
+
+<div style="text-align: center">
+<div class="modal-header" style="text-align: center">
+ 
+
+  
+  <label *ngIf="m.KindMeeting==1" class=" col-form-label text-md-right">פגישה בין מועמדים </label>
+  <label *ngIf="m.KindMeeting==2" class=" col-form-label text-md-right">פגישה עם שדכן </label>
+  <button type="button" class="close pull-right" aria-label="Close" (click)="bsModalRef.hide()">
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>
+<div class="modal-body">
+
+
+
+  <form dir="rtl" >
+
+
+
+    <div dir="rtl" class="form-group row  flex-row-reverse" style="margin-right: 100px;">
+      <div class="col-md-5">
+        <input type="text" [(ngModel)]="m.tzGroom" id="tzGroom" class="form-control" name="tzGroom">
+      </div>
+      <label *ngIf="m.KindMeeting==1" for="tzGroom" class=" col-form-label text-md-right">מספר זהות חתן </label>
+      <label *ngIf="m.KindMeeting==2" for="tzGroom" class=" col-form-label text-md-right">מספר זהות שדכן </label>
+
+    </div>
+
+
+    <div dir="rtl" class="form-group row  flex-row-reverse" style="margin-right: 100px;">
+      <div class="col-md-5">
+        <input type="text" [(ngModel)]="m.tzBride" id="FirstName" class="form-control" name="tzBride" >
+      </div>
+      <label *ngIf="m.KindMeeting==1" for="tzBride" class=" col-form-label text-md-right">מס זהות כלה</label>
+      <label *ngIf="m.KindMeeting==2" for="tzBride" class=" col-form-label text-md-right">מס זהות מועמד</label>
+    </div>
+
+
+   
+    <div dir="rtl" class="form-group row  flex-row-reverse" style="margin-right: 100px;">
+     
+      <div class="col-md-5">
+        <input type="time"  [(ngModel)]="start" id="FirstName" class="form-control" name="start"  value="event.start| date: 'd/m/yy, h:mm a'">
+      </div>
+      <label for="start" class=" col-form-label text-md-right">זמן התחלה</label>
+    </div>
+
+    <div dir="rtl" class="form-group row  flex-row-reverse" style="margin-right: 100px;">
+      <div class="col-md-5">
+        <input type="time" [(ngModel)]="end" id="end" class="form-control" name="end" value="event.end| date: 'd/m/yy, h:mm a'" >
+      </div>
+      <label for="end" class=" col-form-label text-md-right">זמן סיום</label>
+    </div>
+
+
+    <div dir="rtl" class="form-group row  flex-row-reverse" style="margin-right: 100px;">
+      <div class="col-md-5">
+        <input type="text" [(ngModel)]="m.Place" id="Place" class="form-control" name="Place" >
+      </div>
+      <label for="Place" class=" col-form-label text-md-right">מקום הפגישה</label>
+    </div>
+
+
+    <div dir="rtl" class="form-group row  flex-row-reverse" style="margin-right: 100px;">
+      <div class="col-md-5">
+        <select class="form-control" id="KindMeeting" name="KindMeeting" [(ngModel)]="m.KindMeeting">
+
+
+          <option [ngValue]="1" >פגישה בין מועמדים</option>
+          <option [ngValue]="2">פגישה מועמד שדכן</option>
+
+        </select>
+      </div>
+      <label for="KindMeeting" class=" col-form-label text-md-right">סוג הפגישה</label>
+    </div>
+  </form>
+</div>
+<div class="modal-footer">
+  <button *ngIf="kind == 1" type="button" class="btn btn-default" (click)="addMeeting()">הוסף</button>
+  <button *ngIf="kind == 2" type="button" class="btn btn-default" (click)="EditMeeting()">עדכן</button>
+  <button *ngIf="kind == 2" type="button" class="btn btn-default" (click)="deleteMeeting()">ביטול פגישה</button>
+</div>
+</div>

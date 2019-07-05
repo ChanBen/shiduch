@@ -1,0 +1,163 @@
+<p>
+  matchmaker-register works!
+</p>
+
+
+
+<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<!------ Include the above in your HEAD tag ---------->
+
+<div class="wrapper fadeInDown" *ngIf="!isRegister">
+  <div id="formContent">
+    <!-- Tabs Titles -->
+
+    <!-- Icon -->
+    <div class="fadeIn first">
+     
+      <h1>הרשמה</h1>
+      <h4>בחר שם משתמש וסיסמה</h4>
+
+     
+    </div>
+
+    <!-- Login Form -->
+    <form class="input-group-center mb-3" (ngSubmit)="submitRegisterMatchMaker()" >
+      <input type="text"  [(ngModel)]="u.UserName"  id="UserName" class=" second" name="UserName" placeholder="שם משתמש">
+      <input type="text" [(ngModel)]="u.Password"  id="Password" class=" third" name="Password" placeholder="סיסמה">
+      <input type="submit" class="w-40 fourth btn btn-warning btn-lg" value="הרשמה">
+      <input type="button" class="w-40 fourth btn btn-warning btn-lg" value="עדכון פרטים" (click)="editMatcMaker()">
+
+    </form>
+
+  </div>
+</div>
+
+
+
+
+<form dir="rtl" *ngIf="u&&isRegister" (ngSubmit)="saveDetailsMatchMaker()">
+
+  <div>
+      <label class=" col-form-label text-md-right">פרטים מזהים</label>
+
+
+
+      <div dir="rtl" class="form-group row  flex-row-reverse" style="margin-right: 100px;">
+          <div class="col-md-5">
+              <input type="text" [(ngModel)]="u.Tz" id="Tz" class="form-control" name="Tz" #Tz required>
+          </div>
+          <label for="Tz" class=" col-form-label text-md-right">מספר זהות</label>
+      </div>
+
+
+      <div dir="rtl" class="form-group row  flex-row-reverse" style="margin-right: 100px;">
+          <div class="col-md-5">
+              <input type="text" [(ngModel)]="u.FirstName" id="FirstName" class="form-control" name="FirstName"
+                  #FirstName>
+          </div>
+          <label for="FirstName" class=" col-form-label text-md-right">שם פרטי</label>
+      </div>
+
+      <div dir="rtl" class="form-group row  flex-row-reverse" style="margin-right: 100px;">
+          <div class="col-md-5">
+              <input type="text" [(ngModel)]="u.LastName" id="LastName" class="form-control" name="LastName"
+                  #LastName>
+          </div>
+          <label for="LastName" class=" col-form-label text-md-right">שם משפחה</label>
+      </div>
+
+
+      
+
+      <div dir="rtl" class="form-group row  flex-row-reverse" style="margin-right: 100px;">
+          <div class="col-md-5">
+              <!-- <dp-time-select [(ngModel)]="u.BornDate" class="form-control" name="BornDate" #BornDate></dp-time-select>   -->
+
+              <input type="date" [(ngModel)]="u.BornDate" id="BornDate" class="form-control" name="BornDate"
+                  #BornDate>
+          </div>
+          <label for="BornDate" class=" col-form-label text-md-right">תאריך לידה</label>
+      </div>
+
+
+
+      <div dir="rtl" class="form-group row  flex-row-reverse" style="margin-right: 100px;">
+          <div class="col-md-5">
+              <select class="form-control" id="Gender" name="Gender" [(ngModel)]="u.Gender">
+                  <option [ngValue]="true">זכר</option>
+                  <option [ngValue]="false">נקבה</option>
+              </select>
+          </div>
+          <label for="Gender" class=" col-form-label text-md-right">מין</label>
+      </div>
+      <!-- פה חסר שפת אם ושפות נוספות -->
+
+
+  <div>
+      <label class=" col-form-label text-md-right font-bold"> כתובת ,דוא"לוטלפון</label>
+
+      <div dir="rtl" class="form-group row  flex-row-reverse" style="margin-right: 100px;">
+          <div class="col-md-5">
+              <input type="text" [(ngModel)]="u.CountryId" id="CountryId" class="form-control" name="CountryId"
+                  #CountryId>
+          </div>
+          <label for="CountryId" class=" col-form-label text-md-right">מדינה</label>
+      </div>
+
+      <div dir="rtl" class="form-group row  flex-row-reverse" style="margin-right: 100px;">
+          <div class="col-md-5">
+              <input type="text" [(ngModel)]="u.CityId" id="CityId" class="form-control" name="CityId"
+                  #CityId>
+          </div>
+          <label for="CityId" class=" col-form-label text-md-right">עיר מגורים</label>
+      </div>
+
+      <div dir="rtl" class="form-group row  flex-row-reverse" style="margin-right: 100px;">
+          <div class="col-md-5">
+              <input type="text" [(ngModel)]="u.StreetId" id="StreetId" class="form-control" name="StreetId"
+                  #StreetId>
+          </div>
+          <label for="StreetId" class=" col-form-label text-md-right">רחוב</label>
+      </div>
+
+      <div dir="rtl" class="form-group row  flex-row-reverse" style="margin-right: 100px;">
+          <div class="col-md-5">
+              <input type="number" [(ngModel)]="u.BuildNum" id="BuildNum" class="form-control" name="BuildNum"
+                  #BuildNum>
+          </div>
+          <label for="BuildNum" class=" col-form-label text-md-right">מספר בית</label>
+      </div>
+
+      <div dir="rtl" class="form-group row  flex-row-reverse" style="margin-right: 100px;">
+          <div class="col-md-5">
+              <input type="email" [(ngModel)]="u.Mail" id="Mail" class="form-control" name="Mail" #Mail>
+          </div>
+          <label for="Mail" class=" col-form-label text-md-right">כתובת דוא"ל אלקטרוני</label>
+      </div>
+
+
+      <div dir="rtl" class="form-group row  flex-row-reverse" style="margin-right: 100px;">
+          <div class="col-md-5">
+              <input type="text" [(ngModel)]="u.Cellphon" id="Cellphon" class="form-control" name="Cellphon"
+                  #Cellphon>
+          </div>
+          <label for="Cellphon" class=" col-form-label text-md-right">פלאפון</label>
+      </div>
+
+
+      <div dir="rtl" class="form-group row  flex-row-reverse" style="margin-right: 100px;">
+          <div class="col-md-5">
+              <input type="text" [(ngModel)]="u.Telephon" id="Telephon" class="form-control" name="Telephon"
+                  #Telephon>
+
+          </div>
+          <label for="Telephon" class=" col-form-label text-md-right">טלפון</label>
+      </div>
+
+
+      <button type="submit"> שמירה </button>
+
+  </div>
+

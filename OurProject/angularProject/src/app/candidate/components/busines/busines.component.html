@@ -1,0 +1,65 @@
+<!-- תחום עיסוק -->
+    
+
+<div  dir="rtl" class="form-group row flex-row-reverse" style="margin-right: 100px;">
+  <div class="col-md-5">
+      <select class="form-control" id="DegreeKind" name="DegreeKind"[ngModel]="dCandidateService.GetIDListById(4)"
+      (ngModelChange)="dCandidateService.changeValue(4,$event)">
+          <option *ngFor="let valueLis of dCandidateService.GetValueList(4)" [value]="valueLis.ValueListId">
+              {{valueLis.Value}}</option>
+      </select>
+  </div>
+  <label for="DegreeKind" class=" col-form-label text-md-right"> איזה תואר יש לך</label>
+</div>
+
+
+<div dir="rtl" class="form-group row  flex-row-reverse" style="margin-right: 100px;">
+  <div class="col-md-5">
+
+      <input type="number" id="numOccupation" class="form-control" name="numOccupation" [(ngModel)]="numOccupation"
+          (change)="addOccupation()">
+  </div>
+  <label for="numOccupation" class=" col-form-label text-md-right">מספר עיסוקים</label>
+</div>
+
+<div *ngFor="let item of getCritMoreOccupation(); index as ind">
+  <label class=" col-form-label text-md-right font-bold">עיסוק #{{ind+1}}</label>
+  <div dir="rtl" class="form-group row  flex-row-reverse" style="margin-right: 100px;">
+      <div class="col-md-5">
+          <select class="form-control" id="Occupation" name="Occupation-{{ind}}" [(ngModel)]="item.ValueListId">
+              <option *ngFor="let valueLis of dCandidateService.GetValueList(30)" [value]="valueLis.ValueListId">
+                  {{valueLis.Value}}</option>
+          </select>
+      </div>
+  </div>
+</div>
+
+<label class=" col-form-label text-md-right font-bold">עיסוק תורני</label>
+<!-- עיסוק תורני רק לבנים -->
+
+<div *ngIf="cand.User.Gender">
+  <div class="form-group row  flex-row-reverse" style="margin-right: 100px;">
+      <div class="col-md-5">
+          <select class="form-control" id="learnTora" name="learnTora" [ngModel]="dCandidateService.GetIDListById(23)"
+          (ngModelChange)="dCandidateService.changeValue(23,$event)">
+              <option *ngFor="let valueLis of dCandidateService.GetValueList(24)" [value]="valueLis.ValueListId">
+                  {{valueLis.Value}}</option>
+          </select>
+      </div>
+      <label for="NameChilde" class=" col-form-label text-md-right">לימוד תורה</label>
+  </div>
+
+  <div class="form-group row  flex-row-reverse" style="margin-right: 100px;">
+      <div class="col-md-5">
+          <select class="form-control" id="afterWedding" name="afterWedding" [ngModel]="dCandidateService.GetIDListById(24)"
+          (ngModelChange)="dCandidateService.changeValue(24,$event)">
+              <option *ngFor="let valueLis of dCandidateService.GetValueList(24)" [value]="valueLis.ValueListId">
+                  {{valueLis.Value}}</option>
+          </select>
+      </div>
+      <label for="afterWedding" class=" col-form-label text-md-right">אחרי החתונה</label>
+  </div>
+
+</div>
+
+<!-- תחום עיסוק סוף-->

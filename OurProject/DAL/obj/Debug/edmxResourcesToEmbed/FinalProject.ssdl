@@ -1,0 +1,508 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="shiduchimModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="Candidate">
+    <Key>
+      <PropertyRef Name="UserId" />
+    </Key>
+    <Property Name="UserId" Type="int" Nullable="false" />
+    <Property Name="NamePrevMarriage" Type="nvarchar" MaxLength="50" />
+    <Property Name="NameRav" Type="nvarchar" MaxLength="50" />
+    <Property Name="TelRav" Type="nvarchar" MaxLength="10" />
+    <Property Name="EnterIn" Type="int" />
+    <Property Name="BaitCham" Type="bit" />
+    <Property Name="ImageCandidate" Type="varchar(max)" />
+    <Property Name="DescribeMigbala" Type="nvarchar" MaxLength="50" />
+    <Property Name="personaldecription" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="Children">
+    <Key>
+      <PropertyRef Name="ChildrenId" />
+    </Key>
+    <Property Name="ChildrenId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="UserId" Type="int" Nullable="false" />
+    <Property Name="BornDate" Type="date" />
+    <Property Name="NameChilde" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="Criterion">
+    <Key>
+      <PropertyRef Name="CriterionId" />
+    </Key>
+    <Property Name="CriterionId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="NameCriterion" Type="nvarchar" MaxLength="50" />
+    <Property Name="KindCriterion" Type="int" />
+    <Property Name="MaxValue" Type="int" />
+    <Property Name="MinValue" Type="int" />
+    <Property Name="Interested" Type="int" />
+    <Property Name="multipleChoice" Type="bit" />
+    <Property Name="category" Type="int" />
+  </EntityType>
+  <EntityType Name="Document">
+    <Key>
+      <PropertyRef Name="DocumentId" />
+    </Key>
+    <Property Name="DocumentId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="UserId" Type="int" />
+    <Property Name="Document1" Type="varchar(max)" />
+    <Property Name="Describe" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="Hospitalization">
+    <Key>
+      <PropertyRef Name="HospitalizationId" />
+    </Key>
+    <Property Name="HospitalizationId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="UserId" Type="int" />
+    <Property Name="NameDepartment" Type="nvarchar" MaxLength="50" />
+    <Property Name="TreatDoctor" Type="nvarchar" MaxLength="50" />
+    <Property Name="TelTreatDr" Type="varchar" MaxLength="10" />
+    <Property Name="NameHospital" Type="nvarchar" MaxLength="50" />
+    <Property Name="FromDate" Type="date" />
+    <Property Name="UntilDate" Type="date" />
+    <Property Name="Describ" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="Matchmaker">
+    <Key>
+      <PropertyRef Name="MatchmakingId" />
+    </Key>
+    <Property Name="MatchmakingId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="UserIdGroom" Type="int" />
+    <Property Name="UserIdBride" Type="int" />
+    <Property Name="UserIdMatchmaker" Type="int" />
+    <Property Name="DateWedding" Type="date" />
+    <Property Name="Describe" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="Mechutanim">
+    <Key>
+      <PropertyRef Name="MechutanimId" />
+    </Key>
+    <Property Name="MechutanimId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="UserId" Type="int" />
+    <Property Name="City" Type="nvarchar" MaxLength="50" />
+    <Property Name="Fname" Type="nvarchar" MaxLength="50" />
+    <Property Name="Tel" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="Meeting">
+    <Key>
+      <PropertyRef Name="MeetingId" />
+    </Key>
+    <Property Name="MeetingId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="MeetingDate" Type="datetime" />
+    <Property Name="start" Type="datetime" />
+    <Property Name="end" Type="datetime" />
+    <Property Name="title" Type="nvarchar" MaxLength="50" />
+    <Property Name="Place" Type="nvarchar" MaxLength="50" />
+    <Property Name="tzGroom" Type="nvarchar" MaxLength="50" />
+    <Property Name="tzBride" Type="nvarchar" MaxLength="50" />
+    <Property Name="StatusGroom" Type="int" />
+    <Property Name="StatusBride" Type="int" />
+    <Property Name="KindMeeting" Type="int" />
+    <Property Name="backgroundColor" Type="nvarchar" MaxLength="50" />
+    <Property Name="borderColor" Type="nvarchar" MaxLength="50" />
+    <Property Name="textColor" Type="nvarchar" MaxLength="50" />
+    <Property Name="description" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="MigbalaCandidate">
+    <Key>
+      <PropertyRef Name="MigbalaCandidateId" />
+    </Key>
+    <Property Name="MigbalaCandidateId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="UserId" Type="int" />
+    <Property Name="KindMigbala" Type="int" />
+    <Property Name="Genetic" Type="bit" />
+    <Property Name="Describe" Type="nvarchar" MaxLength="50" />
+    <Property Name="levelMigbala" Type="int" />
+  </EntityType>
+  <EntityType Name="Parent">
+    <Key>
+      <PropertyRef Name="ParentId" />
+    </Key>
+    <Property Name="ParentId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="UserId" Type="int" />
+    <Property Name="Relativ" Type="bit" />
+    <Property Name="BornCountryId" Type="int" />
+    <Property Name="MotzaCountryId" Type="int" />
+    <Property Name="ParentKind" Type="int" />
+    <Property Name="Jew" Type="bit" />
+    <Property Name="Describ" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="PaymentsOfUser">
+    <Key>
+      <PropertyRef Name="PaymentsOfUserId" />
+    </Key>
+    <Property Name="PaymentsOfUserId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="UserId" Type="int" />
+    <Property Name="DatePayments" Type="datetime" />
+    <Property Name="AmountToPay" Type="money" />
+    <Property Name="DescribePayments" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="Profession">
+    <Key>
+      <PropertyRef Name="UserId" />
+    </Key>
+    <Property Name="UserId" Type="int" Nullable="false" />
+    <Property Name="ProfessionName" Type="nvarchar" MaxLength="30" />
+    <Property Name="MoneyForHour" Type="money" />
+  </EntityType>
+  <EntityType Name="sysdiagrams">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+    <Property Name="principal_id" Type="int" Nullable="false" />
+    <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="version" Type="int" />
+    <Property Name="definition" Type="varbinary(max)" />
+  </EntityType>
+  <EntityType Name="Users">
+    <Key>
+      <PropertyRef Name="UserId" />
+    </Key>
+    <Property Name="UserId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Mail" Type="nvarchar" MaxLength="50" />
+    <Property Name="Password" Type="nvarchar" MaxLength="50" />
+    <Property Name="UserName" Type="nvarchar" MaxLength="50" />
+    <Property Name="Tz" Type="nvarchar" MaxLength="50" />
+    <Property Name="FirstName" Type="nvarchar" MaxLength="50" />
+    <Property Name="LastName" Type="nvarchar" MaxLength="50" />
+    <Property Name="BornDate" Type="date" />
+    <Property Name="Gender" Type="bit" />
+    <Property Name="Cellphon" Type="varchar" MaxLength="10" />
+    <Property Name="Telephon" Type="varchar" MaxLength="10" />
+    <Property Name="CountryId" Type="nvarchar" MaxLength="50" />
+    <Property Name="CityId" Type="nvarchar" MaxLength="50" />
+    <Property Name="StreetId" Type="nvarchar" MaxLength="50" />
+    <Property Name="BuildNum" Type="int" />
+    <Property Name="AllowAccess" Type="int" />
+    <Property Name="Status" Type="int" />
+  </EntityType>
+  <EntityType Name="ValueList">
+    <Key>
+      <PropertyRef Name="ValueListId" />
+    </Key>
+    <Property Name="ValueListId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="CriterionId" Type="int" />
+    <Property Name="Value" Type="nvarchar" MaxLength="20" />
+    <Property Name="Index1" Type="int" />
+  </EntityType>
+  <EntityType Name="ValueListCandidate">
+    <Key>
+      <PropertyRef Name="ValueListCandidateId" />
+    </Key>
+    <Property Name="ValueListCandidateId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="UserId" Type="int" />
+    <Property Name="CriteriaId" Type="int" />
+    <Property Name="selfValue" Type="int" />
+    <Property Name="satisfacMinValue" Type="int" />
+    <Property Name="satisfacMaxValue" Type="int" />
+    <Property Name="ValueListId" Type="int" />
+    <Property Name="isSelf" Type="bit" />
+    <Property Name="isInclude" Type="bit" />
+    <Property Name="selfBool" Type="bit" />
+    <Property Name="satisfacBool" Type="bit" />
+  </EntityType>
+  <Association Name="FK_Candidate_Users">
+    <End Role="Users" Type="Self.Users" Multiplicity="1" />
+    <End Role="Candidate" Type="Self.Candidate" Multiplicity="0..1" />
+    <ReferentialConstraint>
+      <Principal Role="Users">
+        <PropertyRef Name="UserId" />
+      </Principal>
+      <Dependent Role="Candidate">
+        <PropertyRef Name="UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Children_Candidate1">
+    <End Role="Candidate" Type="Self.Candidate" Multiplicity="1" />
+    <End Role="Children" Type="Self.Children" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Candidate">
+        <PropertyRef Name="UserId" />
+      </Principal>
+      <Dependent Role="Children">
+        <PropertyRef Name="UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Document_Candidate1">
+    <End Role="Candidate" Type="Self.Candidate" Multiplicity="0..1" />
+    <End Role="Document" Type="Self.Document" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Candidate">
+        <PropertyRef Name="UserId" />
+      </Principal>
+      <Dependent Role="Document">
+        <PropertyRef Name="UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Hospitalization_Candidate1">
+    <End Role="Candidate" Type="Self.Candidate" Multiplicity="0..1" />
+    <End Role="Hospitalization" Type="Self.Hospitalization" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Candidate">
+        <PropertyRef Name="UserId" />
+      </Principal>
+      <Dependent Role="Hospitalization">
+        <PropertyRef Name="UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Matchmaker_Candidate2">
+    <End Role="Candidate" Type="Self.Candidate" Multiplicity="0..1" />
+    <End Role="Matchmaker" Type="Self.Matchmaker" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Candidate">
+        <PropertyRef Name="UserId" />
+      </Principal>
+      <Dependent Role="Matchmaker">
+        <PropertyRef Name="UserIdGroom" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Matchmaker_Candidate3">
+    <End Role="Candidate" Type="Self.Candidate" Multiplicity="0..1" />
+    <End Role="Matchmaker" Type="Self.Matchmaker" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Candidate">
+        <PropertyRef Name="UserId" />
+      </Principal>
+      <Dependent Role="Matchmaker">
+        <PropertyRef Name="UserIdBride" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Matchmaker_Users3">
+    <End Role="Users" Type="Self.Users" Multiplicity="0..1" />
+    <End Role="Matchmaker" Type="Self.Matchmaker" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Users">
+        <PropertyRef Name="UserId" />
+      </Principal>
+      <Dependent Role="Matchmaker">
+        <PropertyRef Name="UserIdMatchmaker" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Mechutanim_Candidate1">
+    <End Role="Candidate" Type="Self.Candidate" Multiplicity="0..1" />
+    <End Role="Mechutanim" Type="Self.Mechutanim" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Candidate">
+        <PropertyRef Name="UserId" />
+      </Principal>
+      <Dependent Role="Mechutanim">
+        <PropertyRef Name="UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_MigbalaCandidate_Candidate1">
+    <End Role="Candidate" Type="Self.Candidate" Multiplicity="0..1" />
+    <End Role="MigbalaCandidate" Type="Self.MigbalaCandidate" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Candidate">
+        <PropertyRef Name="UserId" />
+      </Principal>
+      <Dependent Role="MigbalaCandidate">
+        <PropertyRef Name="UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_MigbalaCandidate_ValueList">
+    <End Role="ValueList" Type="Self.ValueList" Multiplicity="0..1" />
+    <End Role="MigbalaCandidate" Type="Self.MigbalaCandidate" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ValueList">
+        <PropertyRef Name="ValueListId" />
+      </Principal>
+      <Dependent Role="MigbalaCandidate">
+        <PropertyRef Name="KindMigbala" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_MigbalaCandidate_ValueList1">
+    <End Role="ValueList" Type="Self.ValueList" Multiplicity="0..1" />
+    <End Role="MigbalaCandidate" Type="Self.MigbalaCandidate" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ValueList">
+        <PropertyRef Name="ValueListId" />
+      </Principal>
+      <Dependent Role="MigbalaCandidate">
+        <PropertyRef Name="levelMigbala" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Parent_Candidate1">
+    <End Role="Candidate" Type="Self.Candidate" Multiplicity="0..1" />
+    <End Role="Parent" Type="Self.Parent" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Candidate">
+        <PropertyRef Name="UserId" />
+      </Principal>
+      <Dependent Role="Parent">
+        <PropertyRef Name="UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_PaymentsOfUser_Candidate1">
+    <End Role="Candidate" Type="Self.Candidate" Multiplicity="0..1" />
+    <End Role="PaymentsOfUser" Type="Self.PaymentsOfUser" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Candidate">
+        <PropertyRef Name="UserId" />
+      </Principal>
+      <Dependent Role="PaymentsOfUser">
+        <PropertyRef Name="UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Profession_Users">
+    <End Role="Users" Type="Self.Users" Multiplicity="1" />
+    <End Role="Profession" Type="Self.Profession" Multiplicity="0..1" />
+    <ReferentialConstraint>
+      <Principal Role="Users">
+        <PropertyRef Name="UserId" />
+      </Principal>
+      <Dependent Role="Profession">
+        <PropertyRef Name="UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ValueList_Criterion">
+    <End Role="Criterion" Type="Self.Criterion" Multiplicity="0..1" />
+    <End Role="ValueList" Type="Self.ValueList" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Criterion">
+        <PropertyRef Name="CriterionId" />
+      </Principal>
+      <Dependent Role="ValueList">
+        <PropertyRef Name="CriterionId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ValueListCandidate_Criterion">
+    <End Role="Criterion" Type="Self.Criterion" Multiplicity="0..1" />
+    <End Role="ValueListCandidate" Type="Self.ValueListCandidate" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Criterion">
+        <PropertyRef Name="CriterionId" />
+      </Principal>
+      <Dependent Role="ValueListCandidate">
+        <PropertyRef Name="CriteriaId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ValueListCandidate_Users">
+    <End Role="Users" Type="Self.Users" Multiplicity="0..1" />
+    <End Role="ValueListCandidate" Type="Self.ValueListCandidate" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Users">
+        <PropertyRef Name="UserId" />
+      </Principal>
+      <Dependent Role="ValueListCandidate">
+        <PropertyRef Name="UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ValueListCandidate_ValueList">
+    <End Role="ValueList" Type="Self.ValueList" Multiplicity="0..1" />
+    <End Role="ValueListCandidate" Type="Self.ValueListCandidate" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ValueList">
+        <PropertyRef Name="ValueListId" />
+      </Principal>
+      <Dependent Role="ValueListCandidate">
+        <PropertyRef Name="ValueListId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="shiduchimModelStoreContainer">
+    <EntitySet Name="Candidate" EntityType="Self.Candidate" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Children" EntityType="Self.Children" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Criterion" EntityType="Self.Criterion" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Document" EntityType="Self.Document" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Hospitalization" EntityType="Self.Hospitalization" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Matchmaker" EntityType="Self.Matchmaker" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Mechutanim" EntityType="Self.Mechutanim" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Meeting" EntityType="Self.Meeting" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="MigbalaCandidate" EntityType="Self.MigbalaCandidate" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Parent" EntityType="Self.Parent" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="PaymentsOfUser" EntityType="Self.PaymentsOfUser" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Profession" EntityType="Self.Profession" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Users" EntityType="Self.Users" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="ValueList" EntityType="Self.ValueList" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="ValueListCandidate" EntityType="Self.ValueListCandidate" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK_Candidate_Users" Association="Self.FK_Candidate_Users">
+      <End Role="Users" EntitySet="Users" />
+      <End Role="Candidate" EntitySet="Candidate" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Children_Candidate1" Association="Self.FK_Children_Candidate1">
+      <End Role="Candidate" EntitySet="Candidate" />
+      <End Role="Children" EntitySet="Children" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Document_Candidate1" Association="Self.FK_Document_Candidate1">
+      <End Role="Candidate" EntitySet="Candidate" />
+      <End Role="Document" EntitySet="Document" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Hospitalization_Candidate1" Association="Self.FK_Hospitalization_Candidate1">
+      <End Role="Candidate" EntitySet="Candidate" />
+      <End Role="Hospitalization" EntitySet="Hospitalization" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Matchmaker_Candidate2" Association="Self.FK_Matchmaker_Candidate2">
+      <End Role="Candidate" EntitySet="Candidate" />
+      <End Role="Matchmaker" EntitySet="Matchmaker" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Matchmaker_Candidate3" Association="Self.FK_Matchmaker_Candidate3">
+      <End Role="Candidate" EntitySet="Candidate" />
+      <End Role="Matchmaker" EntitySet="Matchmaker" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Matchmaker_Users3" Association="Self.FK_Matchmaker_Users3">
+      <End Role="Users" EntitySet="Users" />
+      <End Role="Matchmaker" EntitySet="Matchmaker" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Mechutanim_Candidate1" Association="Self.FK_Mechutanim_Candidate1">
+      <End Role="Candidate" EntitySet="Candidate" />
+      <End Role="Mechutanim" EntitySet="Mechutanim" />
+    </AssociationSet>
+    <AssociationSet Name="FK_MigbalaCandidate_Candidate1" Association="Self.FK_MigbalaCandidate_Candidate1">
+      <End Role="Candidate" EntitySet="Candidate" />
+      <End Role="MigbalaCandidate" EntitySet="MigbalaCandidate" />
+    </AssociationSet>
+    <AssociationSet Name="FK_MigbalaCandidate_ValueList" Association="Self.FK_MigbalaCandidate_ValueList">
+      <End Role="ValueList" EntitySet="ValueList" />
+      <End Role="MigbalaCandidate" EntitySet="MigbalaCandidate" />
+    </AssociationSet>
+    <AssociationSet Name="FK_MigbalaCandidate_ValueList1" Association="Self.FK_MigbalaCandidate_ValueList1">
+      <End Role="ValueList" EntitySet="ValueList" />
+      <End Role="MigbalaCandidate" EntitySet="MigbalaCandidate" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Parent_Candidate1" Association="Self.FK_Parent_Candidate1">
+      <End Role="Candidate" EntitySet="Candidate" />
+      <End Role="Parent" EntitySet="Parent" />
+    </AssociationSet>
+    <AssociationSet Name="FK_PaymentsOfUser_Candidate1" Association="Self.FK_PaymentsOfUser_Candidate1">
+      <End Role="Candidate" EntitySet="Candidate" />
+      <End Role="PaymentsOfUser" EntitySet="PaymentsOfUser" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Profession_Users" Association="Self.FK_Profession_Users">
+      <End Role="Users" EntitySet="Users" />
+      <End Role="Profession" EntitySet="Profession" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ValueList_Criterion" Association="Self.FK_ValueList_Criterion">
+      <End Role="Criterion" EntitySet="Criterion" />
+      <End Role="ValueList" EntitySet="ValueList" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ValueListCandidate_Criterion" Association="Self.FK_ValueListCandidate_Criterion">
+      <End Role="Criterion" EntitySet="Criterion" />
+      <End Role="ValueListCandidate" EntitySet="ValueListCandidate" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ValueListCandidate_Users" Association="Self.FK_ValueListCandidate_Users">
+      <End Role="Users" EntitySet="Users" />
+      <End Role="ValueListCandidate" EntitySet="ValueListCandidate" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ValueListCandidate_ValueList" Association="Self.FK_ValueListCandidate_ValueList">
+      <End Role="ValueList" EntitySet="ValueList" />
+      <End Role="ValueListCandidate" EntitySet="ValueListCandidate" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

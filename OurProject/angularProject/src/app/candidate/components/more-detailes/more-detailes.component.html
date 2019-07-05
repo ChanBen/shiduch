@@ -1,0 +1,28 @@
+<p>
+    more-detailes works!
+</p>
+<label class=" col-form-label text-md-right font-bold">פרטים נוספים</label>
+
+<div *ngFor="let crit of criterionPratimNosafim; index as i" dir="rtl" class="form-group row  flex-row-reverse" style="margin-right: 100px;">
+    <div class="col-md-5">
+        <select class="form-control" id="criteria" name="criteria-{{i}}" [ngModel]="dCandidateService.GetIDListById(crit.CriterionId)"
+            (ngModelChange)="dCandidateService.changeValue(crit.CriterionId,$event)">
+            <option *ngFor="let valueLis of dCandidateService.GetValueList(crit.CriterionId)" [value]="valueLis.ValueListId">{{valueLis.Value}}</option>
+        </select>
+    </div>
+    <label for="criteria" class=" col-form-label text-md-right"> {{crit.NameCriterion}}</label>
+
+</div>
+
+<div *ngFor="let itttem of getCritLicense(); index as iii">
+    <div dir="rtl" class="form-group row  flex-row-reverse" style="margin-right: 100px;">
+        <div class="col-md-5">
+            <select [(ngModel)]="itttem.selfBool" class="form-control" name="Islicense-{{iii}}" id="Islicense">
+                <option [ngValue]="false">לא</option>
+                <option [ngValue]="true">כן</option>
+            </select>
+        </div>
+        <label for="Islicense" class=" col-form-label text-md-right">רישיון</label>
+    </div>
+
+</div>

@@ -1,0 +1,184 @@
+
+<div id="migbala">
+
+    <label class=" col-form-label text-md-right font-bold">תאור מגבלה/ות</label>
+
+
+
+    <div dir="rtl" class="form-group row  flex-row-reverse" style="margin-right: 100px;">
+        <div class="col-md-5">
+            <select class="form-control" id="isMigbala" name="isMigbala" [(ngModel)]="isMigbala">
+
+
+                <option [ngValue]="false">לא</option>
+                <option [ngValue]="true">כן</option>
+
+            </select>
+        </div>
+        <label for="isMigbala" class=" col-form-label text-md-right">האם יש לך מגבלה</label>
+    </div>
+
+
+
+    <div *ngIf="isMigbala" dir="rtl" class="form-group row  flex-row-reverse" style="margin-right: 100px;">
+        <div class="col-md-5">
+
+            <input type="number" id="numMigbala" class="form-control" name="numMigbala" (change)="addMigbala()"
+                [(ngModel)]="numMigbala">
+        </div>
+        <label for="numMigbala" class=" col-form-label text-md-right">מספר מגבלות</label>
+    </div>
+
+    <div *ngFor="let item of cand.MigbalaCandidates; index as i">
+        <label class=" col-form-label text-md-right font-bold"> מיגבלה #{{i+1}}</label>
+
+        <div dir="rtl" class="form-group row  flex-row-reverse" style="margin-right: 100px;">
+            <div class="col-md-5">
+
+                <select class="form-control" id="sugMigbala" name="sugMigbala-{{i}}" [(ngModel)]="item.KindMigbala">
+                    <option *ngFor="let valueLis of dCandidateService.GetValueList(32)" [value]="valueLis.ValueListId">
+                        {{valueLis.Value}}</option>
+                </select>
+            </div>
+            <label for="sugMigbala" class=" col-form-label text-md-right">סוג מגבלה</label>
+        </div>
+
+        <div dir="rtl" class="form-group row  flex-row-reverse" style="margin-right: 100px;">
+            <div class="col-md-5">
+
+                <select class="form-control" id="LabelMigbala" name="LabelMigbala-{{i}}"
+                    [(ngModel)]="item.levelMigbala">
+                    <option *ngFor="let valueLis of dCandidateService.GetValueList(5)" [value]="valueLis.ValueListId">
+                        {{valueLis.Value}}</option>
+                </select>
+            </div>
+            <label for="LabelMigbala" class=" col-form-label text-md-right">רמת מגבלה</label>
+        </div>
+
+
+        <div dir="rtl" class="form-group row  flex-row-reverse" style="margin-right: 100px;">
+            <div class="col-md-5">
+                <input type="text" [(ngModel)]="cand.MigbalaCandidates[i].Describe" class="form-control"
+                    name="Describe-{{i}}">
+            </div>
+            <label for="Describe" class=" col-form-label text-md-right">תאור מיגבלה</label>
+        </div>
+
+
+        <div dir="rtl" class="form-group row  flex-row-reverse" style="margin-right: 100px;">
+            <div class="col-md-5">
+                <select [(ngModel)]="cand.MigbalaCandidates[i].Genetic" class="form-control" name="Genetic-{{i}}"
+                    id="Genetic">
+                    <option [ngValue]="false">לא</option>
+                    <option [ngValue]="true">כן</option>
+                </select> </div>
+            <label for="Genetic" class=" col-form-label text-md-right">?גנטי</label>
+        </div>
+
+    </div>
+</div>
+
+
+
+<div dir="rtl" class="form-group row  flex-row-reverse" style="margin-right: 100px;">
+    <div class="col-md-5">
+
+        <input type="number" id="numMedical" class="form-control" name="numMedical" [(ngModel)]="numMedical"
+            (change)="addmedicial()">
+    </div>
+    <label for="numMedical" class=" col-form-label text-md-right">מספר תרופות</label>
+</div>
+
+
+<div *ngFor="let item of dCandidateService.getCritMoreLanguage(34); index as ind">
+    <label class=" col-form-label text-md-right font-bold">תרופה #{{ind+1}}</label>
+    <div dir="rtl" class="form-group row  flex-row-reverse" style="margin-right: 100px;">
+        <div class="col-md-5">
+            <select class="form-control" id="medical" name="medical-{{ind}}" [(ngModel)]="item.ValueListId">
+                <option *ngFor="let valueLis of dCandidateService.GetValueList(34)" [value]="valueLis.ValueListId">
+                    {{valueLis.Value}}</option>
+            </select>
+        </div>
+
+    </div>
+
+
+</div>
+
+
+
+
+<div dir="rtl" class="form-group row  flex-row-reverse" style="margin-right: 100px;">
+    <div class="col-md-5">
+
+        <input type="number" id="numHospitalizion" class="form-control" name="numHospitalizion"
+            (change)="addHospitalizition()" [(ngModel)]="numHospitalizion">
+    </div>
+    <label for="numHospitalizion" class=" col-form-label text-md-right">מספר אשפוזים</label>
+</div>
+
+<div *ngFor="let item of cand.Hospitalizations; index as i">
+    <label class=" col-form-label text-md-right font-bold"> אשפוז #{{i+1}}</label>
+
+    <div dir="rtl" class="form-group row  flex-row-reverse" style="margin-right: 100px;">
+        <div class="col-md-5">
+            <input type="text" [(ngModel)]="cand.Hospitalizations[i].NameDepartment" class="form-control"
+                name="NameDepartment-{{i}}" id="NameDepartment">
+
+        </div>
+        <label for="NameDepartment" class=" col-form-label text-md-right">שם מחלקה</label>
+    </div>
+    <div dir="rtl" class="form-group row  flex-row-reverse" style="margin-right: 100px;">
+        <div class="col-md-5">
+            <input type="text" [(ngModel)]="cand.Hospitalizations[i].TreatDoctor" class="form-control"
+                name="TreatDoctor-{{i}}" id="TreatDoctor">
+
+        </div>
+        <label for="TreatDoctor" class=" col-form-label text-md-right">רופא מטפל</label>
+    </div>
+    <div dir="rtl" class="form-group row  flex-row-reverse" style="margin-right: 100px;">
+        <div class="col-md-5">
+            <input type="text" [(ngModel)]="cand.Hospitalizations[i].TelTreatDr" class="form-control"
+                name="TelTreatDr-{{i}}" id="TelTreatDr">
+
+        </div>
+        <label for="TreatDoctor" class=" col-form-label text-md-right">טלפון רופא מטפל </label>
+    </div>
+    <div dir="rtl" class="form-group row  flex-row-reverse" style="margin-right: 100px;">
+        <div class="col-md-5">
+            <input type="tel" [(ngModel)]="cand.Hospitalizations[i].NameHospital" class="form-control"
+                name="NameHospital-{{i}}" id="NameHospital">
+
+        </div>
+        <label for="NameHospital" class=" col-form-label text-md-right">שם ביה"ח</label>
+    </div>
+    <div dir="rtl" class="form-group row  flex-row-reverse" style="margin-right: 100px;">
+        <div class="col-md-5">
+            <input type="date" [(ngModel)]="cand.Hospitalizations[i].FromDate" class="form-control"
+                name="FromDate-{{i}}" id="FromDate">
+
+        </div>
+        <label for="FromDate" class=" col-form-label text-md-right">מתאריך</label>
+    </div>
+    <div dir="rtl" class="form-group row  flex-row-reverse" style="margin-right: 100px;">
+        <div class="col-md-5">
+            <input type="date" [(ngModel)]="cand.Hospitalizations[i].UntilDate" class="form-control"
+                name="UntilDate-{{i}}" id="UntilDate">
+
+        </div>
+        <label for="UntilDate" class=" col-form-label text-md-right">עד תאריך</label>
+    </div>
+    <div dir="rtl" class="form-group row  flex-row-reverse" style="margin-right: 100px;">
+        <div class="col-md-5">
+            <input type="text" [(ngModel)]="cand.Hospitalizations[i].Describ" class="form-control"
+                name="Describ-{{i}}" id="Describ">
+
+        </div>
+        <label for="Describ" class=" col-form-label text-md-right">תאור</label>
+    </div>
+
+</div>
+
+
+
+

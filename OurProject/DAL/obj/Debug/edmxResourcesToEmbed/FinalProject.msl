@@ -1,0 +1,220 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="shiduchimModelStoreContainer" CdmEntityContainer="shiduchimEntities">
+    <EntitySetMapping Name="Candidates">
+      <EntityTypeMapping TypeName="shiduchimModel.Candidate">
+        <MappingFragment StoreEntitySet="Candidate">
+          <ScalarProperty Name="personaldecription" ColumnName="personaldecription" />
+          <ScalarProperty Name="DescribeMigbala" ColumnName="DescribeMigbala" />
+          <ScalarProperty Name="ImageCandidate" ColumnName="ImageCandidate" />
+          <ScalarProperty Name="BaitCham" ColumnName="BaitCham" />
+          <ScalarProperty Name="EnterIn" ColumnName="EnterIn" />
+          <ScalarProperty Name="TelRav" ColumnName="TelRav" />
+          <ScalarProperty Name="NameRav" ColumnName="NameRav" />
+          <ScalarProperty Name="NamePrevMarriage" ColumnName="NamePrevMarriage" />
+          <ScalarProperty Name="UserId" ColumnName="UserId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Children">
+      <EntityTypeMapping TypeName="shiduchimModel.Child">
+        <MappingFragment StoreEntitySet="Children">
+          <ScalarProperty Name="NameChilde" ColumnName="NameChilde" />
+          <ScalarProperty Name="BornDate" ColumnName="BornDate" />
+          <ScalarProperty Name="UserId" ColumnName="UserId" />
+          <ScalarProperty Name="ChildrenId" ColumnName="ChildrenId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Criteria">
+      <EntityTypeMapping TypeName="shiduchimModel.Criterion">
+        <MappingFragment StoreEntitySet="Criterion">
+          <ScalarProperty Name="category" ColumnName="category" />
+          <ScalarProperty Name="multipleChoice" ColumnName="multipleChoice" />
+          <ScalarProperty Name="Interested" ColumnName="Interested" />
+          <ScalarProperty Name="MinValue" ColumnName="MinValue" />
+          <ScalarProperty Name="MaxValue" ColumnName="MaxValue" />
+          <ScalarProperty Name="KindCriterion" ColumnName="KindCriterion" />
+          <ScalarProperty Name="NameCriterion" ColumnName="NameCriterion" />
+          <ScalarProperty Name="CriterionId" ColumnName="CriterionId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Documents">
+      <EntityTypeMapping TypeName="shiduchimModel.Document">
+        <MappingFragment StoreEntitySet="Document">
+          <ScalarProperty Name="Describe" ColumnName="Describe" />
+          <ScalarProperty Name="Document1" ColumnName="Document1" />
+          <ScalarProperty Name="UserId" ColumnName="UserId" />
+          <ScalarProperty Name="DocumentId" ColumnName="DocumentId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Hospitalizations">
+      <EntityTypeMapping TypeName="shiduchimModel.Hospitalization">
+        <MappingFragment StoreEntitySet="Hospitalization">
+          <ScalarProperty Name="Describ" ColumnName="Describ" />
+          <ScalarProperty Name="UntilDate" ColumnName="UntilDate" />
+          <ScalarProperty Name="FromDate" ColumnName="FromDate" />
+          <ScalarProperty Name="NameHospital" ColumnName="NameHospital" />
+          <ScalarProperty Name="TelTreatDr" ColumnName="TelTreatDr" />
+          <ScalarProperty Name="TreatDoctor" ColumnName="TreatDoctor" />
+          <ScalarProperty Name="NameDepartment" ColumnName="NameDepartment" />
+          <ScalarProperty Name="UserId" ColumnName="UserId" />
+          <ScalarProperty Name="HospitalizationId" ColumnName="HospitalizationId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Matchmakers">
+      <EntityTypeMapping TypeName="shiduchimModel.Matchmaker">
+        <MappingFragment StoreEntitySet="Matchmaker">
+          <ScalarProperty Name="Describe" ColumnName="Describe" />
+          <ScalarProperty Name="DateWedding" ColumnName="DateWedding" />
+          <ScalarProperty Name="UserIdMatchmaker" ColumnName="UserIdMatchmaker" />
+          <ScalarProperty Name="UserIdBride" ColumnName="UserIdBride" />
+          <ScalarProperty Name="UserIdGroom" ColumnName="UserIdGroom" />
+          <ScalarProperty Name="MatchmakingId" ColumnName="MatchmakingId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Mechutanims">
+      <EntityTypeMapping TypeName="shiduchimModel.Mechutanim">
+        <MappingFragment StoreEntitySet="Mechutanim">
+          <ScalarProperty Name="Tel" ColumnName="Tel" />
+          <ScalarProperty Name="Fname" ColumnName="Fname" />
+          <ScalarProperty Name="City" ColumnName="City" />
+          <ScalarProperty Name="UserId" ColumnName="UserId" />
+          <ScalarProperty Name="MechutanimId" ColumnName="MechutanimId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Meetings">
+      <EntityTypeMapping TypeName="shiduchimModel.Meeting">
+        <MappingFragment StoreEntitySet="Meeting">
+          <ScalarProperty Name="description" ColumnName="description" />
+          <ScalarProperty Name="textColor" ColumnName="textColor" />
+          <ScalarProperty Name="borderColor" ColumnName="borderColor" />
+          <ScalarProperty Name="backgroundColor" ColumnName="backgroundColor" />
+          <ScalarProperty Name="KindMeeting" ColumnName="KindMeeting" />
+          <ScalarProperty Name="StatusBride" ColumnName="StatusBride" />
+          <ScalarProperty Name="StatusGroom" ColumnName="StatusGroom" />
+          <ScalarProperty Name="tzBride" ColumnName="tzBride" />
+          <ScalarProperty Name="tzGroom" ColumnName="tzGroom" />
+          <ScalarProperty Name="Place" ColumnName="Place" />
+          <ScalarProperty Name="title" ColumnName="title" />
+          <ScalarProperty Name="end" ColumnName="end" />
+          <ScalarProperty Name="start" ColumnName="start" />
+          <ScalarProperty Name="MeetingDate" ColumnName="MeetingDate" />
+          <ScalarProperty Name="MeetingId" ColumnName="MeetingId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="MigbalaCandidates">
+      <EntityTypeMapping TypeName="shiduchimModel.MigbalaCandidate">
+        <MappingFragment StoreEntitySet="MigbalaCandidate">
+          <ScalarProperty Name="levelMigbala" ColumnName="levelMigbala" />
+          <ScalarProperty Name="Describe" ColumnName="Describe" />
+          <ScalarProperty Name="Genetic" ColumnName="Genetic" />
+          <ScalarProperty Name="KindMigbala" ColumnName="KindMigbala" />
+          <ScalarProperty Name="UserId" ColumnName="UserId" />
+          <ScalarProperty Name="MigbalaCandidateId" ColumnName="MigbalaCandidateId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Parents">
+      <EntityTypeMapping TypeName="shiduchimModel.Parent">
+        <MappingFragment StoreEntitySet="Parent">
+          <ScalarProperty Name="Describ" ColumnName="Describ" />
+          <ScalarProperty Name="Jew" ColumnName="Jew" />
+          <ScalarProperty Name="ParentKind" ColumnName="ParentKind" />
+          <ScalarProperty Name="MotzaCountryId" ColumnName="MotzaCountryId" />
+          <ScalarProperty Name="BornCountryId" ColumnName="BornCountryId" />
+          <ScalarProperty Name="Relativ" ColumnName="Relativ" />
+          <ScalarProperty Name="UserId" ColumnName="UserId" />
+          <ScalarProperty Name="ParentId" ColumnName="ParentId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="PaymentsOfUsers">
+      <EntityTypeMapping TypeName="shiduchimModel.PaymentsOfUser">
+        <MappingFragment StoreEntitySet="PaymentsOfUser">
+          <ScalarProperty Name="DescribePayments" ColumnName="DescribePayments" />
+          <ScalarProperty Name="AmountToPay" ColumnName="AmountToPay" />
+          <ScalarProperty Name="DatePayments" ColumnName="DatePayments" />
+          <ScalarProperty Name="UserId" ColumnName="UserId" />
+          <ScalarProperty Name="PaymentsOfUserId" ColumnName="PaymentsOfUserId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Professions">
+      <EntityTypeMapping TypeName="shiduchimModel.Profession">
+        <MappingFragment StoreEntitySet="Profession">
+          <ScalarProperty Name="MoneyForHour" ColumnName="MoneyForHour" />
+          <ScalarProperty Name="ProfessionName" ColumnName="ProfessionName" />
+          <ScalarProperty Name="UserId" ColumnName="UserId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="sysdiagrams">
+      <EntityTypeMapping TypeName="shiduchimModel.sysdiagram">
+        <MappingFragment StoreEntitySet="sysdiagrams">
+          <ScalarProperty Name="definition" ColumnName="definition" />
+          <ScalarProperty Name="version" ColumnName="version" />
+          <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+          <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+          <ScalarProperty Name="name" ColumnName="name" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Users">
+      <EntityTypeMapping TypeName="shiduchimModel.User">
+        <MappingFragment StoreEntitySet="Users">
+          <ScalarProperty Name="Status" ColumnName="Status" />
+          <ScalarProperty Name="AllowAccess" ColumnName="AllowAccess" />
+          <ScalarProperty Name="BuildNum" ColumnName="BuildNum" />
+          <ScalarProperty Name="StreetId" ColumnName="StreetId" />
+          <ScalarProperty Name="CityId" ColumnName="CityId" />
+          <ScalarProperty Name="CountryId" ColumnName="CountryId" />
+          <ScalarProperty Name="Telephon" ColumnName="Telephon" />
+          <ScalarProperty Name="Cellphon" ColumnName="Cellphon" />
+          <ScalarProperty Name="Gender" ColumnName="Gender" />
+          <ScalarProperty Name="BornDate" ColumnName="BornDate" />
+          <ScalarProperty Name="LastName" ColumnName="LastName" />
+          <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+          <ScalarProperty Name="Tz" ColumnName="Tz" />
+          <ScalarProperty Name="UserName" ColumnName="UserName" />
+          <ScalarProperty Name="Password" ColumnName="Password" />
+          <ScalarProperty Name="Mail" ColumnName="Mail" />
+          <ScalarProperty Name="UserId" ColumnName="UserId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ValueLists">
+      <EntityTypeMapping TypeName="shiduchimModel.ValueList">
+        <MappingFragment StoreEntitySet="ValueList">
+          <ScalarProperty Name="Index1" ColumnName="Index1" />
+          <ScalarProperty Name="Value" ColumnName="Value" />
+          <ScalarProperty Name="CriterionId" ColumnName="CriterionId" />
+          <ScalarProperty Name="ValueListId" ColumnName="ValueListId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ValueListCandidates">
+      <EntityTypeMapping TypeName="shiduchimModel.ValueListCandidate">
+        <MappingFragment StoreEntitySet="ValueListCandidate">
+          <ScalarProperty Name="satisfacBool" ColumnName="satisfacBool" />
+          <ScalarProperty Name="selfBool" ColumnName="selfBool" />
+          <ScalarProperty Name="isInclude" ColumnName="isInclude" />
+          <ScalarProperty Name="isSelf" ColumnName="isSelf" />
+          <ScalarProperty Name="ValueListId" ColumnName="ValueListId" />
+          <ScalarProperty Name="satisfacMaxValue" ColumnName="satisfacMaxValue" />
+          <ScalarProperty Name="satisfacMinValue" ColumnName="satisfacMinValue" />
+          <ScalarProperty Name="selfValue" ColumnName="selfValue" />
+          <ScalarProperty Name="CriteriaId" ColumnName="CriteriaId" />
+          <ScalarProperty Name="UserId" ColumnName="UserId" />
+          <ScalarProperty Name="ValueListCandidateId" ColumnName="ValueListCandidateId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

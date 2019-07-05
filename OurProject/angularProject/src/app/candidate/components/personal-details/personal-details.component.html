@@ -1,0 +1,410 @@
+    <div>
+        <label class=" col-form-label text-md-right">פרטים מזהים</label>
+
+
+
+        <div dir="rtl" class="form-group row  flex-row-reverse" style="margin-right: 100px;">
+            <div class="col-md-5">
+                <input type="text" [(ngModel)]="cand.User.Tz" id="Tz" class="form-control" name="Tz" #Tz required>
+            </div>
+            <label for="Tz" class=" col-form-label text-md-right">מספר זהות</label>
+        </div>
+
+
+        <div dir="rtl" class="form-group row  flex-row-reverse" style="margin-right: 100px;">
+            <div class="col-md-5">
+                <input type="text" [(ngModel)]="cand.User.FirstName" id="FirstName" class="form-control" name="FirstName"
+                    #FirstName>
+            </div>
+            <label for="FirstName" class=" col-form-label text-md-right">שם פרטי</label>
+        </div>
+
+        <div dir="rtl" class="form-group row  flex-row-reverse" style="margin-right: 100px;">
+            <div class="col-md-5">
+                <input type="text" [(ngModel)]="cand.User.LastName" id="LastName" class="form-control" name="LastName"
+                    #LastName>
+            </div>
+            <label for="LastName" class=" col-form-label text-md-right">שם משפחה</label>
+        </div>
+
+
+        <div dir="rtl" class="form-group row  flex-row-reverse" style="margin-right: 100px;">
+            <div class="col-md-5">
+                <input type="text" [(ngModel)]="cand.Candidate.NamePrevMarriage" id="NamePrevMarriage" class="form-control"
+                    name="NamePrevMarriage" #NamePrevMarriage>
+            </div>
+            <label for="NamePrevMarriage" class=" col-form-label text-md-right">שם משפחה קודם</label>
+        </div>
+
+
+        <div dir="rtl" class="form-group row  flex-row-reverse" style="margin-right: 100px;">
+            <div class="col-md-5">
+                <!-- <dp-time-select [(ngModel)]="cand.User.BornDate" class="form-control" name="BornDate" #BornDate></dp-time-select>   -->
+
+                <input type="date" [(ngModel)]="cand.User.BornDate" id="BornDate" class="form-control" name="BornDate"
+                    #BornDate>
+            </div>
+            <label for="BornDate" class=" col-form-label text-md-right">תאריך לידה</label>
+        </div>
+
+
+
+        <div dir="rtl" class="form-group row  flex-row-reverse" style="margin-right: 100px;">
+            <div class="col-md-5">
+                <select class="form-control" id="Gender" name="Gender" [(ngModel)]="cand.User.Gender">
+                    <option [ngValue]="true">זכר</option>
+                    <option [ngValue]="false">נקבה</option>
+                </select>
+            </div>
+            <label for="Gender" class=" col-form-label text-md-right">מין</label>
+        </div>
+        <!-- פה חסר שפת אם ושפות נוספות -->
+
+
+
+
+
+        <div dir="rtl" class="form-group row  flex-row-reverse" style="margin-right: 100px;">
+            <div class="col-md-5">
+                <select class="form-control" id="MotherLonguage" name="MotherLonguage" [ngModel]="GetIDListById(28)"
+                    (ngModelChange)="dCandidateService.changeValue(28,$event)">
+                    <option *ngFor="let valueLis of GetValueList(28)" [value]="valueLis.ValueListId">{{valueLis.Value}}
+                    </option>
+                </select>
+            </div>
+            <label for="MotherLonguage" class=" col-form-label text-md-right"> שפת אם</label>
+        </div>
+
+        <div dir="rtl" class="form-group row  flex-row-reverse" style="margin-right: 100px;">
+            <div class="col-md-5">
+
+                <input type="number" id="numLanguage" class="form-control" name="numLanguage" [(ngModel)]="numLanguage"
+                    (change)="addLanguage()">
+            </div>
+            <label for="numLanguage" class=" col-form-label text-md-right">מספר שפות נוספות</label>
+        </div>
+
+
+        <div *ngFor="let item of dCandidateService.getCritMoreLanguage(29); index as ind">
+            <label class=" col-form-label text-md-right font-bold">שפה #{{ind+1}}</label>
+            <div dir="rtl" class="form-group row  flex-row-reverse" style="margin-right: 100px;">
+                <div class="col-md-5">
+                    <select class="form-control" id="MotherLonguage" name="MoreLonguage-{{ind}}" [(ngModel)]="item.ValueListId">
+                        <option *ngFor="let valueLis of GetValueList(28)" [value]="valueLis.ValueListId">
+                            {{valueLis.Value}}</option>
+                    </select>
+                </div>
+
+            </div>
+
+
+        </div>
+
+
+    </div>
+
+
+    <div>
+        <label class=" col-form-label text-md-right font-bold"> כתובת ,דוא"לוטלפון</label>
+
+        <div dir="rtl" class="form-group row  flex-row-reverse" style="margin-right: 100px;">
+            <div class="col-md-5">
+                <input type="text" [(ngModel)]="cand.User.CountryId" id="CountryId" class="form-control" name="CountryId"
+                    #CountryId>
+            </div>
+            <label for="CountryId" class=" col-form-label text-md-right">מדינה</label>
+        </div>
+
+        <div dir="rtl" class="form-group row  flex-row-reverse" style="margin-right: 100px;">
+            <div class="col-md-5">
+                <input type="text" [(ngModel)]="cand.User.CityId" id="CityId" class="form-control" name="CityId"
+                    #CityId>
+            </div>
+            <label for="CityId" class=" col-form-label text-md-right">עיר מגורים</label>
+        </div>
+
+        <div dir="rtl" class="form-group row  flex-row-reverse" style="margin-right: 100px;">
+            <div class="col-md-5">
+                <input type="text" [(ngModel)]="cand.User.StreetId" id="StreetId" class="form-control" name="StreetId"
+                    #StreetId>
+            </div>
+            <label for="StreetId" class=" col-form-label text-md-right">רחוב</label>
+        </div>
+
+        <div dir="rtl" class="form-group row  flex-row-reverse" style="margin-right: 100px;">
+            <div class="col-md-5">
+                <input type="number" [(ngModel)]="cand.User.BuildNum" id="BuildNum" class="form-control" name="BuildNum"
+                    #BuildNum>
+            </div>
+            <label for="BuildNum" class=" col-form-label text-md-right">מספר בית</label>
+        </div>
+
+        <div dir="rtl" class="form-group row  flex-row-reverse" style="margin-right: 100px;">
+            <div class="col-md-5">
+                <input type="email" [(ngModel)]="cand.User.Mail" id="Mail" class="form-control" name="Mail" #Mail>
+            </div>
+            <label for="Mail" class=" col-form-label text-md-right">כתובת דוא"ל אלקטרוני</label>
+        </div>
+
+
+        <div dir="rtl" class="form-group row  flex-row-reverse" style="margin-right: 100px;">
+            <div class="col-md-5">
+                <input type="text" [(ngModel)]="cand.User.Cellphon" id="Cellphon" class="form-control" name="Cellphon"
+                    #Cellphon>
+            </div>
+            <label for="Cellphon" class=" col-form-label text-md-right">פלאפון</label>
+        </div>
+
+
+        <div dir="rtl" class="form-group row  flex-row-reverse" style="margin-right: 100px;">
+            <div class="col-md-5">
+                <input type="text" [(ngModel)]="cand.User.Telephon" id="Telephon" class="form-control" name="Telephon"
+                    #Telephon>
+
+            </div>
+            <label for="Telephon" class=" col-form-label text-md-right">טלפון</label>
+        </div>
+
+
+
+
+    </div>
+    <div id="FamilyStatus">
+
+        <label class=" col-form-label text-md-right font-bold">מצב משפחתי</label>
+
+
+        <div dir="rtl" class="form-group row  flex-row-reverse" style="margin-right: 100px;">
+            <div class="col-md-5">
+                <select class="form-control" id="isChildren" name="isChildren" [(ngModel)]="isChildren">
+
+
+                    <option [ngValue]="false">לא</option>
+                    <option [ngValue]="true">כן</option>
+
+                </select>
+            </div>
+            <label for="isChildren" class=" col-form-label text-md-right">האם יש לך ילדים</label>
+        </div>
+
+
+
+        <div *ngIf="isChildren" dir="rtl" class="form-group row  flex-row-reverse" style="margin-right: 100px;">
+            <div class="col-md-5">
+
+                <input type="number" id="numChildren" class="form-control" name="numChildren" (change)="addChild()"
+                    [(ngModel)]="numChildren">
+            </div>
+            <label for="numChildren" class=" col-form-label text-md-right">מספר הילדים</label>
+        </div>
+
+
+        <div *ngFor="let item of cand.Children; index as i">
+            <label class=" col-form-label text-md-right font-bold"> ילד #{{i+1}}</label>
+            <div dir="rtl" class="form-group row  flex-row-reverse" style="margin-right: 100px;">
+                <div class="col-md-5">
+                    <input type="date" [(ngModel)]="item.BornDate" class="form-control" name="BornDate-{{i}}">
+                </div>
+                <label for="BornDate" class=" col-form-label text-md-right">תאריך לידה ילד</label>
+            </div>
+            <div dir="rtl" class="form-group row  flex-row-reverse" style="margin-right: 100px;">
+                <div class="col-md-5">
+
+                    <input type="text" [(ngModel)]="item.NameChilde" class="form-control" name="NameChilde-{{i}}">
+                </div>
+                <label for="NameChilde" class=" col-form-label text-md-right">שם ילד</label>
+            </div>
+
+        </div>
+
+        <div id="Mechutanim">
+                <div dir="rtl" class="form-group row  flex-row-reverse" style="margin-right: 100px;">
+                    <div class="col-md-5">
+                        <select class="form-control" id="isMechutanim" name="isMechutanim" [(ngModel)]="isMechutanim">
+        
+                            <option [ngValue]="false">לא</option>
+                            <option [ngValue]="true">כן</option>
+        
+                        </select>
+                    </div>
+                    <label for="isMechutanim" class=" col-form-label text-md-right">האם יש מחותנים</label>
+                </div>
+        
+        
+                <div *ngIf="isMechutanim" dir="rtl" class="form-group row  flex-row-reverse" style="margin-right: 100px;">
+                    <div class="col-md-5">
+        
+                        <input type="number" id="numMechutanim" class="form-control" name="numMechutanim" (change)="addMechutanim()"
+                            [(ngModel)]="numMechutanim">
+                    </div>
+                    <label for="numMechutanim" class=" col-form-label text-md-right">מספר מחותנים</label>
+                </div>
+        
+                <div *ngFor="let items of cand.Mechutanim; index as indexer">
+        
+                    <label class=" col-form-label text-md-right font-bold"> מחותן #{{indexer+1}}</label>
+                    <div dir="rtl" class="form-group row  flex-row-reverse" style="margin-right: 100px;">
+                        <div class="col-md-5">
+                            <input type="text" [(ngModel)]="items.Fname" class="form-control" name="Fname-{{indexer}}">
+                        </div>
+                        <label for="Fname" class=" col-form-label text-md-right">שם משפחה</label>
+                    </div>
+        
+                    <div dir="rtl" class="form-group row  flex-row-reverse" style="margin-right: 100px;">
+                        <div class="col-md-5">
+                            <select class="form-control" id="City" name="City-{{indexer}}" [(ngModel)]="items.City">
+        
+                                <option *ngFor="let valueLis of GetValueList(36)" [value]="valueLis.ValueListId">
+                                    {{valueLis.Value}}</option>
+                            </select>
+                        </div>
+                        <label for="City" class=" col-form-label text-md-right">עיר</label>
+                    </div>
+                    <div dir="rtl" class="form-group row  flex-row-reverse" style="margin-right: 100px;">
+                        <div class="col-md-5">
+        
+                            <input type="text" [(ngModel)]="items.Tel" class="form-control" name="Tel-{{indexer}}">
+                        </div>
+                        <label for="Tel" class=" col-form-label text-md-right">טלפון</label>
+                    </div>
+        
+                </div>
+        
+            </div>
+        
+            <div id="parent">
+                <div dir="rtl" class="form-group row  flex-row-reverse" style="margin-right: 100px;">
+                    <div class="col-md-5">
+                        <select class="form-control" id="isParent" name="isParent" [(ngModel)]="isParent">
+        
+                            <option [ngValue]="false">לא</option>
+                            <option [ngValue]="true">כן</option>
+        
+                        </select>
+                    </div>
+                    <label for="isParent" class=" col-form-label text-md-right">האם יש לך הורים</label>
+                </div>
+        
+                <div *ngIf="isParent" dir="rtl" class="form-group row  flex-row-reverse" style="margin-right: 100px;">
+                    <div class="col-md-5">
+        
+                        <input type="number" id="numParents" class="form-control" name="numParents" (change)="addParent()"
+                            [(ngModel)]="numParents">
+                    </div>
+                    <label for="numParents" class=" col-form-label text-md-right">מספר הורים</label>
+                </div>
+        
+                <div *ngFor="let ii of cand.Parents; index as j">
+                    <label class="col-form-label text-md-right font-bold"> הורה #{{j+1}}</label>
+                    <div dir="rtl" class="form-group row  flex-row-reverse" style="margin-right: 100px;">
+                        <div class="col-md-5">
+        
+                            <select class="form-control" id="Relativ" name="Relativ-{{j}}" [(ngModel)]="ii.Relativ">
+        
+                                <option [ngValue]="true">אבא</option>
+                                <option [ngValue]="false">אמא</option>
+        
+                            </select>
+                        </div>
+                        <label for="Relativ" class=" col-form-label text-md-right">קירבה</label>
+                    </div>
+                    <div dir="rtl" class="form-group row  flex-row-reverse" style="margin-right: 100px;">
+                        <div class="col-md-5">
+                            <select class="form-control" id="ParentKind" name="ParentKind-{{j}}" [(ngModel)]="ii.ParentKind">
+        
+                                <option *ngFor="let valueLis of GetValueList(35)" [value]="valueLis.ValueListId">
+                                    {{valueLis.Value}}</option>
+                            </select>
+                        </div>
+                        <label for="ParentKind" class=" col-form-label text-md-right">סוג הורה</label>
+                    </div>
+        
+        
+                    <div dir="rtl" class="form-group row  flex-row-reverse" style="margin-right: 100px;">
+                        <div class="col-md-5">
+        
+                            <select class="form-control" id="Jew" name="Jew-{{j}}" [(ngModel)]="ii.Jew">
+        
+                                <option [ngValue]="false">לא</option>
+                                <option [ngValue]="true">כן</option>
+        
+                            </select>
+                        </div>
+                        <label for="Jew" class=" col-form-label text-md-right">האם יהודי</label>
+                    </div>
+                    <div dir="rtl" class="form-group row  flex-row-reverse" style="margin-right: 100px;">
+                        <div class="col-md-5">
+        
+                            <select class="form-control" id="MotzaCountryId" name="MotzaCountryId-{{j}}" [(ngModel)]="ii.MotzaCountryId">
+        
+                                <option *ngFor="let valueLis of GetValueList(36)" [value]="valueLis.ValueListId">
+                                    {{valueLis.Value}}</option>
+                            </select>
+                        </div>
+                        <label for="MotzaCountryId" class=" col-form-label text-md-right">ארץ מוצא</label>
+                    </div>
+                    <div dir="rtl" class="form-group row  flex-row-reverse" style="margin-right: 100px;">
+                        <div class="col-md-5">
+        
+                            <select class="form-control" id="BornCountryId" name="BornCountryId-{{j}}" [(ngModel)]="ii.BornCountryId">
+        
+                                <option *ngFor="let valueLis of GetValueList(37)" [value]="valueLis.ValueListId">
+                                    {{valueLis.Value}}</option>
+                            </select>
+                        </div>
+                        <label for="BornCountryId" class=" col-form-label text-md-right">ארץ לידה</label>
+                    </div>
+                    <div dir="rtl" class="form-group row  flex-row-reverse" style="margin-right: 100px;">
+                        <div class="col-md-5">
+        
+                            <input type="text" [(ngModel)]="ii.Describ" class="form-control" name="Describ-{{j}}">
+                        </div>
+                        <label for="Describ" class=" col-form-label text-md-right">תאור</label>
+                    </div>
+                </div>
+        
+        
+            </div>
+        
+
+    </div>
+
+
+
+
+    <div id="sector">
+        <label class=" col-form-label text-md-right font-bold">סקטור</label>
+
+
+        <div *ngFor="let crit of criterionSector; index as i" dir="rtl" class="form-group row  flex-row-reverse" style="margin-right: 100px;">
+            <div class="col-md-5">
+                <select class="form-control" id="criteria" name="criteria-{{i}}" [ngModel]="GetIDListById(crit.CriterionId)"
+                    (ngModelChange)="dCandidateService.changeValue(crit.CriterionId,$event)">
+                    <option *ngFor="let valueLis of GetValueList(crit.CriterionId)" [value]="valueLis.ValueListId">
+                        {{valueLis.Value}}</option>
+                </select>
+            </div>
+            <label for="criteria" class=" col-form-label text-md-right"> {{crit.NameCriterion}}</label>
+
+        </div>
+
+
+        <div dir="rtl" class="form-group row  flex-row-reverse" style="margin-right: 100px;">
+            <div class="col-md-5">
+                <input type="text" [(ngModel)]="cand.Candidate.NameRav" id="NameRav" class="form-control" name="NameRav"
+                    #CountryId>
+            </div>
+            <label for="NameRav" class=" col-form-label text-md-right">רב פוסק</label>
+        </div>
+
+        <div dir="rtl" class="form-group row  flex-row-reverse" style="margin-right: 100px;">
+            <div class="col-md-5">
+                <input type="text" [(ngModel)]="cand.Candidate.TelRav" id="TelRav" class="form-control" name="TelRav"
+                    #CountryId>
+            </div>
+            <label for="TelRav" class=" col-form-label text-md-right">טל רב</label>
+        </div>
+
+    </div>
+  
+

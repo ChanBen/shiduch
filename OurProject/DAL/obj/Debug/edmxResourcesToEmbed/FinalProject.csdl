@@ -1,0 +1,544 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="shiduchimModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityContainer Name="shiduchimEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Candidates" EntityType="shiduchimModel.Candidate" />
+    <EntitySet Name="Children" EntityType="shiduchimModel.Child" />
+    <EntitySet Name="Criteria" EntityType="shiduchimModel.Criterion" />
+    <EntitySet Name="Documents" EntityType="shiduchimModel.Document" />
+    <EntitySet Name="Hospitalizations" EntityType="shiduchimModel.Hospitalization" />
+    <EntitySet Name="Matchmakers" EntityType="shiduchimModel.Matchmaker" />
+    <EntitySet Name="Mechutanims" EntityType="shiduchimModel.Mechutanim" />
+    <EntitySet Name="Meetings" EntityType="shiduchimModel.Meeting" />
+    <EntitySet Name="MigbalaCandidates" EntityType="shiduchimModel.MigbalaCandidate" />
+    <EntitySet Name="Parents" EntityType="shiduchimModel.Parent" />
+    <EntitySet Name="PaymentsOfUsers" EntityType="shiduchimModel.PaymentsOfUser" />
+    <EntitySet Name="Professions" EntityType="shiduchimModel.Profession" />
+    <EntitySet Name="sysdiagrams" EntityType="shiduchimModel.sysdiagram" />
+    <EntitySet Name="Users" EntityType="shiduchimModel.User" />
+    <EntitySet Name="ValueLists" EntityType="shiduchimModel.ValueList" />
+    <EntitySet Name="ValueListCandidates" EntityType="shiduchimModel.ValueListCandidate" />
+    <AssociationSet Name="FK_Candidate_Users" Association="shiduchimModel.FK_Candidate_Users">
+      <End Role="User" EntitySet="Users" />
+      <End Role="Candidate" EntitySet="Candidates" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Children_Candidate1" Association="shiduchimModel.FK_Children_Candidate1">
+      <End Role="Candidate" EntitySet="Candidates" />
+      <End Role="Child" EntitySet="Children" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Document_Candidate1" Association="shiduchimModel.FK_Document_Candidate1">
+      <End Role="Candidate" EntitySet="Candidates" />
+      <End Role="Document" EntitySet="Documents" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Hospitalization_Candidate1" Association="shiduchimModel.FK_Hospitalization_Candidate1">
+      <End Role="Candidate" EntitySet="Candidates" />
+      <End Role="Hospitalization" EntitySet="Hospitalizations" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Matchmaker_Candidate2" Association="shiduchimModel.FK_Matchmaker_Candidate2">
+      <End Role="Candidate" EntitySet="Candidates" />
+      <End Role="Matchmaker" EntitySet="Matchmakers" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Matchmaker_Candidate3" Association="shiduchimModel.FK_Matchmaker_Candidate3">
+      <End Role="Candidate" EntitySet="Candidates" />
+      <End Role="Matchmaker" EntitySet="Matchmakers" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Mechutanim_Candidate1" Association="shiduchimModel.FK_Mechutanim_Candidate1">
+      <End Role="Candidate" EntitySet="Candidates" />
+      <End Role="Mechutanim" EntitySet="Mechutanims" />
+    </AssociationSet>
+    <AssociationSet Name="FK_MigbalaCandidate_Candidate1" Association="shiduchimModel.FK_MigbalaCandidate_Candidate1">
+      <End Role="Candidate" EntitySet="Candidates" />
+      <End Role="MigbalaCandidate" EntitySet="MigbalaCandidates" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Parent_Candidate1" Association="shiduchimModel.FK_Parent_Candidate1">
+      <End Role="Candidate" EntitySet="Candidates" />
+      <End Role="Parent" EntitySet="Parents" />
+    </AssociationSet>
+    <AssociationSet Name="FK_PaymentsOfUser_Candidate1" Association="shiduchimModel.FK_PaymentsOfUser_Candidate1">
+      <End Role="Candidate" EntitySet="Candidates" />
+      <End Role="PaymentsOfUser" EntitySet="PaymentsOfUsers" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ValueList_Criterion" Association="shiduchimModel.FK_ValueList_Criterion">
+      <End Role="Criterion" EntitySet="Criteria" />
+      <End Role="ValueList" EntitySet="ValueLists" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ValueListCandidate_Criterion" Association="shiduchimModel.FK_ValueListCandidate_Criterion">
+      <End Role="Criterion" EntitySet="Criteria" />
+      <End Role="ValueListCandidate" EntitySet="ValueListCandidates" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Matchmaker_Users3" Association="shiduchimModel.FK_Matchmaker_Users3">
+      <End Role="User" EntitySet="Users" />
+      <End Role="Matchmaker" EntitySet="Matchmakers" />
+    </AssociationSet>
+    <AssociationSet Name="FK_MigbalaCandidate_ValueList" Association="shiduchimModel.FK_MigbalaCandidate_ValueList">
+      <End Role="ValueList" EntitySet="ValueLists" />
+      <End Role="MigbalaCandidate" EntitySet="MigbalaCandidates" />
+    </AssociationSet>
+    <AssociationSet Name="FK_MigbalaCandidate_ValueList1" Association="shiduchimModel.FK_MigbalaCandidate_ValueList1">
+      <End Role="ValueList" EntitySet="ValueLists" />
+      <End Role="MigbalaCandidate" EntitySet="MigbalaCandidates" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Profession_Users" Association="shiduchimModel.FK_Profession_Users">
+      <End Role="User" EntitySet="Users" />
+      <End Role="Profession" EntitySet="Professions" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ValueListCandidate_Users" Association="shiduchimModel.FK_ValueListCandidate_Users">
+      <End Role="User" EntitySet="Users" />
+      <End Role="ValueListCandidate" EntitySet="ValueListCandidates" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ValueListCandidate_ValueList" Association="shiduchimModel.FK_ValueListCandidate_ValueList">
+      <End Role="ValueList" EntitySet="ValueLists" />
+      <End Role="ValueListCandidate" EntitySet="ValueListCandidates" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="Candidate">
+    <Key>
+      <PropertyRef Name="UserId" />
+    </Key>
+    <Property Name="UserId" Type="Int32" Nullable="false" />
+    <Property Name="NamePrevMarriage" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="NameRav" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="TelRav" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+    <Property Name="EnterIn" Type="Int32" />
+    <Property Name="BaitCham" Type="Boolean" />
+    <Property Name="ImageCandidate" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="DescribeMigbala" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="personaldecription" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="User" Relationship="shiduchimModel.FK_Candidate_Users" FromRole="Candidate" ToRole="User" />
+    <NavigationProperty Name="Children" Relationship="shiduchimModel.FK_Children_Candidate1" FromRole="Candidate" ToRole="Child" />
+    <NavigationProperty Name="Documents" Relationship="shiduchimModel.FK_Document_Candidate1" FromRole="Candidate" ToRole="Document" />
+    <NavigationProperty Name="Hospitalizations" Relationship="shiduchimModel.FK_Hospitalization_Candidate1" FromRole="Candidate" ToRole="Hospitalization" />
+    <NavigationProperty Name="Matchmakers" Relationship="shiduchimModel.FK_Matchmaker_Candidate2" FromRole="Candidate" ToRole="Matchmaker" />
+    <NavigationProperty Name="Matchmakers1" Relationship="shiduchimModel.FK_Matchmaker_Candidate3" FromRole="Candidate" ToRole="Matchmaker" />
+    <NavigationProperty Name="Mechutanims" Relationship="shiduchimModel.FK_Mechutanim_Candidate1" FromRole="Candidate" ToRole="Mechutanim" />
+    <NavigationProperty Name="MigbalaCandidates" Relationship="shiduchimModel.FK_MigbalaCandidate_Candidate1" FromRole="Candidate" ToRole="MigbalaCandidate" />
+    <NavigationProperty Name="Parents" Relationship="shiduchimModel.FK_Parent_Candidate1" FromRole="Candidate" ToRole="Parent" />
+    <NavigationProperty Name="PaymentsOfUsers" Relationship="shiduchimModel.FK_PaymentsOfUser_Candidate1" FromRole="Candidate" ToRole="PaymentsOfUser" />
+  </EntityType>
+  <EntityType Name="Child">
+    <Key>
+      <PropertyRef Name="ChildrenId" />
+    </Key>
+    <Property Name="ChildrenId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="UserId" Type="Int32" Nullable="false" />
+    <Property Name="BornDate" Type="DateTime" Precision="0" />
+    <Property Name="NameChilde" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Candidate" Relationship="shiduchimModel.FK_Children_Candidate1" FromRole="Child" ToRole="Candidate" />
+  </EntityType>
+  <EntityType Name="Criterion">
+    <Key>
+      <PropertyRef Name="CriterionId" />
+    </Key>
+    <Property Name="CriterionId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="NameCriterion" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="KindCriterion" Type="Int32" />
+    <Property Name="MaxValue" Type="Int32" />
+    <Property Name="MinValue" Type="Int32" />
+    <Property Name="Interested" Type="Int32" />
+    <Property Name="multipleChoice" Type="Boolean" />
+    <Property Name="category" Type="Int32" />
+    <NavigationProperty Name="ValueLists" Relationship="shiduchimModel.FK_ValueList_Criterion" FromRole="Criterion" ToRole="ValueList" />
+    <NavigationProperty Name="ValueListCandidates" Relationship="shiduchimModel.FK_ValueListCandidate_Criterion" FromRole="Criterion" ToRole="ValueListCandidate" />
+  </EntityType>
+  <EntityType Name="Document">
+    <Key>
+      <PropertyRef Name="DocumentId" />
+    </Key>
+    <Property Name="DocumentId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="UserId" Type="Int32" />
+    <Property Name="Document1" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="Describe" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Candidate" Relationship="shiduchimModel.FK_Document_Candidate1" FromRole="Document" ToRole="Candidate" />
+  </EntityType>
+  <EntityType Name="Hospitalization">
+    <Key>
+      <PropertyRef Name="HospitalizationId" />
+    </Key>
+    <Property Name="HospitalizationId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="UserId" Type="Int32" />
+    <Property Name="NameDepartment" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="TreatDoctor" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="TelTreatDr" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Name="NameHospital" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="FromDate" Type="DateTime" Precision="0" />
+    <Property Name="UntilDate" Type="DateTime" Precision="0" />
+    <Property Name="Describ" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Candidate" Relationship="shiduchimModel.FK_Hospitalization_Candidate1" FromRole="Hospitalization" ToRole="Candidate" />
+  </EntityType>
+  <EntityType Name="Matchmaker">
+    <Key>
+      <PropertyRef Name="MatchmakingId" />
+    </Key>
+    <Property Name="MatchmakingId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="UserIdGroom" Type="Int32" />
+    <Property Name="UserIdBride" Type="Int32" />
+    <Property Name="UserIdMatchmaker" Type="Int32" />
+    <Property Name="DateWedding" Type="DateTime" Precision="0" />
+    <Property Name="Describe" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Candidate" Relationship="shiduchimModel.FK_Matchmaker_Candidate2" FromRole="Matchmaker" ToRole="Candidate" />
+    <NavigationProperty Name="Candidate1" Relationship="shiduchimModel.FK_Matchmaker_Candidate3" FromRole="Matchmaker" ToRole="Candidate" />
+    <NavigationProperty Name="User" Relationship="shiduchimModel.FK_Matchmaker_Users3" FromRole="Matchmaker" ToRole="User" />
+  </EntityType>
+  <EntityType Name="Mechutanim">
+    <Key>
+      <PropertyRef Name="MechutanimId" />
+    </Key>
+    <Property Name="MechutanimId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="UserId" Type="Int32" />
+    <Property Name="City" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Fname" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Tel" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Candidate" Relationship="shiduchimModel.FK_Mechutanim_Candidate1" FromRole="Mechutanim" ToRole="Candidate" />
+  </EntityType>
+  <EntityType Name="Meeting">
+    <Key>
+      <PropertyRef Name="MeetingId" />
+    </Key>
+    <Property Name="MeetingId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="MeetingDate" Type="DateTime" Precision="3" />
+    <Property Name="start" Type="DateTime" Precision="3" />
+    <Property Name="end" Type="DateTime" Precision="3" />
+    <Property Name="title" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Place" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="tzGroom" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="tzBride" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="StatusGroom" Type="Int32" />
+    <Property Name="StatusBride" Type="Int32" />
+    <Property Name="KindMeeting" Type="Int32" />
+    <Property Name="backgroundColor" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="borderColor" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="textColor" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="description" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="MigbalaCandidate">
+    <Key>
+      <PropertyRef Name="MigbalaCandidateId" />
+    </Key>
+    <Property Name="MigbalaCandidateId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="UserId" Type="Int32" />
+    <Property Name="KindMigbala" Type="Int32" />
+    <Property Name="Genetic" Type="Boolean" />
+    <Property Name="Describe" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="levelMigbala" Type="Int32" />
+    <NavigationProperty Name="Candidate" Relationship="shiduchimModel.FK_MigbalaCandidate_Candidate1" FromRole="MigbalaCandidate" ToRole="Candidate" />
+    <NavigationProperty Name="ValueList" Relationship="shiduchimModel.FK_MigbalaCandidate_ValueList" FromRole="MigbalaCandidate" ToRole="ValueList" />
+    <NavigationProperty Name="ValueList1" Relationship="shiduchimModel.FK_MigbalaCandidate_ValueList1" FromRole="MigbalaCandidate" ToRole="ValueList" />
+  </EntityType>
+  <EntityType Name="Parent">
+    <Key>
+      <PropertyRef Name="ParentId" />
+    </Key>
+    <Property Name="ParentId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="UserId" Type="Int32" />
+    <Property Name="Relativ" Type="Boolean" />
+    <Property Name="BornCountryId" Type="Int32" />
+    <Property Name="MotzaCountryId" Type="Int32" />
+    <Property Name="ParentKind" Type="Int32" />
+    <Property Name="Jew" Type="Boolean" />
+    <Property Name="Describ" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Candidate" Relationship="shiduchimModel.FK_Parent_Candidate1" FromRole="Parent" ToRole="Candidate" />
+  </EntityType>
+  <EntityType Name="PaymentsOfUser">
+    <Key>
+      <PropertyRef Name="PaymentsOfUserId" />
+    </Key>
+    <Property Name="PaymentsOfUserId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="UserId" Type="Int32" />
+    <Property Name="DatePayments" Type="DateTime" Precision="3" />
+    <Property Name="AmountToPay" Type="Decimal" Precision="19" Scale="4" />
+    <Property Name="DescribePayments" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Candidate" Relationship="shiduchimModel.FK_PaymentsOfUser_Candidate1" FromRole="PaymentsOfUser" ToRole="Candidate" />
+  </EntityType>
+  <EntityType Name="Profession">
+    <Key>
+      <PropertyRef Name="UserId" />
+    </Key>
+    <Property Name="UserId" Type="Int32" Nullable="false" />
+    <Property Name="ProfessionName" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+    <Property Name="MoneyForHour" Type="Decimal" Precision="19" Scale="4" />
+    <NavigationProperty Name="User" Relationship="shiduchimModel.FK_Profession_Users" FromRole="Profession" ToRole="User" />
+  </EntityType>
+  <EntityType Name="sysdiagram">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+    <Property Name="principal_id" Type="Int32" Nullable="false" />
+    <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="version" Type="Int32" />
+    <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+  </EntityType>
+  <EntityType Name="User">
+    <Key>
+      <PropertyRef Name="UserId" />
+    </Key>
+    <Property Name="UserId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Mail" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Password" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="UserName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Tz" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="FirstName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="LastName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="BornDate" Type="DateTime" Precision="0" />
+    <Property Name="Gender" Type="Boolean" />
+    <Property Name="Cellphon" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Name="Telephon" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Name="CountryId" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="CityId" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="StreetId" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="BuildNum" Type="Int32" />
+    <Property Name="AllowAccess" Type="Int32" />
+    <Property Name="Status" Type="Int32" />
+    <NavigationProperty Name="Candidate" Relationship="shiduchimModel.FK_Candidate_Users" FromRole="User" ToRole="Candidate" />
+    <NavigationProperty Name="Matchmakers" Relationship="shiduchimModel.FK_Matchmaker_Users3" FromRole="User" ToRole="Matchmaker" />
+    <NavigationProperty Name="Profession" Relationship="shiduchimModel.FK_Profession_Users" FromRole="User" ToRole="Profession" />
+    <NavigationProperty Name="ValueListCandidates" Relationship="shiduchimModel.FK_ValueListCandidate_Users" FromRole="User" ToRole="ValueListCandidate" />
+  </EntityType>
+  <EntityType Name="ValueList">
+    <Key>
+      <PropertyRef Name="ValueListId" />
+    </Key>
+    <Property Name="ValueListId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="CriterionId" Type="Int32" />
+    <Property Name="Value" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+    <Property Name="Index1" Type="Int32" />
+    <NavigationProperty Name="Criterion" Relationship="shiduchimModel.FK_ValueList_Criterion" FromRole="ValueList" ToRole="Criterion" />
+    <NavigationProperty Name="MigbalaCandidates" Relationship="shiduchimModel.FK_MigbalaCandidate_ValueList" FromRole="ValueList" ToRole="MigbalaCandidate" />
+    <NavigationProperty Name="MigbalaCandidates1" Relationship="shiduchimModel.FK_MigbalaCandidate_ValueList1" FromRole="ValueList" ToRole="MigbalaCandidate" />
+    <NavigationProperty Name="ValueListCandidates" Relationship="shiduchimModel.FK_ValueListCandidate_ValueList" FromRole="ValueList" ToRole="ValueListCandidate" />
+  </EntityType>
+  <EntityType Name="ValueListCandidate">
+    <Key>
+      <PropertyRef Name="ValueListCandidateId" />
+    </Key>
+    <Property Name="ValueListCandidateId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="UserId" Type="Int32" />
+    <Property Name="CriteriaId" Type="Int32" />
+    <Property Name="selfValue" Type="Int32" />
+    <Property Name="satisfacMinValue" Type="Int32" />
+    <Property Name="satisfacMaxValue" Type="Int32" />
+    <Property Name="ValueListId" Type="Int32" />
+    <Property Name="isSelf" Type="Boolean" />
+    <Property Name="isInclude" Type="Boolean" />
+    <Property Name="selfBool" Type="Boolean" />
+    <Property Name="satisfacBool" Type="Boolean" />
+    <NavigationProperty Name="Criterion" Relationship="shiduchimModel.FK_ValueListCandidate_Criterion" FromRole="ValueListCandidate" ToRole="Criterion" />
+    <NavigationProperty Name="User" Relationship="shiduchimModel.FK_ValueListCandidate_Users" FromRole="ValueListCandidate" ToRole="User" />
+    <NavigationProperty Name="ValueList" Relationship="shiduchimModel.FK_ValueListCandidate_ValueList" FromRole="ValueListCandidate" ToRole="ValueList" />
+  </EntityType>
+  <Association Name="FK_Candidate_Users">
+    <End Type="shiduchimModel.User" Role="User" Multiplicity="1" />
+    <End Type="shiduchimModel.Candidate" Role="Candidate" Multiplicity="0..1" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="UserId" />
+      </Principal>
+      <Dependent Role="Candidate">
+        <PropertyRef Name="UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Children_Candidate1">
+    <End Type="shiduchimModel.Candidate" Role="Candidate" Multiplicity="1" />
+    <End Type="shiduchimModel.Child" Role="Child" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Candidate">
+        <PropertyRef Name="UserId" />
+      </Principal>
+      <Dependent Role="Child">
+        <PropertyRef Name="UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Document_Candidate1">
+    <End Type="shiduchimModel.Candidate" Role="Candidate" Multiplicity="0..1" />
+    <End Type="shiduchimModel.Document" Role="Document" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Candidate">
+        <PropertyRef Name="UserId" />
+      </Principal>
+      <Dependent Role="Document">
+        <PropertyRef Name="UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Hospitalization_Candidate1">
+    <End Type="shiduchimModel.Candidate" Role="Candidate" Multiplicity="0..1" />
+    <End Type="shiduchimModel.Hospitalization" Role="Hospitalization" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Candidate">
+        <PropertyRef Name="UserId" />
+      </Principal>
+      <Dependent Role="Hospitalization">
+        <PropertyRef Name="UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Matchmaker_Candidate2">
+    <End Type="shiduchimModel.Candidate" Role="Candidate" Multiplicity="0..1" />
+    <End Type="shiduchimModel.Matchmaker" Role="Matchmaker" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Candidate">
+        <PropertyRef Name="UserId" />
+      </Principal>
+      <Dependent Role="Matchmaker">
+        <PropertyRef Name="UserIdGroom" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Matchmaker_Candidate3">
+    <End Type="shiduchimModel.Candidate" Role="Candidate" Multiplicity="0..1" />
+    <End Type="shiduchimModel.Matchmaker" Role="Matchmaker" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Candidate">
+        <PropertyRef Name="UserId" />
+      </Principal>
+      <Dependent Role="Matchmaker">
+        <PropertyRef Name="UserIdBride" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Mechutanim_Candidate1">
+    <End Type="shiduchimModel.Candidate" Role="Candidate" Multiplicity="0..1" />
+    <End Type="shiduchimModel.Mechutanim" Role="Mechutanim" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Candidate">
+        <PropertyRef Name="UserId" />
+      </Principal>
+      <Dependent Role="Mechutanim">
+        <PropertyRef Name="UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_MigbalaCandidate_Candidate1">
+    <End Type="shiduchimModel.Candidate" Role="Candidate" Multiplicity="0..1" />
+    <End Type="shiduchimModel.MigbalaCandidate" Role="MigbalaCandidate" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Candidate">
+        <PropertyRef Name="UserId" />
+      </Principal>
+      <Dependent Role="MigbalaCandidate">
+        <PropertyRef Name="UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Parent_Candidate1">
+    <End Type="shiduchimModel.Candidate" Role="Candidate" Multiplicity="0..1" />
+    <End Type="shiduchimModel.Parent" Role="Parent" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Candidate">
+        <PropertyRef Name="UserId" />
+      </Principal>
+      <Dependent Role="Parent">
+        <PropertyRef Name="UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_PaymentsOfUser_Candidate1">
+    <End Type="shiduchimModel.Candidate" Role="Candidate" Multiplicity="0..1" />
+    <End Type="shiduchimModel.PaymentsOfUser" Role="PaymentsOfUser" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Candidate">
+        <PropertyRef Name="UserId" />
+      </Principal>
+      <Dependent Role="PaymentsOfUser">
+        <PropertyRef Name="UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ValueList_Criterion">
+    <End Type="shiduchimModel.Criterion" Role="Criterion" Multiplicity="0..1" />
+    <End Type="shiduchimModel.ValueList" Role="ValueList" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Criterion">
+        <PropertyRef Name="CriterionId" />
+      </Principal>
+      <Dependent Role="ValueList">
+        <PropertyRef Name="CriterionId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ValueListCandidate_Criterion">
+    <End Type="shiduchimModel.Criterion" Role="Criterion" Multiplicity="0..1" />
+    <End Type="shiduchimModel.ValueListCandidate" Role="ValueListCandidate" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Criterion">
+        <PropertyRef Name="CriterionId" />
+      </Principal>
+      <Dependent Role="ValueListCandidate">
+        <PropertyRef Name="CriteriaId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Matchmaker_Users3">
+    <End Type="shiduchimModel.User" Role="User" Multiplicity="0..1" />
+    <End Type="shiduchimModel.Matchmaker" Role="Matchmaker" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="UserId" />
+      </Principal>
+      <Dependent Role="Matchmaker">
+        <PropertyRef Name="UserIdMatchmaker" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_MigbalaCandidate_ValueList">
+    <End Type="shiduchimModel.ValueList" Role="ValueList" Multiplicity="0..1" />
+    <End Type="shiduchimModel.MigbalaCandidate" Role="MigbalaCandidate" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ValueList">
+        <PropertyRef Name="ValueListId" />
+      </Principal>
+      <Dependent Role="MigbalaCandidate">
+        <PropertyRef Name="KindMigbala" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_MigbalaCandidate_ValueList1">
+    <End Type="shiduchimModel.ValueList" Role="ValueList" Multiplicity="0..1" />
+    <End Type="shiduchimModel.MigbalaCandidate" Role="MigbalaCandidate" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ValueList">
+        <PropertyRef Name="ValueListId" />
+      </Principal>
+      <Dependent Role="MigbalaCandidate">
+        <PropertyRef Name="levelMigbala" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Profession_Users">
+    <End Type="shiduchimModel.User" Role="User" Multiplicity="1" />
+    <End Type="shiduchimModel.Profession" Role="Profession" Multiplicity="0..1" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="UserId" />
+      </Principal>
+      <Dependent Role="Profession">
+        <PropertyRef Name="UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ValueListCandidate_Users">
+    <End Type="shiduchimModel.User" Role="User" Multiplicity="0..1" />
+    <End Type="shiduchimModel.ValueListCandidate" Role="ValueListCandidate" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="UserId" />
+      </Principal>
+      <Dependent Role="ValueListCandidate">
+        <PropertyRef Name="UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ValueListCandidate_ValueList">
+    <End Type="shiduchimModel.ValueList" Role="ValueList" Multiplicity="0..1" />
+    <End Type="shiduchimModel.ValueListCandidate" Role="ValueListCandidate" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ValueList">
+        <PropertyRef Name="ValueListId" />
+      </Principal>
+      <Dependent Role="ValueListCandidate">
+        <PropertyRef Name="ValueListId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema>

@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="cb3bd9b482b841ba9698c6e58b794c7e" Name="Diagram1" ZoomLevel="97">
+        <EntityTypeShape EntityType="shiduchimModel.Candidate" Width="1.5" PointX="3" PointY="21.625" />
+        <EntityTypeShape EntityType="shiduchimModel.Child" Width="1.5" PointX="5.25" PointY="37.875" />
+        <EntityTypeShape EntityType="shiduchimModel.Criterion" Width="1.5" PointX="0.75" PointY="22.5" />
+        <EntityTypeShape EntityType="shiduchimModel.Document" Width="1.5" PointX="5.25" PointY="35.125" />
+        <EntityTypeShape EntityType="shiduchimModel.Hospitalization" Width="1.5" PointX="5.25" PointY="18.125" />
+        <EntityTypeShape EntityType="shiduchimModel.Matchmaker" Width="1.5" PointX="8.25" PointY="19.625" />
+        <EntityTypeShape EntityType="shiduchimModel.Mechutanim" Width="1.5" PointX="5.25" PointY="15.125" />
+        <EntityTypeShape EntityType="shiduchimModel.Meeting" Width="1.5" PointX="0.75" PointY="0.75" />
+        <EntityTypeShape EntityType="shiduchimModel.MigbalaCandidate" Width="1.5" PointX="8.25" PointY="23.625" />
+        <EntityTypeShape EntityType="shiduchimModel.Parent" Width="1.5" PointX="5.25" PointY="25.25" />
+        <EntityTypeShape EntityType="shiduchimModel.PaymentsOfUser" Width="1.5" PointX="5.25" PointY="32.25" />
+        <EntityTypeShape EntityType="shiduchimModel.Profession" Width="1.5" PointX="3" PointY="8.125" />
+        <EntityTypeShape EntityType="shiduchimModel.sysdiagram" Width="1.5" PointX="2.75" PointY="0.75" />
+        <EntityTypeShape EntityType="shiduchimModel.User" Width="1.5" PointX="0.75" PointY="15.75" />
+        <EntityTypeShape EntityType="shiduchimModel.ValueList" Width="1.5" PointX="0.75" PointY="12.125" />
+        <EntityTypeShape EntityType="shiduchimModel.ValueListCandidate" Width="1.5" PointX="3" PointY="16.375" />
+        <AssociationConnector Association="shiduchimModel.FK_Candidate_Users" />
+        <AssociationConnector Association="shiduchimModel.FK_Children_Candidate1" />
+        <AssociationConnector Association="shiduchimModel.FK_Document_Candidate1" />
+        <AssociationConnector Association="shiduchimModel.FK_Hospitalization_Candidate1" />
+        <AssociationConnector Association="shiduchimModel.FK_Matchmaker_Candidate2" />
+        <AssociationConnector Association="shiduchimModel.FK_Matchmaker_Candidate3" />
+        <AssociationConnector Association="shiduchimModel.FK_Mechutanim_Candidate1" />
+        <AssociationConnector Association="shiduchimModel.FK_MigbalaCandidate_Candidate1" />
+        <AssociationConnector Association="shiduchimModel.FK_Parent_Candidate1" />
+        <AssociationConnector Association="shiduchimModel.FK_PaymentsOfUser_Candidate1" />
+        <AssociationConnector Association="shiduchimModel.FK_ValueList_Criterion" />
+        <AssociationConnector Association="shiduchimModel.FK_ValueListCandidate_Criterion" />
+        <AssociationConnector Association="shiduchimModel.FK_Matchmaker_Users3" />
+        <AssociationConnector Association="shiduchimModel.FK_MigbalaCandidate_ValueList" />
+        <AssociationConnector Association="shiduchimModel.FK_MigbalaCandidate_ValueList1" />
+        <AssociationConnector Association="shiduchimModel.FK_Profession_Users" />
+        <AssociationConnector Association="shiduchimModel.FK_ValueListCandidate_Users" />
+        <AssociationConnector Association="shiduchimModel.FK_ValueListCandidate_ValueList" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>
