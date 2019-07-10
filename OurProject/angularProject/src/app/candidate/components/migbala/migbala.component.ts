@@ -4,6 +4,7 @@ import { CandidateService } from 'src/app/Services/candidate.service';
 import { MigbalaCandidate } from 'src/app/models/migbala-candidate';
 import { Hospitalizition } from 'src/app/models/hospitalizition';
 import { ValueListCandidate } from 'src/app/models/value-list-candidate';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-migbala',
@@ -18,7 +19,7 @@ export class MigbalaComponent implements OnInit {
   numHospitalizion: number;
   cand: DetaileCandidate;
 
-  constructor(private dCandidateService: CandidateService) { }
+  constructor(private dCandidateService: CandidateService, public Router: Router) { }
 
 
 
@@ -73,4 +74,30 @@ export class MigbalaComponent implements OnInit {
   }
 
 
+
+  saveDetailCandidate() {//שומר את פרטי המועמד
+
+    if (this.dCandidateService.allowAcceess == 1) {
+      this.dCandidateService.saveDetailCandidate(this.cand).subscribe(res => {
+        alert(res);
+      });
+
+    }
+    else if (this.dCandidateService.allowAcceess == 2) {
+      this.dCandidateService.finishCompliteDetails(this.cand).subscribe(res => {
+        alert(res);
+        this.Router.navigate(['/MatcMaker']);
+      });
+    }
+  }
+
+  saveAndContinue() {//שומר את פרטי המועמד וממשיך לתאב הבא
+    this.dCandidateService.saveDetailCandidate(this.cand).subscribe(res => {
+      alert(res);
+    });
+
+    //setActivePage('products')
+    // this.router.navigate(['desc'], {relativeTo: this.activatedRoute});
+    this.Router.navigate(['/detail-candidate/busines']);
+  }
 }

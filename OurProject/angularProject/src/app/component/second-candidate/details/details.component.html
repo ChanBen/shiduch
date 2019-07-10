@@ -1,118 +1,139 @@
 <div class="modal-header">
- 
-<h1>פרטי הצעה </h1>
+
+  <h1>פרטי הצעה </h1>
   <button type="button" class="close pull-right" aria-label="Close" (click)="bsModalRef.hide()">
     <span aria-hidden="true">&times;</span>
   </button>
-  
+
 </div>
 <div class="modal-body">
-
-  <img [src] = "cand.Candidate.ImageCandidate"><br>
+  <button If="cand.Candidate.ImageCandidate" (click)="downloadFile(cand.Candidate.ImageCandidate)">צפיה</button>
+  <img *ngIf="cand.Candidate.ImageCandidate" [src]="cand.Candidate.ImageCandidate"><br>
 
   <label>שם פרטי :{{cand.User.FirstName}}</label><br>
   <label>גיל : {{ getAgeFromDate(cand.User.BornDate)}}</label><br>
-  <label> שפת אם: {{GetNameOfValue(28)}}</label><br>
-  <label *ngFor="let item of dCandidateService.getCritMoreLanguage(29) ">
-    {{dCandidateService.GetValue(item.ValueListId)}}</label><br>
+  <label *ngIf="GetNameOfValue(28)"> שפת אם: {{GetNameOfValue(28)}}</label><br>
+  <div *ngIf="dCandidateService.getCritMoreLanguage(29)">
+    <label *ngFor="let item of dCandidateService.getCritMoreLanguage(29) ">
+      {{dCandidateService.GetValue(item.ValueListId)}}</label><br>
+  </div>
   <label> ארץ מגורים :{{cand.User.CountryId}}</label><br>
   <label> עיר מגורים :{{cand.User.CityId}}</label><br>
   <label> רחוב :{{cand.User.StreetId}}</label><br>
   <label> מספר בית :{{cand.User.BuildNum}}</label><br>
-  <label>סוג מגורים : {{GetNameOfValue(6)}}</label><br>
-  <label>מצב משפחתי</label><br><br>
-  <label>ילדים</label><br>
+  <label *ngIf="GetNameOfValue(6)">סוג מגורים : {{GetNameOfValue(6)}}</label><br>
+  <label *ngIf="cand.Children||cand.Parents||cand.Mechutanim">מצב משפחתי</label><br><br>
+  <p *ngIf="cand.Children.length!=0">ילדים</p>
   <div *ngFor="let item of cand.Children;index as i">
     # {{i+1}} <br>
-    <label>תאריך לידה:{{item.BornDate}}</label><br>
-    <label> שם:{{item.NameChilde}}</label><br>
+    <label *ngIf="item.BornDate">תאריך לידה:{{item.BornDate}}</label><br>
+    <label *ngIf="item.NameChilde"> שם:{{item.NameChilde}}</label><br>
   </div>
-  <label>הורים</label><br>
+  <br>
+
+  <p *ngIf="cand.Parents.length!=0"> הורים</p>
   <div *ngFor="let item of cand.Parents;index as i">
     # {{i+1}} <br>
-    <label>תאריך לידה:{{item.BornCountryId}}</label><br>
+    <label *ngIf="item.BornCountryId">תאריך לידה:{{item.BornCountryId}}</label><br>
     <!-- <label> ארץ לידה :{{item.MotzaCountryId}}</label><br>
       <label> ארץ מוצא:{{item.ParentKind}}</label><br> -->
-    <label> האם יהודי:{{item.Jew}}</label><br>
-    <label> תאור:{{item.Describ}}</label><br>
+    <label *ngIf="item.Jew"> האם יהודי:{{item.Jew}}</label><br>
+    <label *ngIf="item.Describ"> תאור:{{item.Describ}}</label><br>
   </div>
-  <label>מחותנים</label><br>
+
+
+  <p *ngIf="cand.Mechutanim.length!=0">מחותנים</p>
   <div *ngFor="let item of cand.Mechutanim;index as i">
     # {{i+1}} <br>
     <!-- <label>עיר מגורים:{{item.City}}</label><br> -->
-    <label> שם משפחה:{{item.Fname}}</label><br>
-    <label> טלפון:{{item.Tel}}</label><br>
+    <label *ngIf="item.Fname"> שם משפחה:{{item.Fname}}</label><br>
+    <label *ngIf="item.Tel"> טלפון:{{item.Tel}}</label><br>
   </div>
-  <label>סקטור</label><br><br>
-  <div value=" ">מגזר: {{GetNameOfValue(7)}}</div><br>
-  <label>עדה :{{GetNameOfValue(8)}}</label><br>
-  <label>זרם :{{GetNameOfValue(7)}}</label><br>
-  <label>יחוס :{{GetNameOfValue(15)}}</label><br>
-  <label>רב פוסק :{{cand.Candidate.NameRav}}</label><br>
-  <label>טלפון רב :{{cand.Candidate.TelRav}}</label><br><br>
-  <label>מראה כללי</label><br>
-  <label>גובה :{{GetNameOfSelfValue(17)}}</label><br>
-  <label>משקל :{{GetNameOfSelfValue(18)}}</label><br>
-  <label>צבע עיניים :{{GetNameOfValue(1)}}</label><br>
-  <label>צבע שיער :{{GetNameOfValue(2)}}</label><br>
-  <label>צבע עור :{{GetNameOfValue(3)}}</label><br>
-  <label *ngIf="cand.User.Gender">זקן :{{GetNameOfValue(16)}}</label><br>
-  <label>תיאור אישיותי</label><br><br>
-  <label>: חוזקות</label><br>
+
+  <label *ngIf="GetNameOfValue(7)||GetNameOfValue(8)||GetNameOfValue(7)||GetNameOfValue(15)||cand.Candidate.NameRav||cand.Candidate.TelRav">סקטור</label><br><br>
+  <div *ngIf="GetNameOfValue(7)">מגזר: {{GetNameOfValue(7)}}</div><br>
+  <label *ngIf="GetNameOfValue(8)">עדה :{{GetNameOfValue(8)}}</label><br>
+  <label *ngIf="GetNameOfValue(7)">זרם :{{GetNameOfValue(7)}}</label><br>
+  <label *ngIf="GetNameOfValue(15)">יחוס :{{GetNameOfValue(15)}}</label><br>
+  <label *ngIf="cand.Candidate.NameRav">רב פוסק :{{cand.Candidate.NameRav}}</label><br>
+  <label *ngIf="cand.Candidate.TelRav">טלפון רב :{{cand.Candidate.TelRav}}</label><br><br>
+
+
+  <label *ngIf="GetNameOfSelfValue(17)||GetNameOfSelfValue(18)||GetNameOfValue(1)||GetNameOfValue(2)||GetNameOfValue(3)">מראה
+    כללי</label><br>
+
+  <label *ngIf="GetNameOfSelfValue(17)">גובה :{{GetNameOfSelfValue(17)}}</label><br>
+  <label *ngIf="GetNameOfSelfValue(18)">משקל :{{GetNameOfSelfValue(18)}}</label><br>
+  <label *ngIf="GetNameOfValue(1)">צבע עיניים :{{GetNameOfValue(1)}}</label><br>
+  <label *ngIf="GetNameOfValue(2)">צבע שיער :{{GetNameOfValue(2)}}</label><br>
+  <label *ngIf="GetNameOfValue(3)">צבע עור :{{GetNameOfValue(3)}}</label><br>
+  <label *ngIf="cand.User.Gender&&GetNameOfValue(16)">זקן :{{GetNameOfValue(16)}}</label><br>
+  <label *ngIf="dCandidateService.getCritMoreLanguage(26)|| dCandidateService.getCritMoreLanguage(27)">תיאור אישיותי</label><br><br>
+  <p *ngIf="dCandidateService.getCritMoreLanguage(26)">: חוזקות </p><br>
   <label *ngFor="let item of dCandidateService.getCritMoreLanguage(26) ">
     {{dCandidateService.GetValue(item.ValueListId)}}</label><br>
-  <label>: חולשות</label><br>
+
+  <p *ngIf="dCandidateService.getCritMoreLanguage(27)">: חולשות</p><br>
   <label *ngFor="let item of dCandidateService.getCritMoreLanguage(27) ">
     {{dCandidateService.GetValue(item.ValueListId)}}</label><br>
-  <label>: מיגבלות</label><br>
-  <div *ngFor="let item of cand.MigbalaCandidates;index as i">
-    # {{i+1}} <br>
-    <label>סוג מיגבלה :{{dCandidateService.GetValue(item.KindMigbala)}}</label><br>
-    <label> רמת מיגבלה:{{dCandidateService.GetValue(item.levelMigbala)}}</label><br>
-    <label>תיאור :{{item.Describe}}</label><br>
-    <label>תורשתי :{{GetNameOfSelfBool(item.Genetic)}}</label><br>
-  </div>
-  <div *ngFor="let item of cand.MigbalaCandidates;index as i">
-    # {{i+1}} <br>
-    <label>סוג מיגבלה :{{dCandidateService.GetValue(item.KindMigbala)}}</label><br>
-    <label> רמת מיגבלה:{{dCandidateService.GetValue(item.levelMigbala)}}</label><br>
-    <label>תיאור :{{item.Describe}}</label><br>
-    <label>תורשתי :{{GetNameOfSelfBool(item.Genetic)}}</label><br>
-  </div>
-  <div>אישפוזים</div>
+
+  <p *ngIf="cand.MigbalaCandidates.length!=0">: מיגבלות</p>
+</div><br>
+<div *ngFor="let item of cand.MigbalaCandidates;index as i">
+  # {{i+1}} <br>
+  <label *ngIf="item.KindMigbala">סוג מיגבלה :{{dCandidateService.GetValue(item.KindMigbala)}}</label><br>
+  <label *ngIf="item.levelMigbala"> רמת מיגבלה:{{dCandidateService.GetValue(item.levelMigbala)}}</label><br>
+  <label *ngIf="item.Describe">תיאור :{{item.Describe}}</label><br>
+  <label *ngIf="item.Genetic">תורשתי :{{GetNameOfSelfBool(item.Genetic)}}</label><br>
+
+</div>
+
+<div *ngIf="cand.Hospitalizations.length!=0">
+  <p>אישפוזים</p>
   <div *ngFor="let item of cand.Hospitalizations;index as i">
     # {{i+1}} <br>
-    <label>שם מחלקה :{{item.NameDepartment}}</label><br>
-    <label>רופא מטפל :{{item.TreatDoctor}}</label><br>
-    <label>טלפון רופא מטפל :{{item.TelTreatDr}}</label><br>
-    <label>שם ביה"ח :{{item.NameHospital}}</label><br>
-    <label>מתאריך :{{item.FromDate}}</label><br>
-    <label>עד תאריך :{{item.UntilDate}}</label><br>
-    <label>תאור :{{item.Describ}}</label><br>
+    <label *ngIf="item.NameDepartment">שם מחלקה :{{item.NameDepartment}}</label><br>
+    <label *ngIf="item.TreatDoctor">רופא מטפל :{{item.TreatDoctor}}</label><br>
+    <label *ngIf="item.TelTreatDr">טלפון רופא מטפל :{{item.TelTreatDr}}</label><br>
+    <label *ngIf="item.NameHospital">שם ביה"ח :{{item.NameHospital}}</label><br>
+    <label *ngIf="item.FromDate">מתאריך :{{item.FromDate}}</label><br>
+    <label *ngIf="item.UntilDate">עד תאריך :{{item.UntilDate}}</label><br>
+    <label *ngIf="item.Describ">תאור :{{item.Describ}}</label><br>
   </div>
-  <div>תרופות</div>
+</div>
+<div *ngIf="dCandidateService.getCritMoreLanguage(34)">תרופות
   <div *ngFor="let item of dCandidateService.getCritMoreLanguage(34);index as i">
     # {{i+1}} <br>
     <label>שם תרופה :{{dCandidateService.GetValue(item.ValueListId)}}</label><br>
   </div>
-  <div>תחום עיסוק</div>
-  <label>תואר :{{GetNameOfValue(4)}}</label><br>
-  <div *ngFor="let item of dCandidateService.getCritMoreLanguage(30);index as i">
-    # {{i+1}} <br>
-    <label>עיסוק :{{dCandidateService.GetValue(item.ValueListId)}}</label><br>
-    <label *ngIf="cand.User.Gender">לימוד תורה :{{GetNameOfValue(23)}}</label><br>
-    <label *ngIf="cand.User.Gender">לימוד תורה אחרי החתונה :{{GetNameOfValue(24)}}</label><br>
-  </div>
-  <div>פרטים נוספים</div>
-  <div>שותה :{{GetNameOfValue(13)}}</div><br>
-  <label>מעשן :{{GetNameOfValue(14)}}</label><br>
-  <label>מצב כספי מועמד :{{GetNameOfValue(10)}}</label><br>
-  <label>מצב כספי הורים :{{GetNameOfValue(11)}}</label><br>
-  <label *ngIf="cand.User.Gender">רישיון :{{GetBoolFromValueList(22)}}</label><br>
- 
 </div>
+<div *ngIf="GetNameOfValue(4)||dCandidateService.getCritMoreLanguage(30)||cand.User.Gender&&GetNameOfValue(23)||cand.User.Gender&&GetNameOfValue(24)">תחום
+  עיסוק</div>
+<label *ngIf="GetNameOfValue(4)">תואר :{{GetNameOfValue(4)}}</label><br>
+
+<div *ngFor="let item of dCandidateService.getCritMoreLanguage(30);index as i">
+  # {{i+1}} <br>
+  <label>עיסוק :{{dCandidateService.GetValue(item.ValueListId)}}</label><br>
+</div>
+
+<label *ngIf="cand.User.Gender&&GetNameOfValue(23)">לימוד תורה :{{GetNameOfValue(23)}}</label><br>
+<label *ngIf="cand.User.Gender&&GetNameOfValue(24)">לימוד תורה אחרי החתונה :{{GetNameOfValue(24)}}</label><br>
+
+<div *ngIf="GetNameOfValue(13)||GetNameOfValue(14)||GetNameOfValue(10)||GetNameOfValue(11)||cand.User.Gender&&GetBoolFromValueList(22)">פרטים
+  נוספים</div>
+
+<div *ngIf="GetNameOfValue(13)">שותה :{{GetNameOfValue(13)}}</div><br>
+<label *ngIf="GetNameOfValue(14)">מעשן :{{GetNameOfValue(14)}}</label><br>
+<label *ngIf="GetNameOfValue(10)">מצב כספי מועמד :{{GetNameOfValue(10)}}</label><br>
+<label *ngIf="GetNameOfValue(11)">מצב כספי הורים :{{GetNameOfValue(11)}}</label><br>
+<label *ngIf="cand.User.Gender&&GetBoolFromValueList(22)">רישיון :{{GetBoolFromValueList(22)}}</label><br>
+
+<label *ngIf="cand.Documents.length!=0">מסמכים והערות</label>
+<div *ngFor="let item of cand.Documents">
+  <button (click)="downloadFile(item.Document1)">לצפיה</button>
+  <label>{{item.Describe}}</label>
+</div>
+
 <div class="modal-footer">
- 
+
 </div>
-
-

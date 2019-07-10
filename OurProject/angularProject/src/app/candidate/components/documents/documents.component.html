@@ -1,6 +1,3 @@
-<p>
-  documents works!
-</p>
 
 
 <div class="form-group">
@@ -16,11 +13,15 @@
 <div class="form-group">
   <!-- <input type="file" class="form-control" name="teacherCV"data-buttonText="צירוף קורות חיים"/> -->
   <button type="button" name="doc" class="btnRegister" md-button (click)="docFileInput.click()">הוסף מסמך</button>
-  <input hidden  type="file" #docFileInput (change)="addDoc($event)" />
+  <input hidden  type="file" multiple #docFileInput (change)="addDoc($event)" />
 
 
 </div>
 <div *ngFor="let item of cand.Documents">{{item.Describe}}</div>
+
+
+<button type="button" (click)="saveDetailCandidate()"> שמור </button>
+<button type="button" (click)="saveAndContinue()"> שמור והמשך </button>
 
 
 

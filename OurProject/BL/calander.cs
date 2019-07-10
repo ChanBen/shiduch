@@ -47,7 +47,16 @@ namespace BL
         }
         public static Meeting EditMeeting(Meeting m)// עריכת פגישה
         {
-            context.Entry(m).State = EntityState.Modified;
+            Meeting mSql= context.Meetings.Where(p => p.MeetingId == m.MeetingId).FirstOrDefault();
+            mSql.Place = m.Place;
+            mSql.start = m.start;
+            mSql.end = m.end;
+            mSql.tzBride = m.tzBride;
+            mSql.tzGroom = m.tzGroom;
+            mSql.StatusBride = m.StatusBride;
+            mSql.StatusGroom = m.StatusGroom;
+           
+            context.Entry(mSql).State = EntityState.Modified;
             context.SaveChanges();
             return context.Meetings.FirstOrDefault(p => p.MeetingId == m.MeetingId);
 

@@ -17,7 +17,7 @@ namespace BL
         {
             context = new shiduchimEntities();
         }
-        public static void search(DetailsCandidate dc)
+        public static bool search(DetailsCandidate dc)
         {
 
 
@@ -41,14 +41,19 @@ namespace BL
             }
 
             
-            AddSuggestToMeetingTable(d);
+            AddSuggestToMeetingTable(d,dc.User.Gender);
+            if (d.Count() > 0)
+                return true;
+            return false;
 
 
 
         }
 
-        public static void AddSuggestToMeetingTable(Dictionary<string, string> d)//הוספת הצעה לטבלת הצעות
+        public static void AddSuggestToMeetingTable(Dictionary<string, string> d,bool? gender)//הוספת הצעה לטבלת הצעות
         {
+            string mail;
+            
             foreach (var item in d)
             {
                 Meeting m = new Meeting();
@@ -59,6 +64,9 @@ namespace BL
                 m.KindMeeting = 1;
                 context.Meetings.Add(m);
                 context.SaveChanges();
+                mail = gender == true ? context.Users.FirstOrDefault(p => p.Tz == m.tzBride).Mail
+                    : context.Users.FirstOrDefault(p => p.Tz == m.tzGroom).Mail;
+                SendMail.addSuggesrToCandidateMail(mail);
             }
         }
 

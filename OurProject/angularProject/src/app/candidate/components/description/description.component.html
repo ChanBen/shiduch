@@ -8,12 +8,12 @@
 
       <div dir="rtl" class="form-group row  flex-row-reverse" style="margin-right: 100px;">
           <div class="col-md-5">
-              <input type="number" [(ngModel)]="item.selfValue" class="form-control" name="height-{{i}}">
+              <input type="number" [(ngModel)]="item.selfValue" class="form-control" name="height-{{i}}"  min="0" >
           </div>
           <label *ngIf="item.CriteriaId==17" for="height" class=" col-form-label text-md-right">גובה</label>
           <label *ngIf="item.CriteriaId==18" for="height" class=" col-form-label text-md-right">משקל</label>
       </div>
-
+      <!-- <p *ngIf="height.control.dirty&&!height.control.valid">שדה חובה*</p> -->
 
   </div>
 
@@ -21,7 +21,7 @@
 
   <div *ngFor="let crit of criterionMare; index as i" dir="rtl" class="form-group row  flex-row-reverse" style="margin-right: 100px;">
       <div class="col-md-5">
-          <select class="form-control" id="criterionMare" name="criterionMare-{{i}}" [ngModel]="dCandidateService.GetIDListById(crit.CriterionId)"
+          <select class="form-control" id="criterionMare" name="criterionMare-{{i}}" [ngModel]="dCandidateService.GetIDListById(crit.CriterionId)" 
               (ngModelChange)="dCandidateService.changeValue(crit.CriterionId,$event)">
               <option *ngFor="let valueLis of dCandidateService.GetValueList(crit.CriterionId)" [value]="valueLis.ValueListId">
                   {{valueLis.Value}}</option>
@@ -30,6 +30,7 @@
       <label for="criteria" class=" col-form-label text-md-right"> {{crit.NameCriterion}}</label>
 
   </div>
+  <!-- <p *ngIf="Tz.control.dirty&&!Tz.control.valid">שדה חובה*</p> -->
 
 
 
@@ -42,7 +43,7 @@
   <div dir="rtl" class="form-group row  flex-row-reverse" style="margin-right: 100px;">
       <div class="col-md-5">
 
-          <input type="number" id="numChozckot" class="form-control" name="numChozckot" [(ngModel)]="numChozckot"
+          <input type="number" id="numChozckot" class="form-control" name="numChozckot" [(ngModel)]="numChozckot" min="0"
               (change)="addCHuzckot()">
       </div>
       <label for="numChozckot" class=" col-form-label text-md-right">מספר חוזקות</label>
@@ -68,7 +69,7 @@
   <div dir="rtl" class="form-group row  flex-row-reverse" style="margin-right: 100px;">
       <div class="col-md-5">
 
-          <input type="number" id="numChulshot" class="form-control" name="numChulshot" [(ngModel)]="numChulshot"
+          <input type="number" id="numChulshot" class="form-control" name="numChulshot" [(ngModel)]="numChulshot" min="0"
               (change)="addCHolshot()">
       </div>
       <label for="numChulshot" class=" col-form-label text-md-right">מספר חולשות</label>
@@ -103,3 +104,8 @@
 
 
 </div>
+
+
+
+<button type="button" (click)="saveDetailCandidate()"> שמור </button>
+<button type="button" (click)="saveAndContinue()"> שמור והמשך </button>

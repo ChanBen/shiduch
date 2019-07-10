@@ -7,6 +7,7 @@ import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
 import { NewMeetingComponent } from './new-meeting/new-meeting.component';
 import { CalanderService } from 'src/app/Services/calander.service';
 import { Meeting } from 'src/app/models/meeting';
+import { removeElement } from '@fullcalendar/core';
 
 @Component({
   selector: 'app-calendar',
@@ -93,14 +94,31 @@ export class CalendarComponent {
     this.bsModalRef = this.modalService.show(NewMeetingComponent, { initialState });
     this.bsModalRef.content.meetingChanged.subscribe((newMeeting: any) => {
       if (newMeeting == null) {
-        this.calendarEvents.splice(this.calendarEvents.indexOf(meeting), 1);
-        this.calendarEvents = this.calendarEvents;
+        const eventIndex = this.calendarEvents.indexOf(meeting);
+
+        let calendarEvents = this.calendarEvents.slice(); // a clone
+        calendarEvents.splice(eventIndex, 1);
+        this.calendarEvents = calendarEvents; // reassign the array
+        /*    this.calendarEvents = [];
+           this.calendarEvents = test;
+           debugger
+           let calendarApi = this.calendarComponent.getApi(); 
+           calendarApi.next(); */
       }
 
+
       else {
-        if (this.calendarEvents.find(p => p.MeetingId == newMeeting.MeetingId) != null)
-          this.calendarEvents.splice(this.calendarEvents.indexOf(newMeeting), 1);
-        this.calendarEvents = this.calendarEvents.concat(newMeeting);
+        if (this.calendarEvents.find(p => p.MeetingId == newMeeting.MeetingId) != null) {
+
+          let eventIndex = this.calendarEvents.indexOf(newMeeting);
+          let calendarEvents = this.calendarEvents.slice(); // a clone
+          let singleEvent = JSON.parse(JSON.stringify(newMeeting)); // a clone
+          calendarEvents[eventIndex] = singleEvent;
+          this.calendarEvents = calendarEvents; // reassign the array
+        } else {
+
+          this.calendarEvents = this.calendarEvents.concat(newMeeting);
+        }
       }
       this.bsModalRef.hide();
 
@@ -115,8 +133,16 @@ export class CalendarComponent {
     });
   }
   GetMeetingMatcMaker() {
+   
     this.CalanderService.GetMeetingMatcMaker().subscribe(res => {
       this.calendarEvents = res;
+
+
+      res.forEach(element => {
+        element.start= new Date(element.start.toString().split("Z")[0]);
+        element.end= new Date(element.end.toString().split("Z")[0]);
+     
+      });
     });
 
 

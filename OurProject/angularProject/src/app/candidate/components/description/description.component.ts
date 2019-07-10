@@ -3,6 +3,7 @@ import { CandidateService } from 'src/app/Services/candidate.service';
 import { DetaileCandidate } from 'src/app/models/detaile-candidate';
 import { ValueListCandidate } from 'src/app/models/value-list-candidate';
 import { Criterion } from 'src/app/models/criterion';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-description',
@@ -15,7 +16,7 @@ export class DescriptionComponent implements OnInit {
   numChulshot: number;
   HightAndWightCrit: ValueListCandidate[];
   criterionMare: Criterion[] = [];
-  constructor(private dCandidateService: CandidateService) { }
+  constructor(private dCandidateService: CandidateService, public Router: Router) { }
 
   ngOnInit() {
     this.init1();
@@ -84,5 +85,33 @@ export class DescriptionComponent implements OnInit {
     }
     return this.HightAndWightCrit;
 
+  }
+
+
+
+  saveDetailCandidate() {//שומר את פרטי המועמד
+
+    if (this.dCandidateService.allowAcceess == 1) {
+      this.dCandidateService.saveDetailCandidate(this.cand).subscribe(res => {
+        alert(res);
+      });
+
+    }
+    else if (this.dCandidateService.allowAcceess == 2) {
+      this.dCandidateService.finishCompliteDetails(this.cand).subscribe(res => {
+        alert(res);
+        this.Router.navigate(['/MatcMaker']);
+      });
+    }
+  }
+
+  saveAndContinue() {//שומר את פרטי המועמד וממשיך לתאב הבא
+    this.dCandidateService.saveDetailCandidate(this.cand).subscribe(res => {
+      alert(res);
+    });
+
+    //setActivePage('products')
+    // this.router.navigate(['desc'], {relativeTo: this.activatedRoute});
+    this.Router.navigate(['/detail-candidate/migbala']);
   }
 }

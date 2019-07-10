@@ -110,3 +110,19 @@ Y:\group 1 תשעט\אטיק בתיה\our\OurProject\DAL\obj\Debug\DAL.csproj.Co
 Y:\group 1 תשעט\אטיק בתיה\our\OurProject\DAL\obj\Debug\DAL.csproj.CopyComplete
 Y:\group 1 תשעט\אטיק בתיה\our\OurProject\DAL\obj\Debug\DAL.dll
 Y:\group 1 תשעט\אטיק בתיה\our\OurProject\DAL\obj\Debug\DAL.pdb
+D:\shiduch\OurProject\DAL\bin\Debug\DAL.dll.config
+D:\shiduch\OurProject\DAL\bin\Debug\DAL.dll
+D:\shiduch\OurProject\DAL\bin\Debug\DAL.pdb
+D:\shiduch\OurProject\DAL\bin\Debug\DTO.dll
+D:\shiduch\OurProject\DAL\bin\Debug\EntityFramework.dll
+D:\shiduch\OurProject\DAL\bin\Debug\EntityFramework.SqlServer.dll
+D:\shiduch\OurProject\DAL\bin\Debug\Newtonsoft.Json.dll
+D:\shiduch\OurProject\DAL\bin\Debug\DTO.pdb
+D:\shiduch\OurProject\DAL\bin\Debug\EntityFramework.xml
+D:\shiduch\OurProject\DAL\bin\Debug\EntityFramework.SqlServer.xml
+D:\shiduch\OurProject\DAL\bin\Debug\Newtonsoft.Json.xml
+D:\shiduch\OurProject\DAL\obj\Debug\DAL.csprojAssemblyReference.cache
+D:\shiduch\OurProject\DAL\obj\Debug\DAL.csproj.CoreCompileInputs.cache
+D:\shiduch\OurProject\DAL\obj\Debug\DAL.csproj.CopyComplete
+D:\shiduch\OurProject\DAL\obj\Debug\DAL.dll
+D:\shiduch\OurProject\DAL\obj\Debug\DAL.pdb

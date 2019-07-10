@@ -3,6 +3,7 @@ import { ValueListCandidate } from 'src/app/models/value-list-candidate';
 import { CandidateService } from 'src/app/Services/candidate.service';
 import { DetaileCandidate } from 'src/app/models/detaile-candidate';
 import { Criterion } from 'src/app/models/criterion';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-criterion',
@@ -15,7 +16,7 @@ export class CriterionComponent implements OnInit {
   criterionsArrInteresting: Criterion[] = []//מכיל את רשימת הקריטריונים למעונין
   cand: DetaileCandidate;
 
-  constructor(private dCandidateService: CandidateService) { }
+  constructor(private dCandidateService: CandidateService, public Router: Router) { }
 
   ngOnInit() {
     this.init1();
@@ -24,7 +25,9 @@ export class CriterionComponent implements OnInit {
 
     })
   }
-
+  f(l){
+    console.log(l);
+  }
   init1() {
     this.cand = this.dCandidateService.currentCandidate;
     this.criterionsArrNotInteresting = this.dCandidateService.criterionsArr.filter(p => p.Interested == 2 || p.Interested == 3 || p.Interested == 5);
@@ -73,4 +76,30 @@ export class CriterionComponent implements OnInit {
     }
     return name;
   }
+
+
+
+
+  hagashatBakasha() {// c sharp פונקצית הגשת בקשה  שליחת מייל לשדכן לקביעת פגישה וכן שמירת פרטיו ב
+    this.dCandidateService.hagashatBakasha(this.cand).subscribe(res => {
+      alert(res);
+    });
+  }
+
+  saveDetailCandidate() {//שומר את פרטי המועמד
+
+    if (this.dCandidateService.allowAcceess == 1) {
+      this.dCandidateService.saveDetailCandidate(this.cand).subscribe(res => {
+        alert(res);
+      });
+
+    }
+    else if (this.dCandidateService.allowAcceess == 2) {
+      this.dCandidateService.finishCompliteDetails(this.cand).subscribe(res => {
+        alert(res);
+        this.Router.navigate(['/MatcMaker']);
+      });
+    }
+  }
+  
 }

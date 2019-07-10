@@ -52,7 +52,7 @@ namespace WebService.Controllers
 
         }
 
-        [Route("api/EditMeeting")]
+        [Route("api/EditCalendarMeeting")]
         [HttpPost]
         public IHttpActionResult EditMeeting(Meeting m)//החזרת כל הפגישות
         {

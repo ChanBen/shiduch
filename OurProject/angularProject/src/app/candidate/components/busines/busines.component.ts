@@ -3,6 +3,7 @@ import { CandidateService } from 'src/app/Services/candidate.service';
 import { DetaileCandidate } from 'src/app/models/detaile-candidate';
 import { ValueList } from 'src/app/models/value-list';
 import { ValueListCandidate } from 'src/app/models/value-list-candidate';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-busines',
@@ -15,7 +16,7 @@ export class BusinesComponent implements OnInit {
   valueListID: number;
   numOccupation: number;
 
-  constructor(public dCandidateService: CandidateService) { }
+  constructor(public dCandidateService: CandidateService, public Router: Router) { }
 
   ngOnInit() {
     this.cand = this.dCandidateService.currentCandidate;
@@ -41,4 +42,35 @@ export class BusinesComponent implements OnInit {
   }
 
 
+
+
+
+  saveDetailCandidate() {//שומר את פרטי המועמד
+
+    if (this.dCandidateService.allowAcceess == 1) {
+      this.dCandidateService.saveDetailCandidate(this.cand).subscribe(res => {
+        alert(res);
+      });
+
+    }
+    else if (this.dCandidateService.allowAcceess == 2) {
+      this.dCandidateService.finishCompliteDetails(this.cand).subscribe(res => {
+        alert(res);
+        this.Router.navigate(['/MatcMaker']);
+      });
+    }
+  }
+
+  saveAndContinue() {//שומר את פרטי המועמד וממשיך לתאב הבא
+    this.dCandidateService.saveDetailCandidate(this.cand).subscribe(res => {
+      alert(res);
+    });
+
+    //setActivePage('products')
+    // this.router.navigate(['desc'], {relativeTo: this.activatedRoute});
+    this.Router.navigate(['/detail-candidate/moreDetailes']);
+  }
+f(DegreeKind){
+  console.log(DegreeKind);
+}
 }

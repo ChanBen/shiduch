@@ -3,6 +3,7 @@ import { CandidateService } from 'src/app/Services/candidate.service';
 import { DetaileCandidate } from 'src/app/models/detaile-candidate';
 import { ValueListCandidate } from 'src/app/models/value-list-candidate';
 import { Criterion } from 'src/app/models/criterion';
+import {Router } from '@angular/router';
 
 
 @Component({
@@ -13,7 +14,7 @@ import { Criterion } from 'src/app/models/criterion';
 export class MoreDetailesComponent implements OnInit {
   cand: DetaileCandidate;
   criterionPratimNosafim:Criterion[];
-  constructor(private dCandidateService: CandidateService) { }
+  constructor(public dCandidateService: CandidateService, public Router: Router) { }
 
   ngOnInit() {
     this.init1();
@@ -38,5 +39,35 @@ export class MoreDetailesComponent implements OnInit {
   return this.cand.ValueListCandidate.filter(p => p.CriteriaId == 22);
   //return new Array(num);
 
+  }
+
+
+
+
+
+  saveDetailCandidate() {//שומר את פרטי המועמד
+
+    if (this.dCandidateService.allowAcceess == 1) {
+      this.dCandidateService.saveDetailCandidate(this.cand).subscribe(res => {
+        alert(res);
+      });
+
+    }
+    else if (this.dCandidateService.allowAcceess == 2) {
+      this.dCandidateService.finishCompliteDetails(this.cand).subscribe(res => {
+        alert(res);
+        this.Router.navigate(['/MatcMaker']);
+      });
+    }
+  }
+
+  saveAndContinue() {//שומר את פרטי המועמד וממשיך לתאב הבא
+    this.dCandidateService.saveDetailCandidate(this.cand).subscribe(res => {
+      alert(res);
+    });
+
+    //setActivePage('products')
+    // this.router.navigate(['desc'], {relativeTo: this.activatedRoute});
+    this.Router.navigate(['/detail-candidate/doc']);
   }
 }

@@ -3,7 +3,7 @@
 
 <div  dir="rtl" class="form-group row flex-row-reverse" style="margin-right: 100px;">
   <div class="col-md-5">
-      <select class="form-control" id="DegreeKind" name="DegreeKind"[ngModel]="dCandidateService.GetIDListById(4)"
+      <select class="form-control" id="DegreeKind" name="DegreeKind"[ngModel]="dCandidateService.GetIDListById(4)"  #DegreeKind="ngModel"
       (ngModelChange)="dCandidateService.changeValue(4,$event)">
           <option *ngFor="let valueLis of dCandidateService.GetValueList(4)" [value]="valueLis.ValueListId">
               {{valueLis.Value}}</option>
@@ -16,7 +16,7 @@
 <div dir="rtl" class="form-group row  flex-row-reverse" style="margin-right: 100px;">
   <div class="col-md-5">
 
-      <input type="number" id="numOccupation" class="form-control" name="numOccupation" [(ngModel)]="numOccupation"
+      <input type="number" id="numOccupation" class="form-control" name="numOccupation" [(ngModel)]="numOccupation" min="0"
           (change)="addOccupation()">
   </div>
   <label for="numOccupation" class=" col-form-label text-md-right">מספר עיסוקים</label>
@@ -40,7 +40,7 @@
 <div *ngIf="cand.User.Gender">
   <div class="form-group row  flex-row-reverse" style="margin-right: 100px;">
       <div class="col-md-5">
-          <select class="form-control" id="learnTora" name="learnTora" [ngModel]="dCandidateService.GetIDListById(23)"
+          <select class="form-control" id="learnTora" name="learnTora" [ngModel]="dCandidateService.GetIDListById(23)"  #learnTora="ngModel"
           (ngModelChange)="dCandidateService.changeValue(23,$event)">
               <option *ngFor="let valueLis of dCandidateService.GetValueList(24)" [value]="valueLis.ValueListId">
                   {{valueLis.Value}}</option>
@@ -51,7 +51,7 @@
 
   <div class="form-group row  flex-row-reverse" style="margin-right: 100px;">
       <div class="col-md-5">
-          <select class="form-control" id="afterWedding" name="afterWedding" [ngModel]="dCandidateService.GetIDListById(24)"
+          <select class="form-control" id="afterWedding" name="afterWedding" [ngModel]="dCandidateService.GetIDListById(24)"  #afterWedding="ngModel"
           (ngModelChange)="dCandidateService.changeValue(24,$event)">
               <option *ngFor="let valueLis of dCandidateService.GetValueList(24)" [value]="valueLis.ValueListId">
                   {{valueLis.Value}}</option>
@@ -61,5 +61,9 @@
   </div>
 
 </div>
+
+
+<button type="button" (click)="saveDetailCandidate()"> שמור </button>
+<button type="button" (click)="saveAndContinue()"> שמור והמשך </button>
 
 <!-- תחום עיסוק סוף-->

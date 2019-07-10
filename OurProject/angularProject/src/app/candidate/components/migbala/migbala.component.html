@@ -23,7 +23,7 @@
     <div *ngIf="isMigbala" dir="rtl" class="form-group row  flex-row-reverse" style="margin-right: 100px;">
         <div class="col-md-5">
 
-            <input type="number" id="numMigbala" class="form-control" name="numMigbala" (change)="addMigbala()"
+            <input type="number" id="numMigbala" class="form-control" name="numMigbala" (change)="addMigbala()" min="0"
                 [(ngModel)]="numMigbala">
         </div>
         <label for="numMigbala" class=" col-form-label text-md-right">מספר מגבלות</label>
@@ -35,13 +35,14 @@
         <div dir="rtl" class="form-group row  flex-row-reverse" style="margin-right: 100px;">
             <div class="col-md-5">
 
-                <select class="form-control" id="sugMigbala" name="sugMigbala-{{i}}" [(ngModel)]="item.KindMigbala">
+                <select class="form-control" id="sugMigbala" name="sugMigbala-{{i}}" [(ngModel)]="item.KindMigbala" >
                     <option *ngFor="let valueLis of dCandidateService.GetValueList(32)" [value]="valueLis.ValueListId">
                         {{valueLis.Value}}</option>
                 </select>
             </div>
             <label for="sugMigbala" class=" col-form-label text-md-right">סוג מגבלה</label>
         </div>
+ 
 
         <div dir="rtl" class="form-group row  flex-row-reverse" style="margin-right: 100px;">
             <div class="col-md-5">
@@ -67,13 +68,14 @@
 
         <div dir="rtl" class="form-group row  flex-row-reverse" style="margin-right: 100px;">
             <div class="col-md-5">
-                <select [(ngModel)]="cand.MigbalaCandidates[i].Genetic" class="form-control" name="Genetic-{{i}}"
+                <select [(ngModel)]="cand.MigbalaCandidates[i].Genetic" class="form-control" name="Genetic-{{i}}" 
                     id="Genetic">
                     <option [ngValue]="false">לא</option>
                     <option [ngValue]="true">כן</option>
                 </select> </div>
             <label for="Genetic" class=" col-form-label text-md-right">?גנטי</label>
         </div>
+       
 
     </div>
 </div>
@@ -83,7 +85,7 @@
 <div dir="rtl" class="form-group row  flex-row-reverse" style="margin-right: 100px;">
     <div class="col-md-5">
 
-        <input type="number" id="numMedical" class="form-control" name="numMedical" [(ngModel)]="numMedical"
+        <input type="number" id="numMedical" class="form-control" name="numMedical" [(ngModel)]="numMedical" min="0"
             (change)="addmedicial()">
     </div>
     <label for="numMedical" class=" col-form-label text-md-right">מספר תרופות</label>
@@ -111,7 +113,7 @@
 <div dir="rtl" class="form-group row  flex-row-reverse" style="margin-right: 100px;">
     <div class="col-md-5">
 
-        <input type="number" id="numHospitalizion" class="form-control" name="numHospitalizion"
+        <input type="number" id="numHospitalizion" class="form-control" name="numHospitalizion" min="0"
             (change)="addHospitalizition()" [(ngModel)]="numHospitalizion">
     </div>
     <label for="numHospitalizion" class=" col-form-label text-md-right">מספר אשפוזים</label>
@@ -178,6 +180,11 @@
     </div>
 
 </div>
+
+
+
+<button type="button" (click)="saveDetailCandidate()"> שמור </button>
+<button type="button" (click)="saveAndContinue()"> שמור והמשך </button>
 
 
 

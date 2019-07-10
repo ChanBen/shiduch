@@ -52,6 +52,8 @@ export class CandidateService {
   getCritMoreLanguage(numCrit: number) {//מתאים גם לשאר הקריטריונים
 
     let res = this.currentCandidate.ValueListCandidate.filter(p => p.CriteriaId == numCrit && p.isSelf == true);
+    if (res == null || res.length == 0)
+      return null;
     return res;
   }
   GetValueList(id) {//מחזיר את רשימת הערכים של קוד הקריטריון שקיבל כפרמטר
@@ -155,42 +157,42 @@ export class CandidateService {
 
 
 
-uploadFile(data: any, id: string): any {
-  return this.http.post(environment.api + '/UploadFile?id=' + id, data);
+  uploadFile(data: any, id: string): any {
+    return this.http.post(environment.api + '/UploadFile?id=' + id, data);
 
-}
-UploadDoc(data: any, id: string): any {
-  return this.http.post(environment.api + '/UploadDoc?id=' + id, data);
+  }
+  UploadDoc(data: any, id: string): any {
+    return this.http.post(environment.api + '/UploadDoc?id=' + id, data);
 
-}
-
-
-
-//   detailsCandidate:DetaileCandidate;
-// //הבאת פרטי מועמד ע"י ת.ז. מיעד לכפתור פרטים בכרטיסית ההצעות
-//   GetDetailsByTzToSuggests(u: User): Observable<DetaileCandidate> {
-
-//     return this.http.post<DetaileCandidate>(environment.api + '/GetDetailsByTz/', u)
-//       .pipe(map(res => {
-//         var respon=res;
-//         return respon;
-//       }));
-
-//   }
+  }
 
 
-//מחזיר את ההרשאת גישה של המשתמש
-GetAllowAccess(u: User) {
 
-  return this.http.post(environment.api + '/GetAllowAccess', u)
-}
+  //   detailsCandidate:DetaileCandidate;
+  // //הבאת פרטי מועמד ע"י ת.ז. מיעד לכפתור פרטים בכרטיסית ההצעות
+  //   GetDetailsByTzToSuggests(u: User): Observable<DetaileCandidate> {
 
-hagashatBakasha(detailCandidate: DetaileCandidate) {// c sharp פונקצית הגשת בקשה  שליחת מייל לשדכן לקביעת פגישה וכן שמירת פרטיו ב
-  return this.http.post(environment.api + '/hagashatBakasha', detailCandidate)
-}
+  //     return this.http.post<DetaileCandidate>(environment.api + '/GetDetailsByTz/', u)
+  //       .pipe(map(res => {
+  //         var respon=res;
+  //         return respon;
+  //       }));
 
-postFileUpLoad(data: any, id): any {
-  return this.http.post('http://localhost:62698/uploadeFile?id=' + id, data);
-}
+  //   }
+
+
+  //מחזיר את ההרשאת גישה של המשתמש
+  GetAllowAccess(u: User) {
+
+    return this.http.post(environment.api + '/GetAllowAccess', u)
+  }
+
+  hagashatBakasha(detailCandidate: DetaileCandidate) {// c sharp פונקצית הגשת בקשה  שליחת מייל לשדכן לקביעת פגישה וכן שמירת פרטיו ב
+    return this.http.post(environment.api + '/hagashatBakasha', detailCandidate)
+  }
+
+  postFileUpLoad(data: any, id): any {
+    return this.http.post('http://localhost:62698/uploadeFile?id=' + id, data);
+  }
 
 }

@@ -22,7 +22,8 @@ namespace BL
             CandidateUser.SaveDetailsCandidate(dc);
             context.Candidates.FirstOrDefault(p => p.UserId == dc.Candidate.UserId).EnterIn = 2;
             context.SaveChanges();
-            Search.search(dc);
+            if (Search.search(dc) == true)
+                SendMail.addSuggesrToCandidateMail(dc.User.Mail);
         }
         public static List<UserDTO> GetListUserOfSuggestByTz(string Tz)//מחזירה את כל ההצעות של משתמש מסוים ע"פ ת.ז.
         {

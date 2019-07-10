@@ -85,6 +85,7 @@ namespace WebService.Controllers
         [Route("api/UploadFile")]
         public HttpResponseMessage UploadFile(string id)
         {
+            var pathToSql = " http://localhost:62698/UploadFile/";
             var allPath = "";
             HttpResponseMessage response = new HttpResponseMessage();
             var abc = Request.Properties.Values;
@@ -98,7 +99,8 @@ namespace WebService.Controllers
                     Directory.CreateDirectory(directoryPath + id);
                     allPath = directoryPath + id + "/" + postedFile.FileName;
                     postedFile.SaveAs(allPath);
-                    BL.UpdateDB.UpdateImage(allPath,id);
+                    pathToSql += id + "/" + postedFile.FileName;
+                    BL.UpdateDB.UpdateImage(pathToSql, id);
                 }
             }
             return response;
@@ -110,7 +112,9 @@ namespace WebService.Controllers
         [Route("api/UploadDoc")]
         public HttpResponseMessage UploadDoc(string id)
         {
+        //http://localhost:62698/UploadFile/6587/XAAB8592.JPG
             var allPath = "";
+            var pathToSql = " http://localhost:62698/UploadFile/";
             HttpResponseMessage response = new HttpResponseMessage();
             var abc = Request.Properties.Values;
             var httpRequest = HttpContext.Current.Request;
@@ -123,7 +127,8 @@ namespace WebService.Controllers
                     Directory.CreateDirectory(directoryPath + id);
                     allPath = directoryPath + id + "/" + postedFile.FileName;
                     postedFile.SaveAs(allPath);
-                    BL.UpdateDB.UpdateDoc(allPath, postedFile.FileName, id);
+                    pathToSql+= id + "/" + postedFile.FileName;
+                    BL.UpdateDB.UpdateDoc(pathToSql, postedFile.FileName, id);
 
                 }
             }

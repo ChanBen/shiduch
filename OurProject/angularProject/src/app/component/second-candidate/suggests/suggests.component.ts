@@ -75,7 +75,7 @@ export class SuggestsComponent implements OnInit {
     const initialState = {
       cand: res,
     };
-    this.bsModalRef = this.modalService.show(DetailsComponent, { initialState });
+    this.bsModalRef = this.modalService.show(DetailsComponent, Object.assign( { initialState },  { class: 'modal-lg' }));
     
   }
 }

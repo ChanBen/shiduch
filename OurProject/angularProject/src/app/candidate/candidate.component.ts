@@ -47,33 +47,34 @@ export class CandidateComponent implements OnInit {
   }
 
 
-  saveDetailCandidate() {//שומר את פרטי המועמד
+  // saveDetailCandidate() {//שומר את פרטי המועמד
 
-    if (this.dCandidateService.allowAcceess == 1) {
-      this.dCandidateService.saveDetailCandidate(this.cand).subscribe(res => {
-        alert(res);
-      });
+  //   if (this.dCandidateService.allowAcceess == 1) {
+  //     this.dCandidateService.saveDetailCandidate(this.cand).subscribe(res => {
+  //       alert(res);
+  //     });
 
-    }
-    else if (this.dCandidateService.allowAcceess == 2) {
-      this.dCandidateService.finishCompliteDetails(this.cand).subscribe(res => {
-        alert(res);
-        this.router.navigate(['/MatcMaker']);
-      });
-    }
-  }
-  hagashatBakasha() {// c sharp פונקצית הגשת בקשה  שליחת מייל לשדכן לקביעת פגישה וכן שמירת פרטיו ב
-    this.dCandidateService.hagashatBakasha(this.cand).subscribe(res => {
-      alert(res);
-    });
-  }
+  //   }
+  //   else if (this.dCandidateService.allowAcceess == 2) {
+  //     this.dCandidateService.finishCompliteDetails(this.cand).subscribe(res => {
+  //       alert(res);
+  //       this.router.navigate(['/MatcMaker']);
+  //     });
+  //   }
+  // }
+  // hagashatBakasha() {// c sharp פונקצית הגשת בקשה  שליחת מייל לשדכן לקביעת פגישה וכן שמירת פרטיו ב
+  //   this.dCandidateService.hagashatBakasha(this.cand).subscribe(res => {
+  //     alert(res);
+  //   });
+  // }
 
-  saveAndContinue() {//שומר את פרטי המועמד וממשיך לתאב הבא
-    this.dCandidateService.saveDetailCandidate(this.cand).subscribe(res => {
-      alert(res);
-    });
+  // saveAndContinue() {//שומר את פרטי המועמד וממשיך לתאב הבא
+  //   this.dCandidateService.saveDetailCandidate(this.cand).subscribe(res => {
+  //     alert(res);
+  //   });
 
-    //setActivePage('products')
-    this.router.navigate(['/'])
-  }
+  //   //setActivePage('products')
+  //   // this.router.navigate(['desc'], {relativeTo: this.activatedRoute});
+  //   this.router.navigate(['/'])
+  // }
 }

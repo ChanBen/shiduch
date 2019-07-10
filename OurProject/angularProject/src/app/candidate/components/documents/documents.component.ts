@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { CandidateService } from 'src/app/Services/candidate.service';
 import { DetaileCandidate } from 'src/app/models/detaile-candidate';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-documents',
@@ -10,12 +11,12 @@ import { DetaileCandidate } from 'src/app/models/detaile-candidate';
 })
 export class DocumentsComponent implements OnInit {
 
-  constructor(private http: HttpClient, private CandidateService: CandidateService) { }
+  constructor(private http: HttpClient,public dCandidateService: CandidateService, public Router: Router) { }
   newFile;
   cand: DetaileCandidate;
   imageName:string;
   ngOnInit() {
-    this.cand = this.CandidateService.currentCandidate;
+    this.cand = this.dCandidateService.currentCandidate;
     // this.m.start.toString().split(/T|Z/)[1];
     this.imageName= this.cand.Candidate.ImageCandidate.split("/")[1];
   }
@@ -30,7 +31,7 @@ export class DocumentsComponent implements OnInit {
       let image1: FormData = new FormData();
       this.imageName= this.newFile.name;
       image1.append('uploadFile', this.newFile, this.newFile.name);
-      this.CandidateService.uploadFile(image1, this.CandidateService.currentCandidate.User.Tz).subscribe(() => { })
+      this.dCandidateService.uploadFile(image1, this.dCandidateService.currentCandidate.User.Tz).subscribe(() => { })
     }
   }
 
@@ -43,7 +44,7 @@ export class DocumentsComponent implements OnInit {
         this.newFile = fileList[i];
         image1.append('uploadFile', this.newFile, this.newFile.name);
       }
-      this.CandidateService.UploadDoc(image1, this.CandidateService.currentCandidate.User.Tz).subscribe(() => { })
+      this.dCandidateService.UploadDoc(image1, this.dCandidateService.currentCandidate.User.Tz).subscribe(() => { })
     }
   }
 
@@ -69,4 +70,35 @@ export class DocumentsComponent implements OnInit {
   //   console.log("d ");
   //   this.rout.navigate(['schedule']);//מעביר למסך מערכת השעות
   // }
+
+
+
+
+
+
+  saveDetailCandidate() {//שומר את פרטי המועמד
+
+    if (this.dCandidateService.allowAcceess == 1) {
+      this.dCandidateService.saveDetailCandidate(this.cand).subscribe(res => {
+        alert(res);
+      });
+
+    }
+    else if (this.dCandidateService.allowAcceess == 2) {
+      this.dCandidateService.finishCompliteDetails(this.cand).subscribe(res => {
+        alert(res);
+        this.Router.navigate(['/MatcMaker']);
+      });
+    }
+  }
+
+  saveAndContinue() {//שומר את פרטי המועמד וממשיך לתאב הבא
+    this.dCandidateService.saveDetailCandidate(this.cand).subscribe(res => {
+      alert(res);
+    });
+
+    //setActivePage('products')
+    // this.router.navigate(['desc'], {relativeTo: this.activatedRoute});
+    this.Router.navigate(['/detail-candidate/criterion']);
+  }
 }

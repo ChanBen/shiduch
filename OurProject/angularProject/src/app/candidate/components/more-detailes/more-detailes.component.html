@@ -1,11 +1,10 @@
-<p>
-    more-detailes works!
-</p>
+
+  
 <label class=" col-form-label text-md-right font-bold">פרטים נוספים</label>
 
 <div *ngFor="let crit of criterionPratimNosafim; index as i" dir="rtl" class="form-group row  flex-row-reverse" style="margin-right: 100px;">
     <div class="col-md-5">
-        <select class="form-control" id="criteria" name="criteria-{{i}}" [ngModel]="dCandidateService.GetIDListById(crit.CriterionId)"
+        <select class="form-control" id="criteria" name="criteria-{{i}}" [ngModel]="dCandidateService.GetIDListById(crit.CriterionId)" 
             (ngModelChange)="dCandidateService.changeValue(crit.CriterionId,$event)">
             <option *ngFor="let valueLis of dCandidateService.GetValueList(crit.CriterionId)" [value]="valueLis.ValueListId">{{valueLis.Value}}</option>
         </select>
@@ -14,10 +13,11 @@
 
 </div>
 
+
 <div *ngFor="let itttem of getCritLicense(); index as iii">
     <div dir="rtl" class="form-group row  flex-row-reverse" style="margin-right: 100px;">
         <div class="col-md-5">
-            <select [(ngModel)]="itttem.selfBool" class="form-control" name="Islicense-{{iii}}" id="Islicense">
+            <select [(ngModel)]="itttem.selfBool" class="form-control" name="Islicense-{{iii}}" id="Islicense" required #Islicense="ngModel">
                 <option [ngValue]="false">לא</option>
                 <option [ngValue]="true">כן</option>
             </select>
@@ -26,3 +26,8 @@
     </div>
 
 </div>
+<p *ngIf="Islicense?.control?.touched&&!Islicense?.control?.valid">שדה חובה*</p>
+
+
+<button type="button" (click)="saveDetailCandidate()"> שמור </button>
+<button type="button" (click)="saveAndContinue()"> שמור והמשך </button>

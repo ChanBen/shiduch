@@ -21,7 +21,7 @@ namespace BL
 
         }
 
-        public static MailMessage mail3(string text,string subject)
+        public static MailMessage mail3(string text,string subject,string mailToSend)
         {
             try
             {
@@ -32,7 +32,7 @@ namespace BL
                 smtp.UseDefaultCredentials = true;
                 smtp.Credentials = new System.Net.NetworkCredential("shiduchlainyan@gmail.com", "ahsul123");// Enter senders User name and password
                 smtp.EnableSsl = true;
-                MailMessage mail = new MailMessage("shiduchlainyan@gmail.com", mailSend, subject, text);
+                MailMessage mail = new MailMessage(mailToSend, mailSend, subject, text);
 
                 mail.BodyEncoding = UTF8Encoding.UTF8;
                 //mail.DeliveryNotificationOptions = DeliveryNotificationOptions.OnFailure;
@@ -51,7 +51,7 @@ namespace BL
             string subject = "פגישה עם שדכן";
             string text = "מועמד בשם" +dc.User.FirstName + " " + dc.User.LastName + "בעל ת.ז. שמיספרה " + dc.User.Tz + "שלח הגשת בקשה לקביעת פגישת שדכן";
             CandidateUser.SaveDetailsCandidate(dc);
-            mail3(text,subject);
+            mail3(text,subject, "shiduchlainyan@gmail.com");
 
         }
         //public void g(User u)
@@ -65,9 +65,20 @@ namespace BL
             User interesUser = context.Users.FirstOrDefault(p => p.Tz == tz);
             string subject = "מעונין בהצעה";
             string text = "מועמד בשם" + u.FirstName + " " + u.LastName + "בעל ת.ז.  " + u.Tz + "מעונין להפגש עם " + interesUser.FirstName + " " + interesUser.LastName + "בעל ת. ז. " + interesUser.Tz;
-            mail3(text,subject);
+            mail3(text,subject, "shiduchlainyan@gmail.com");
 
         }
+
+        public static void addSuggesrToCandidateMail(string mail)//כשנוספה הצעה חדשה למועמד
+        {
+
+           
+            string subject = "שידוך לעינין";
+            string text = "מועמד יקר שים לב יש לך הצעות חדשות בהצלחה!!!";
+            mail3(text, subject,mail);
+
+        }
+
 
     }
 }

@@ -10,8 +10,8 @@
   <option [ngValue]="3">זכר ונקבה</option>
  
 </select>
-<!-- <label>עיר מגורים</label>
-<input type="text" [(ngModel)]="CityId" (keyup)="onkeyupMethod()"> -->
+ <label>עיר מגורים</label>
+<input type="text" [(ngModel)]="city" (keyup)="onkeyupMethod()">
 
 
 
@@ -38,6 +38,7 @@
       <th scope="col">תעודת זהות </th>
       <th scope="col">שם פרטי</th>
       <th scope="col">שם משפחה</th>
+      <th scope="col">עיר מגורים </th>
       <th scope="col">מין</th>
       <th scope="col"> גיל</th>
     </tr>
@@ -48,6 +49,7 @@
       <td>{{item.Tz}}</td>
       <td>{{item.FirstName}}</td>
       <td>{{item.LastName}}</td>
+      <td>{{item.CityId}}</td>
       <td>{{getGender(item.Gender)}}</td>
       <td>{{MatchmakerService.getAgeFromDate(item.BornDate)}}</td>
     </tr>

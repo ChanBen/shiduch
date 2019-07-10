@@ -15,6 +15,7 @@ export class AllCandidateComponent implements OnInit {
   tz: string;
   LastName: string
   Gender: number;
+  city:string;
   bsModalRef: BsModalRef;
   constructor(private modalService: BsModalService,private MatchmakerService: MatchmakerService) { }
 
@@ -47,8 +48,9 @@ export class AllCandidateComponent implements OnInit {
       this.filterAllCandidate = this.filterAllCandidate.filter(p => p.LastName && p.LastName.indexOf(this.LastName) != -1);
     if (this.Gender != null&&this.Gender != 3)
     this.filterAllCandidate = this.filterAllCandidate .filter(p => p.Gender == true && this.Gender == 1 || p.Gender == false && this.Gender == 2);
-    // if (this.city != null )
-    // return this.AllCandidate.filter(p => p.LastName.indexOf(this.LastName) != -1);
+    
+    if (this.city != null && this.city != "")
+    this.filterAllCandidate = this.filterAllCandidate.filter(p => p.CityId && p.CityId.indexOf(this.city) != -1);
     return this.filterAllCandidate ;
 
   }

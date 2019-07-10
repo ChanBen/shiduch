@@ -38,7 +38,7 @@ export class CalanderService {
   }
   EditMeeting(m:Meeting) {
 
-    return this.http .post(environment.api + '/EditMeeting',m);
+    return this.http .post(environment.api + '/EditCalendarMeeting',m);
     
   }
   

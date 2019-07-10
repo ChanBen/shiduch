@@ -34,7 +34,7 @@ namespace WebService.Controllers
         [HttpGet]
         public IHttpActionResult mailToMatcmaker(string subject, string text)//שליחת מייל לשדכן
         {
-            SendMail.mail3(text, subject);
+            SendMail.mail3(text, subject, "shiduchlainyan@gmail.com");
             return Ok("success");
         }
     }

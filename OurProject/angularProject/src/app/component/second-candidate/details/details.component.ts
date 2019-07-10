@@ -6,6 +6,8 @@ import { Router } from '@angular/router';
 import { MigbalaCandidate } from 'src/app/models/migbala-candidate';
 import { BsModalRef } from 'ngx-bootstrap/modal';
 import { ReturnStatement } from '@angular/compiler';
+import { saveAs as importedSaveAs } from "file-saver";
+
 
 @Component({
   selector: 'app-details',
@@ -25,6 +27,16 @@ export class DetailsComponent implements OnInit {
 
   }
 
+  //   downloadImg(url: string) {
+  //     this.downloadFile(url);
+  //   }
+  // // 
+  downloadFile(urlImage: string) {
+    window.open(urlImage);
+    // importedSaveAs(blob, "this.fileName");
+    // const url= window.URL.createObjectURL(blob);
+    // window.open(url);
+  }
 
   GetNameOfValue(id) {//מקבלת ID של קריטריון ומחזירה את הערך שהמועמד בחר 
     let x;
@@ -44,19 +56,21 @@ export class DetailsComponent implements OnInit {
   GetNameOfSelfValue(id) {//מקבל קוד קריטרין ומחזיר את הערך המספרי של המועמד
     if (this.cand.ValueListCandidate.find(p => p.CriteriaId == id) != null)
       return this.cand.ValueListCandidate.find(p => p.CriteriaId == id).selfValue;
+    return null;
 
 
   }
   GetNameOfSelfBool(b: boolean) {
+  
     return b == true ? "כן" : "לא"
 
   }
 
   GetBoolFromValueList(id) {
-    let b=this.cand.ValueListCandidate.find(p => p.CriteriaId == id);
-    if(b)
-    return this.GetNameOfSelfBool(b.selfBool);
-return null
+    let b = this.cand.ValueListCandidate.find(p => p.CriteriaId == id);
+    if (b)
+      return this.GetNameOfSelfBool(b.selfBool);
+    return null
 
   }
 

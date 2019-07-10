@@ -131,3 +131,22 @@ Y:\group 1 תשעט\אטיק בתיה\our\OurProject\BL\obj\Debug\BL.csproj.Core
 Y:\group 1 תשעט\אטיק בתיה\our\OurProject\BL\obj\Debug\BL.csproj.CopyComplete
 Y:\group 1 תשעט\אטיק בתיה\our\OurProject\BL\obj\Debug\BL.dll
 Y:\group 1 תשעט\אטיק בתיה\our\OurProject\BL\obj\Debug\BL.pdb
+D:\shiduch\OurProject\BL\bin\Debug\BL.dll.config
+D:\shiduch\OurProject\BL\bin\Debug\BL.dll
+D:\shiduch\OurProject\BL\bin\Debug\BL.pdb
+D:\shiduch\OurProject\BL\bin\Debug\DAL.dll
+D:\shiduch\OurProject\BL\bin\Debug\DTO.dll
+D:\shiduch\OurProject\BL\bin\Debug\EntityFramework.dll
+D:\shiduch\OurProject\BL\bin\Debug\EntityFramework.SqlServer.dll
+D:\shiduch\OurProject\BL\bin\Debug\Newtonsoft.Json.dll
+D:\shiduch\OurProject\BL\bin\Debug\DAL.pdb
+D:\shiduch\OurProject\BL\bin\Debug\DAL.dll.config
+D:\shiduch\OurProject\BL\bin\Debug\DTO.pdb
+D:\shiduch\OurProject\BL\bin\Debug\EntityFramework.xml
+D:\shiduch\OurProject\BL\bin\Debug\EntityFramework.SqlServer.xml
+D:\shiduch\OurProject\BL\bin\Debug\Newtonsoft.Json.xml
+D:\shiduch\OurProject\BL\obj\Debug\BL.csprojAssemblyReference.cache
+D:\shiduch\OurProject\BL\obj\Debug\BL.csproj.CoreCompileInputs.cache
+D:\shiduch\OurProject\BL\obj\Debug\BL.csproj.CopyComplete
+D:\shiduch\OurProject\BL\obj\Debug\BL.dll
+D:\shiduch\OurProject\BL\obj\Debug\BL.pdb

@@ -37,12 +37,12 @@
 
       <div class="tab-content py-3 px-3 px-sm-0" id="nav-tabContent">
         <div class="" id="nav-all">
-          <form dir="rtl" *ngIf="cand" (ngSubmit)="hagashatBakasha()">
+          <form dir="rtl" *ngIf="cand"  lang="he" (ngSubmit)="hagashatBakasha() " #form="ngForm">
             <router-outlet></router-outlet>
 
-            <button type="button" (click)="saveDetailCandidate()"> שמור </button>
-            <button type="button" (click)="saveAndContinue()"> שמור והמשך </button>
-            <button type="submit"  > הגשת הבקשה </button>
+            <!-- <button type="button" (click)="saveDetailCandidate()"> שמור </button>
+            <button type="button" (click)="saveAndContinue()"> שמור והמשך </button> -->
+          
 <!-- *ngIf="router.isRouteActive(router.generate(['/criterion']))" -->
           </form>
         </div>
