@@ -62,3 +62,176 @@ button{
 .border-primary {
     border-color:#343a40 ;
 }
+/* ===================סימון ה X ===========================================*/
+* {
+    box-sizing: border-box;
+  }
+  
+  label {
+    cursor: pointer;
+  }
+  
+  .x {
+    display: none;
+  }
+  
+  .check {
+    position: relative;
+    display: inline-block;
+    width: 75px;
+    height: 75px;
+    background: #222;
+    border-radius: 50%;
+  }
+  
+  .check span {
+    display: inline-block;
+    position: absolute;
+    width: 10%;
+    height: 100%;
+  }
+  
+  .check span:after {
+    position: absolute;
+    content: "";
+    background: #c00;
+    width: 100%;
+    height: 0;
+  }
+  
+  .check span:nth-child(1) {
+    margin: 0 45%;
+    transform: rotate(-45deg);
+  }
+  
+  .check span:nth-child(1):after {
+    top: 25%;
+  }
+  
+  .check.xed span:nth-child(1):after,
+  .check.xed span:nth-child(2):after {
+    height: 50%;
+  }
+  
+  .check.checked span:nth-child(1) {
+    margin: 0 70% 0 20%;
+  }
+  .check.checked span:nth-child(2) {
+    margin: 0 32% 0 58%;
+  }
+  .checked span:nth-child(1):after,
+  .checked span:nth-child(2):after {
+    background-color: #0c0;
+  }
+  .check.checked span:nth-child(1):after {
+    height: 30%;
+    top: 52%;
+  }
+  .check.checked span:nth-child(2):after {
+    height: 55%;
+    bottom: 19%;
+  }
+  
+  .check-1 span:nth-child(1):after {
+    -webkit-animation: x-it .15s linear forwards;
+    animation: x-it .15s linear forwards;
+  }
+  
+  .x:checked + .check span:after {
+    background-color: #0c0;
+  }
+  
+  .x:checked + .check span:nth-child(1) {
+    margin: 0 70% 0 20%;
+  }
+  
+  .x:checked + .check span:nth-child(1):after {
+    top: 52%;
+  }
+  
+  .x:checked + .check-1 span:nth-child(1):after {
+    -webkit-animation: checkdown .15s linear forwards;
+    animation: checkdown .15s linear forwards;
+  }
+  
+  @-webkit-keyframes checkdown {
+    from {
+      height: 0;
+    }
+    to {
+      height: 30%;
+    }
+  }
+  
+  @keyframes checkdown {
+    from {
+      height: 0;
+    }
+    to {
+      height: 30%;
+    }
+  }
+  
+  .check span:nth-child(2) {
+    margin: 0 45%;
+    transform: rotate(45deg);
+  }
+  
+  .check span:nth-child(2):after {
+    bottom: 25%;
+  }
+  
+  .check-1 span:nth-child(2):after {
+    -webkit-animation: x-it .15s linear .15s forwards;
+    animation: x-it .15s linear .15s forwards;
+  }
+  
+  @-webkit-keyframes x-it {
+    from {
+      height: 0;
+    }
+    to {
+      height: 50%;
+    }
+  }
+  
+  @keyframes x-it {
+    from {
+      height: 0;
+    }
+    to {
+      height: 50%;
+    }
+  }
+  
+  .x:checked + .check span:nth-child(2) {
+    margin: 0 32% 0 58%;
+  }
+  
+  .x:checked + .check span:nth-child(2):after {
+    bottom: 19%;
+  }
+  
+  .x:checked + .check-1 span:nth-child(2):after {
+    -webkit-animation: checkup .15s linear .15s forwards;
+    animation: checkup .15s linear .15s forwards;
+  }
+  
+  @-webkit-keyframes checkup {
+    from {
+      height: 0;
+    }
+    to {
+      height: 55%;
+    }
+  }
+  
+  @keyframes checkup {
+    from {
+      height: 0;
+    }
+    to {
+      height: 55%;
+    }
+  }
+  

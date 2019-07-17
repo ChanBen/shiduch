@@ -1,6 +1,4 @@
-<p>
-  match-maker works!
-</p>
+
 
 <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
 <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
@@ -18,7 +16,8 @@
                       <a  routerLinkActive="testActive" class="nav-item nav-link" id="nav-shortcoming-tab" role="tab"  routerLink="calander">לוח שנה</a>
                       <a  routerLinkActive="testActive" class="nav-item nav-link" id="nav-shortcoming-tab" role="tab"  routerLink="allSuggest">רשימת ההצעות</a>
                       <a  routerLinkActive="testActive" class="nav-item nav-link" id="nav-shortcoming-tab" role="tab"  routerLink="allCandidate">רשימת מועמדים</a>
-                      <a  routerLinkActive="testActive" class="nav-item nav-link" id="nav-shortcoming-tab" role="tab"  routerLink="matcMakerRegister"> הרשמת שדכן</a>
+                      <a  routerLinkActive="testActive" class="nav-item nav-link" id="nav-shortcoming-tab" role="tab"  routerLink="mail">תקשורת עם מועמד</a>
+                      <a  *ngIf="dCandidateService.allowAcceess==3" routerLinkActive="testActive" class="nav-item nav-link" id="nav-shortcoming-tab" role="tab"  routerLink="matcMakerRegister"> הרשמת שדכן</a>
                         <!-- התאב האחרון מיועד למנמר בלבד -->
                       
                     </div>

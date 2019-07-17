@@ -23,7 +23,7 @@ export class DetailsComponent implements OnInit {
   ngOnInit() {
 
     console.log(this.cand.Candidate.ImageCandidate)
-
+    this.dCandidateService.cand=Object. assign({},  this.cand);
 
   }
 
@@ -40,7 +40,7 @@ export class DetailsComponent implements OnInit {
 
   GetNameOfValue(id) {//מקבלת ID של קריטריון ומחזירה את הערך שהמועמד בחר 
     let x;
-    let item = this.dCandidateService.currentCandidate.ValueListCandidate.find(p => p.CriteriaId == id && p.isSelf == true);
+    let item = this.dCandidateService.cand.ValueListCandidate.find(p => p.CriteriaId == id && p.isSelf == true);
     if (!item)
       return null;
     x = item.ValueListId;

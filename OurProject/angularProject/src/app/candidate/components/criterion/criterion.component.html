@@ -1,82 +1,82 @@
+<form #frm="ngForm" (ngSubmit)="submitAll()">
+        <div *ngIf="cand">
+    <h5>בשלב זה עליך להכניס קריטריונים לפיהם תרצה שיתבצע החיפוש</h5>
+    <h6>...מעוניין ב</h6>
+    <div dir="rtl" class="form-group row  flex-row-reverse" style="margin-right: 100px;">
+        <div class="col-md-5">
+            <select class="form-control" id="intersted" [(ngModel)]="selectedCrit" name="intersted" (change)="addCriteronList(1)">
+                <option *ngFor="let c of criterionsArrInteresting" [value]="c.CriterionId">{{c.NameCriterion}}
+                </option>
+            </select>
 
-
-<h5>בשלב זה עליך להכניס קריטריונים לפיהם תרצה שיתבצע החיפוש</h5>
-<h6>...מעוניין ב</h6>
-<div dir="rtl" class="form-group row  flex-row-reverse" style="margin-right: 100px;">
-    <div class="col-md-5">
-        <select class="form-control" id="intersted" [(ngModel)]="selectedCrit" name="intersted"
-            (change)="addCriteronList(1)">
-            <option *ngFor="let c of criterionsArrInteresting" [value]="c.CriterionId">{{c.NameCriterion}}
-            </option>
-        </select>
-
+        </div>
     </div>
-</div>
 
 
 
-<div *ngFor="let item of cand.ValueListCandidate; let i = index" class="form-group row  flex-row-reverse"
-    style="margin-right: 100px;">
-    <ng-container *ngIf="!item.isSelf && item.isInclude" class="col-md-5">
-        <label for="" class=" col-form-label text-md-right">{{getCriterionName(item.CriteriaId)}}</label>
-        <!-- מתוך רשימת ערכים -->
-        <select *ngIf="getKindCriterion(item.CriteriaId) == 1" [(ngModel)]="item.ValueListId" class="form-control"
-            name="criter-{{i}}" id="">
-            <option *ngFor="let val of dCandidateService.GetValueList(item.CriteriaId)" [value]="val.ValueListId">{{val.Value}}
-            </option>
-        </select>
-        <!-- ערכים מספריים מסוג תווך -->
-        <ng-container *ngIf="getKindCriterion(item.CriteriaId) == 3">
-            <input type="number" name="satisfacMinValue-{{i}}" [(ngModel)]="item.satisfacMinValue"
-                class="form-control" placeholder="מ">
-            <input type="number" name="satisfacMaxValue-{{i}}" [(ngModel)]="item.satisfacMaxValue"
-                class="form-control" placeholder="עד">
+    <div *ngFor="let item of cand.ValueListCandidate; let i = index" class="form-group row  flex-row-reverse" style="margin-right: 100px;">
+        <ng-container *ngIf="!item.isSelf && item.isInclude" class="col-md-5">
+            <label for="" class=" col-form-label text-md-right">{{getCriterionName(item.CriteriaId)}}</label>
+            <!-- מתוך רשימת ערכים -->
+            <select *ngIf="getKindCriterion(item.CriteriaId) == 1" [(ngModel)]="item.ValueListId" class="form-control"
+                name="criter-{{i}}" id="">
+                <option *ngFor="let val of dCandidateService.GetValueList(item.CriteriaId)" [value]="val.ValueListId">{{val.Value}}
+                </option>
+            </select>
+            <!-- ערכים מספריים מסוג תווך -->
+            <ng-container *ngIf="getKindCriterion(item.CriteriaId) == 3">
+                <input type="number" name="satisfacMinValue-{{i}}" [(ngModel)]="item.satisfacMinValue" class="form-control"
+                    placeholder="מ">
+                <input type="number" name="satisfacMaxValue-{{i}}" [(ngModel)]="item.satisfacMaxValue" class="form-control"
+                    placeholder="עד">
+            </ng-container>
+
+
+            <!-- עבור ערכים בוליאנים -->
+            <select *ngIf="getKindCriterion(item.CriteriaId) == 2" [(ngModel)]="item.satisfacBool" class="form-control"
+                name="satisfacBool-{{i}}" id="">
+                <option [ngValue]="false">לא</option>
+                <option [ngValue]="true">כן</option>
+            </select>
         </ng-container>
-
-
-        <!-- עבור ערכים בוליאנים -->
-        <select *ngIf="getKindCriterion(item.CriteriaId) == 2" [(ngModel)]="item.satisfacBool" class="form-control"
-            name="satisfacBool-{{i}}" id="">
-            <option [ngValue]="false">לא</option>
-            <option [ngValue]="true">כן</option>
-        </select>
-    </ng-container>
-</div>
-
-
-
-
-<h6>...לא מעוניין ב</h6>
-<div dir="rtl" class="form-group row  flex-row-reverse" style="margin-right: 100px;">
-    <div class="col-md-5">
-        <select class="form-control" id="intersted" [(ngModel)]="selectedCrit" name="Notintersted"
-            (change)="addCriteronList(0)">
-            <option *ngFor="let c of criterionsArrNotInteresting" [value]="c.CriterionId">{{c.NameCriterion}}
-            </option>
-        </select>
-
     </div>
+
+
+
+
+    <h6>...לא מעוניין ב</h6>
+    <div dir="rtl" class="form-group row  flex-row-reverse" style="margin-right: 100px;">
+        <div class="col-md-5">
+            <select class="form-control" id="intersted" [(ngModel)]="selectedCrit" name="Notintersted" (change)="addCriteronList(0)">
+                <option *ngFor="let c of criterionsArrNotInteresting" [value]="c.CriterionId">{{c.NameCriterion}}
+                </option>
+            </select>
+
+        </div>
+    </div>
+
+
+
+    <div *ngFor="let item of cand.ValueListCandidate; let i = index" class="form-group row  flex-row-reverse" style="margin-right: 100px;">
+        <ng-container *ngIf="!item.isSelf && !item.isInclude" class="col-md-5">
+            <label for="" class=" col-form-label text-md-right">{{getCriterionName(item.CriteriaId)}}</label>
+            <!-- מתוך רשימת ערכים -->
+            <select *ngIf="getKindCriterion(item.CriteriaId) == 1" [(ngModel)]="item.ValueListId" class="form-control"
+                name="criter-{{i}}" id="">
+                <option *ngFor="let val of dCandidateService.GetValueList(item.CriteriaId)" [value]="val.ValueListId">{{val.Value}}
+                </option>
+            </select>
+
+        </ng-container>
+    </div>
+
+
+
+    <button type="button" (click)="saveDetailCandidate()"> שמור </button>
+
+    <button *ngIf="dCandidateService.allowAcceess==1" type="submit"> הגשת הבקשה </button>
+
+    <button *ngIf="dCandidateService.allowAcceess!=1" type="button" (click)="finishByMatcMaker()"> סיום השלמת פרטים </button>
+
 </div>
-
-
-
-<div *ngFor="let item of cand.ValueListCandidate; let i = index" class="form-group row  flex-row-reverse"
-    style="margin-right: 100px;">
-    <ng-container *ngIf="!item.isSelf && !item.isInclude" class="col-md-5">
-        <label for="" class=" col-form-label text-md-right">{{getCriterionName(item.CriteriaId)}}</label>
-        <!-- מתוך רשימת ערכים -->
-        <select *ngIf="getKindCriterion(item.CriteriaId) == 1" [(ngModel)]="item.ValueListId" class="form-control"
-            name="criter-{{i}}" id="">
-            <option *ngFor="let val of dCandidateService.GetValueList(item.CriteriaId)" [value]="val.ValueListId">{{val.Value}}
-            </option>
-        </select>
-
-    </ng-container>
-</div>
-
-
-
-<button type="button" (click)="saveDetailCandidate()"> שמור </button>
-
-<button type="submit"   [disabled]="submitted&&!form.valid"> הגשת הבקשה </button>
-<button type="button" (click)="f(form)">dgfcvszd</button>
+</form>

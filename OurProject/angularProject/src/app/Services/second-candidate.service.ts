@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { User } from '../models/user';
 import { environment } from 'src/environments/environment';
 import { HttpClient } from '@angular/common/http';
+import { UserToSuggest } from '../models/user-to-suggest';
 
 @Injectable({
   providedIn: 'root'
@@ -12,7 +13,7 @@ export class SecondCandidateService {
 
 
   GetListUserOfSuggestByTz(Tz: string) {//
-    return this.http.get<User[]>(environment.api + '/GetListUserOfSuggestByTz?Tz=' + Tz);
+    return this.http.get<UserToSuggest[]>(environment.api + '/GetListUserOfSuggestByTz?Tz=' + Tz);
   }
 
 

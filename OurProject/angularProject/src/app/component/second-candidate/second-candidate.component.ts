@@ -12,6 +12,7 @@ export class SecondCandidateComponent implements OnInit {
 
   ngOnInit() {
  this.getValueList();
+ this.getCriteria();
   }
 
 
@@ -22,5 +23,15 @@ export class SecondCandidateComponent implements OnInit {
     }, (err) => {
 
     });}
+
+    
+  
+    getCriteria() {
+      this.dCandidateService.getCriteria().subscribe((res) => {
+        console.log(res); console.log("succes");
+        this.dCandidateService.criterionsArr = res;
+      }, (err) => { console.log(err); alert(err); });
+  
+    }
  
 }

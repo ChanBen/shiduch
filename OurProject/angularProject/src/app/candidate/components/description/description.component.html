@@ -1,5 +1,5 @@
 
-
+<div *ngIf="cand">
 <div id="mare">
   <label class=" col-form-label text-md-right font-bold">מראה כללי</label>
 
@@ -22,7 +22,7 @@
   <div *ngFor="let crit of criterionMare; index as i" dir="rtl" class="form-group row  flex-row-reverse" style="margin-right: 100px;">
       <div class="col-md-5">
           <select class="form-control" id="criterionMare" name="criterionMare-{{i}}" [ngModel]="dCandidateService.GetIDListById(crit.CriterionId)" 
-              (ngModelChange)="dCandidateService.changeValue(crit.CriterionId,$event)">
+              (ngModelChange)="changeValue(crit.CriterionId,$event)">
               <option *ngFor="let valueLis of dCandidateService.GetValueList(crit.CriterionId)" [value]="valueLis.ValueListId">
                   {{valueLis.Value}}</option>
           </select>
@@ -109,3 +109,4 @@
 
 <button type="button" (click)="saveDetailCandidate()"> שמור </button>
 <button type="button" (click)="saveAndContinue()"> שמור והמשך </button>
+</div>

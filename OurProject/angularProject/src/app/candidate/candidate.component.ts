@@ -1,8 +1,14 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild, ViewChildren } from '@angular/core';
 import { CandidateService } from '../Services/candidate.service';
 import { User } from '../models/user';
-import { Router } from '@angular/router';
+import { Router, ChildActivationEnd, Route, RouterEvent } from '@angular/router';
 import { DetaileCandidate } from '../models/detaile-candidate';
+import { CriterionComponent } from './components/criterion/criterion.component';
+import { NgForm } from '@angular/forms';
+import { Children } from '../models/children';
+import { PersonalDetailsComponent } from './components/personal-details/personal-details.component';
+import { MoreDetailesComponent } from './components/more-detailes/more-detailes.component';
+import { Criterion } from '../models/criterion';
 
 
 @Component({
@@ -13,9 +19,11 @@ import { DetaileCandidate } from '../models/detaile-candidate';
 export class CandidateComponent implements OnInit {
   user: User = new User();
   cand: DetaileCandidate;
-  constructor(private dCandidateService: CandidateService, private router: Router) { }
+  constructor(private dCandidateService: CandidateService,private router:Router) { 
+  }
   ngOnInit() {
-    this.cand = this.dCandidateService.currentCandidate;
+    this.cand = this.dCandidateService.cand;
+    
     // let username = localStorage.getItem("user");
     // let password = localStorage.getItem("pas");
 

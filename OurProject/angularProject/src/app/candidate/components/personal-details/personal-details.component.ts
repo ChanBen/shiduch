@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild, OnDestroy } from '@angular/core';
 import { DetaileCandidate } from 'src/app/models/detaile-candidate';
 import { Parent } from 'src/app/models/parent';
 import { Mechutanim } from 'src/app/models/mechutanim';
@@ -7,12 +7,13 @@ import { CandidateService } from 'src/app/Services/candidate.service';
 import { Criterion } from 'src/app/models/criterion';
 import { Router } from '@angular/router';
 import { ValueListCandidate } from 'src/app/models/value-list-candidate';
+import { NgForm } from '@angular/forms';
 @Component({
   selector: 'app-personal-details',
   templateUrl: './personal-details.component.html',
   styleUrls: ['./personal-details.component.css']
 })
-export class PersonalDetailsComponent implements OnInit {
+export class PersonalDetailsComponent implements OnInit, OnDestroy {
 
   selected: string;
   cand: DetaileCandidate;
@@ -23,16 +24,17 @@ export class PersonalDetailsComponent implements OnInit {
   isParent: boolean;
   Islicense: boolean;
   isMechutanim: boolean;
-  
   criteriondescription: Criterion[] = [];
   isChildren: boolean;
   criterionSector: Criterion[] = [];//מכיל קריטריונים השייכים רק לסקטור
   criterionLanguage: Criterion[] = [];//מכיל קריטריונים השייכים רק לשפות
   myValueList = [];//מכיל את רשימת הקרריטריונים שאותו בן אדם בחר בפעם שעברה
-
+  @ViewChild('frm', { static: true }) public form: NgForm;
   constructor(public dCandidateService: CandidateService, public Router: Router) { }
 
-
+  f1(ts){
+    // console.log(ts);
+  }
   GetValueList(id) {//מחזיר את רשימת הערכים של קוד הקריטריון שקיבל כפרמטר
 
     return this.dCandidateService.GetValueList(id);
@@ -56,28 +58,26 @@ export class PersonalDetailsComponent implements OnInit {
   }
 
   init1() {
-
-    this.cand = this.dCandidateService.currentCandidate;
-    this.numChildren = this.cand.Children.length;
-    this.numParents = this.cand.Parents.length;
-    this.numMechutanim = this.cand.Mechutanim.length;
-    this.isParent = this.cand.Parents.length != 0;
-    this.isMechutanim = this.cand.Mechutanim.length != 0;
-    if (this.cand.ValueListCandidate.length != 0) {
-      this.numLanguage = this.cand.ValueListCandidate.filter(p => p.CriteriaId == 29 && p.isSelf == true).length;
-    }
-    this.isChildren = this.cand.Children.length != 0;
-    this.criterionSector = this.dCandidateService.criterionsArr.filter(r => r.category == 1);//מילוי קריטריוני סקטור
-    this.criterionLanguage = this.dCandidateService.criterionsArr.filter(r => r.category == 2);//מילוי קריטריוני שפות
-
+    this.cand = this.dCandidateService.cand;
+      this.numChildren = this.cand.Children.length;
+      this.numParents = this.cand.Parents.length;
+      this.numMechutanim = this.cand.Mechutanim.length;
+      this.isParent = this.cand.Parents.length != 0;
+      this.isMechutanim = this.cand.Mechutanim.length != 0;
+      if (this.cand.ValueListCandidate.length != 0) {
+        this.numLanguage = this.cand.ValueListCandidate.filter(p => p.CriteriaId == 29 && p.isSelf == true).length;
+      }
+      this.isChildren = this.cand.Children.length != 0;
+      this.criterionSector = this.dCandidateService.criterionsArr.filter(r => r.category == 1);//מילוי קריטריוני סקטור
+      this.criterionLanguage = this.dCandidateService.criterionsArr.filter(r => r.category == 2);//מילוי קריטריוני שפות
   }
 
   ngOnInit() {
     this.init1();
-    
-    this.dCandidateService.onLogined.subscribe(() => {
-      this.init1();
-    })
+
+    // this.dCandidateService.onLogined.subscribe(() => {
+    //   this.init1();
+    // })
 
   }
 
@@ -89,6 +89,7 @@ export class PersonalDetailsComponent implements OnInit {
     else
       for (let i = 0; i < paar * -1; i++)
         this.cand.Children.push(new Children());
+
   }
   addParent() {
     let par = this.cand.Parents.length - this.numParents;
@@ -122,26 +123,22 @@ export class PersonalDetailsComponent implements OnInit {
         currntValueList.isSelf = true;
         this.cand.ValueListCandidate.push(currntValueList);
       }
+    this.dCandidateService.cand = Object.assign({}, this.cand);;
   }
- 
+
 
 
   saveDetailCandidate() {//שומר את פרטי המועמד
 
-    if (this.dCandidateService.allowAcceess == 1) {
-      this.dCandidateService.saveDetailCandidate(this.cand).subscribe(res => {
-        alert(res);
-      });
+    debugger;
+    this.dCandidateService.saveDetailCandidate(this.cand).subscribe(res => {
+      alert(res);
+    });
 
-    }
-    else if (this.dCandidateService.allowAcceess == 2) {
-      this.dCandidateService.finishCompliteDetails(this.cand).subscribe(res => {
-        alert(res);
-        this.Router.navigate(['/MatcMaker']);
-      });
-    }
+
+
   }
- 
+
   saveAndContinue() {//שומר את פרטי המועמד וממשיך לתאב הבא
     this.dCandidateService.saveDetailCandidate(this.cand).subscribe(res => {
       alert(res);
@@ -149,11 +146,33 @@ export class PersonalDetailsComponent implements OnInit {
 
     this.Router.navigate(['/detail-candidate/desc']);
   }
-  
- 
+
+  //id=idשל רשימת ערכים
+  //crit=לקריטריון הנוכחי
+  //ברגע שמשנה ערך של קריטריון
+  changeValue(crit: number, id: any) {
+    if (this.cand.ValueListCandidate.find(p => p.CriteriaId == crit) == null) {
+      var currntValueList = new ValueListCandidate();
+      currntValueList.ValueListId = id;//id.currentTarget.value;
+      currntValueList.CriteriaId = crit;
+      currntValueList.isSelf = true;
+      this.cand.ValueListCandidate.push(currntValueList);
+    }
+    else {
+      this.cand.ValueListCandidate.find(p => p.CriteriaId == crit).ValueListId = id;//.currentTarget.value;
+    }
+  }
 
 
-  f(tz){
+  f(tz) {
     console.log(tz);
   }
+
+  ngOnDestroy() {
+
+    this.dCandidateService.forms.person = this.form.valid;
+
+  }
+  
 }
+

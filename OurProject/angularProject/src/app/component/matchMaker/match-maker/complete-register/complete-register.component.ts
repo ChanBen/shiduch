@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { CandidateService } from 'src/app/Services/candidate.service';
 import { User } from 'src/app/models/user';
 import { Router } from '@angular/router';
+import { DetaileCandidate } from 'src/app/models/detaile-candidate';
 
 @Component({
   selector: 'app-complete-register',
@@ -22,9 +23,10 @@ export class CompleteRegisterComponent implements OnInit {
   Onsubmit() {
 
 
-    this.dCandidateService.GetDetailsByTz(this.u).subscribe((res: any) => {
+    this.dCandidateService.GetDetailsByUserId(this.u).subscribe((res: DetaileCandidate) => {
       alert("res");
-      this.dCandidateService.currentCandidate = res;
+      this.dCandidateService.cand = res;
+      localStorage.setItem("userId", res.User.UserId. toString());
       this.router.navigate(['/detail-candidate']);
 
     });

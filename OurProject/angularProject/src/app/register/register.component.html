@@ -16,8 +16,16 @@
 
     <!-- Login Form -->
     <form class="input-group-center mb-3" (ngSubmit)="submitregisterForm()">
-      <input type="text"  [(ngModel)]="u.UserName"  id="login" class=" second" name="UserName" placeholder="שם משתמש">
-      <input type="text" [(ngModel)]="u.Password"  id="password" class=" third" name="Password" placeholder="סיסמה">
+      <input type="text"  [(ngModel)]="u.UserName"  id="login" class=" second" name="UserName" placeholder="שם משתמש" (keyup)="validate(u.UserName, u.Password)">
+      <div>
+        עליך לבחור שם משתמש בעל 4 תוים לפחות אין להשתמש בתו רצוף יותר מפעמיים  
+      </div>
+     <p *ngIf="validUserName">{{validUserName}}</p>
+      <input type="text" [(ngModel)]="u.Password"  id="password" class=" third" name="Password" placeholder="סיסמה" (keyup)="validate(u.UserName, u.Password)">
+      <div>
+        עליך לבחור סיסמה בעלת 8 תוים לפחות אין להשתמש בתו רצוף יותר מפעמיים על הסיסמה להכיל שילוב שילוב של אותיות ומספרים 
+        </div>
+         <p *ngIf="validPassword">{{validPassword}}</p>
       <input type="submit" class="w-40 fourth btn btn-warning btn-lg" value="הרשמה">
     </form>
 

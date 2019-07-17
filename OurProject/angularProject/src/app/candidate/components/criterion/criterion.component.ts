@@ -1,35 +1,37 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy, ViewChild } from '@angular/core';
 import { ValueListCandidate } from 'src/app/models/value-list-candidate';
 import { CandidateService } from 'src/app/Services/candidate.service';
 import { DetaileCandidate } from 'src/app/models/detaile-candidate';
 import { Criterion } from 'src/app/models/criterion';
 import { Router } from '@angular/router';
+import { NgForm } from '@angular/forms';
+import Swal from 'sweetalert2'
 
 @Component({
   selector: 'app-criterion',
   templateUrl: './criterion.component.html',
   styleUrls: ['./criterion.component.css']
 })
-export class CriterionComponent implements OnInit {
+export class CriterionComponent implements OnInit, OnDestroy {
   selectedCrit: number;
   criterionsArrNotInteresting: Criterion[] = []//מכיל רק את רשימת הקריטריונים של לא מעונין
   criterionsArrInteresting: Criterion[] = []//מכיל את רשימת הקריטריונים למעונין
   cand: DetaileCandidate;
-
-  constructor(private dCandidateService: CandidateService, public Router: Router) { }
+  @ViewChild('frm', { static: true }) public form: NgForm;
+  constructor(private dCandidateService: CandidateService, public router: Router) { }
 
   ngOnInit() {
     this.init1();
-    this.dCandidateService.onLogined.subscribe(res => {
-      this.init1();
+    // this.dCandidateService.onLogined.subscribe(res => {
+    //   this.init1();
 
-    })
+    // })
   }
-  f(l){
-    console.log(l);
+  ngOnDestroy() {
   }
+
   init1() {
-    this.cand = this.dCandidateService.currentCandidate;
+    this.cand = this.dCandidateService.cand;
     this.criterionsArrNotInteresting = this.dCandidateService.criterionsArr.filter(p => p.Interested == 2 || p.Interested == 3 || p.Interested == 5);
     this.criterionsArrInteresting = this.dCandidateService.criterionsArr.filter(p => p.Interested == 1 || p.Interested == 2 || p.Interested == 5);
     this.cand.ValueListCandidate.filter(l => l.isSelf == false).forEach(o => this.interested(this.dCandidateService.criterionsArr.find(p => p.CriterionId == o.CriteriaId)));
@@ -88,18 +90,47 @@ export class CriterionComponent implements OnInit {
 
   saveDetailCandidate() {//שומר את פרטי המועמד
 
-    if (this.dCandidateService.allowAcceess == 1) {
-      this.dCandidateService.saveDetailCandidate(this.cand).subscribe(res => {
-        alert(res);
-      });
+    this.dCandidateService.saveDetailCandidate(this.cand).subscribe(res => {
+      alert(res);
+    });
+
+
+  }
+  submitAll() {
+    this.dCandidateService.forms.criterion = this.form.valid;
+    for (var field in this.dCandidateService.forms) {
+      var valid = this.dCandidateService.forms[field];
+      if (!valid) {
+        Swal.fire({
+          type: 'error',
+          title: '...הטופס אינו תקין ',
+          text: '! OK לתיקון הטופס לחץ על',
+          footer: '      '
+        })
+        switch (field) {
+          case 'person':
+            this.router.navigate(['/detail-candidate/pro']);
+            return;
+          default:
+            return;
+        }
+      }
 
     }
-    else if (this.dCandidateService.allowAcceess == 2) {
-      this.dCandidateService.finishCompliteDetails(this.cand).subscribe(res => {
-        alert(res);
-        this.Router.navigate(['/MatcMaker']);
-      });
-    }
+if(this.dCandidateService.allowAcceess==1)
+    this.hagashatBakasha();
   }
-  
+
+
+
+  finishByMatcMaker() {
+    this.submitAll() ;
+    this.dCandidateService.finishCompliteDetails(this.cand).subscribe(res => {
+
+      this.router.navigate(['/MatcMaker']);
+    });
+
+
+
+  }
 }

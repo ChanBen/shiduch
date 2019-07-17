@@ -68,6 +68,9 @@ export class MatchmakerService {
 
 
 
-
+  mailToCandidate(subject, text,m) {
+    return this.http.get(environment.api + '/mailToCandidate?subject=' + subject + '&text=' + text+"&m="+m);
+  }
+  
 
 }

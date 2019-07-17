@@ -1,5 +1,5 @@
 
-
+<div *ngIf="cand">
 <div class="form-group">
   <!-- <input type="file" class="form-control" name="teacherCV"data-buttonText="צירוף קורות חיים"/> -->
   <button type="button" name="image" class="btnRegister" md-button (click)="imgFileInput.click()">הוסף תמונה</button>
@@ -17,12 +17,12 @@
 
 
 </div>
-<div *ngFor="let item of cand.Documents">{{item.Describe}}</div>
+<div *ngFor="let item of docs">{{item}}</div>
 
 
 <button type="button" (click)="saveDetailCandidate()"> שמור </button>
 <button type="button" (click)="saveAndContinue()"> שמור והמשך </button>
 
-
+</div>
 
 

@@ -1,3 +1,13 @@
-<p>
-  mail1 works!
-</p>
+
+<form dir="rtl"  (ngSubmit)="mailToCandidate(subject,text,m)"   #myform="ngForm" >
+<input type="text" placeholder="מייל לשליחה" name="m1" [(ngModel)]="m1"  #m="ngModel"  pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" required><br>
+
+<p *ngIf="m.invalid && ( m.touched)">מייל לא תקין *</p>
+  <input type="text" placeholder="נושא" name="s" [(ngModel)]="s" #subject="ngModel" required><br>
+  <p *ngIf="subject.invalid && (subject.dirty || subject.touched)">שדה חובה *</p>
+  <input type="text" placeholder="טקסט" name="t" #text="ngModel" [(ngModel)]="t" required>
+  <p *ngIf="text.invalid && (text.dirty || text.touched)">שדה חובה*</p>
+  <input type="submit" value="שלח" [disabled]="!myform.valid">
+
+  </form>
+  

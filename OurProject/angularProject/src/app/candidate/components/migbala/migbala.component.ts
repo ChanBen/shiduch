@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit,OnDestroy } from '@angular/core';
 import { DetaileCandidate } from 'src/app/models/detaile-candidate';
 import { CandidateService } from 'src/app/Services/candidate.service';
 import { MigbalaCandidate } from 'src/app/models/migbala-candidate';
@@ -11,29 +11,31 @@ import { Router } from '@angular/router';
   templateUrl: './migbala.component.html',
   styleUrls: ['./migbala.component.css']
 })
-export class MigbalaComponent implements OnInit {
+export class MigbalaComponent implements OnInit,OnDestroy {
   isMigbala: boolean;//שייך למגבלה
   numMigbala: number;//שייך למגבל
   numMedical: number;
-  
+
   numHospitalizion: number;
   cand: DetaileCandidate;
 
   constructor(private dCandidateService: CandidateService, public Router: Router) { }
 
-
+  ngOnDestroy(){
+    // this.dCandidateService. saveDetailCandidate(this.cand).subscribe((res:DetaileCandidate)=>{});  
+  }
 
   ngOnInit() {
     this.init1();
-    this.dCandidateService.onLogined.subscribe(res => {
-      this.init1();
+    // this.dCandidateService.onLogined.subscribe(res => {
+    //   this.init1();
 
-    })
+    // })
 
   }
 
   init1() {
-    this.cand = this.dCandidateService.currentCandidate;
+    this.cand = this.dCandidateService.cand;
     this.numMigbala = this.cand.MigbalaCandidates.length;//שייך למגבל
     this.isMigbala = this.cand.MigbalaCandidates.length != 0;//שייך למגבלה
     this.numMedical = this.cand.ValueListCandidate.filter(p => p.CriteriaId == 34 && p.isSelf == true).length;
@@ -100,4 +102,5 @@ export class MigbalaComponent implements OnInit {
     // this.router.navigate(['desc'], {relativeTo: this.activatedRoute});
     this.Router.navigate(['/detail-candidate/busines']);
   }
+ 
 }

@@ -1,6 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule, Component } from '@angular/core';
-import { FormsModule } from '@angular/forms';
+import { FormsModule,ReactiveFormsModule  } from '@angular/forms';
 import { Routes, RouterModule } from '@angular/router';
 import { AppComponent } from './app.component';
 import { CandidateComponent } from './candidate/candidate.component';
@@ -30,6 +30,9 @@ import { MatchmakerRegisterComponent } from './component/matchMaker/match-maker/
 import { ModalModule, BsModalService } from 'ngx-bootstrap/modal';
 import { NewMeetingComponent } from './component/matchMaker/match-maker/calendar/new-meeting/new-meeting.component';
 import { MailCandComponent } from './component/second-candidate/mail-cand/mail-cand.component';
+import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { AuthGuard } from './auth/auth.guard';
 
 
 const routes: Routes = [
@@ -37,8 +40,7 @@ const routes: Routes = [
   { path: '', component: HomePageComponent },
   { path: 'register', component: RegisterComponent },
   { path: 'enter', component: EnterComponent },
-  {
-    path: 'detail-candidate', component: CandidateComponent, children: [
+  { path: 'detail-candidate', component: CandidateComponent, canActivate: [AuthGuard], children: [
       { path: '', redirectTo: 'pro', pathMatch: 'full' },
       { path: 'pro', component: PersonalDetailsComponent },
       { path: 'desc', component: DescriptionComponent },
@@ -51,28 +53,29 @@ const routes: Routes = [
     ]
   },
   {
-    path: 'MatcMaker', component: MatchMakerComponent, children: [
+    path: 'MatcMaker', component: MatchMakerComponent, canActivate: [AuthGuard], children: [
       { path: '', redirectTo: 'complitDitails', pathMatch: 'full' },
       { path: 'complitDitails', component: CompleteRegisterComponent },
       { path: 'calander', component: CalendarComponent },
       { path: 'allSuggest', component: AllSuggestsComponent },
       { path: 'allCandidate', component: AllCandidateComponent },
+      { path: 'mail', component: Mail1Component },
       { path: 'matcMakerRegister', component: MatchmakerRegisterComponent },
     ]
   },
 
   {
-    path: 'second-candidate', component: SecondCandidateComponent, children: [
+    path: 'second-candidate', component: SecondCandidateComponent, canActivate: [AuthGuard], children: [
       { path: '', redirectTo: 'suggest', pathMatch: 'full' },
       { path: 'suggest', component: SuggestsComponent },
       { path: 'details', component: DetailsComponent },
       { path: 'mailToMatcmaker', component: MailCandComponent },
+      { path: 'calander', component: CalendarComponent },
 
 
 
     ]
   },
-  { path: 'calander', component: CalendarComponent }
 ]
 
 @NgModule({
@@ -101,16 +104,22 @@ const routes: Routes = [
     MatchmakerRegisterComponent,
     NewMeetingComponent,
     DetailsComponent,
-    MailCandComponent
+    MailCandComponent,
+
   ],
   imports: [
+    BrowserAnimationsModule,
     BrowserModule,
     FormsModule,
+    ReactiveFormsModule,
     HttpClientModule,
     FullCalendarModule,
     RouterModule.forRoot(routes),
     ModalModule.forRoot(),
+    BsDatepickerModule.forRoot(),
   ],
+
+
   entryComponents: [
     NewMeetingComponent,
     DetailsComponent

@@ -11,12 +11,7 @@
   </button>
 </div>
 <div class="modal-body">
-
-
-
   <form dir="rtl" >
-
-
 
     <div dir="rtl" class="form-group row  flex-row-reverse" style="margin-right: 100px;">
       <div class="col-md-5">
@@ -76,7 +71,7 @@
     </div>
   </form>
 </div>
-<div class="modal-footer">
+<div *ngIf="dCandidateService?.allowAcceess!=1" class="modal-footer">
   <button *ngIf="kind == 1" type="button" class="btn btn-default" (click)="addMeeting()">הוסף</button>
   <button *ngIf="kind == 2" type="button" class="btn btn-default" (click)="EditMeeting()">עדכן</button>
   <button *ngIf="kind == 2" type="button" class="btn btn-default" (click)="deleteMeeting()">ביטול פגישה</button>

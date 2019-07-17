@@ -11,16 +11,17 @@
   <img *ngIf="cand.Candidate.ImageCandidate" [src]="cand.Candidate.ImageCandidate"><br>
 
   <label>שם פרטי :{{cand.User.FirstName}}</label><br>
+  <label>שם משפחה :{{cand.User.LastName}}</label><br>
   <label>גיל : {{ getAgeFromDate(cand.User.BornDate)}}</label><br>
   <label *ngIf="GetNameOfValue(28)"> שפת אם: {{GetNameOfValue(28)}}</label><br>
   <div *ngIf="dCandidateService.getCritMoreLanguage(29)">
     <label *ngFor="let item of dCandidateService.getCritMoreLanguage(29) ">
       {{dCandidateService.GetValue(item.ValueListId)}}</label><br>
   </div>
-  <label> ארץ מגורים :{{cand.User.CountryId}}</label><br>
-  <label> עיר מגורים :{{cand.User.CityId}}</label><br>
-  <label> רחוב :{{cand.User.StreetId}}</label><br>
-  <label> מספר בית :{{cand.User.BuildNum}}</label><br>
+  <label *ngIf="cand.User.CountryId"> ארץ מגורים :{{cand.User.CountryId}}</label><br>
+  <label *ngIf="cand.User.CityId"> עיר מגורים :{{cand.User.CityId}}</label><br>
+  <label *ngIf="cand.User.StreetId"> רחוב :{{cand.User.StreetId}}</label><br>
+  <label *ngIf="cand.User.BuildNum"> מספר בית :{{cand.User.BuildNum}}</label><br>
   <label *ngIf="GetNameOfValue(6)">סוג מגורים : {{GetNameOfValue(6)}}</label><br>
   <label *ngIf="cand.Children||cand.Parents||cand.Mechutanim">מצב משפחתי</label><br><br>
   <p *ngIf="cand.Children.length!=0">ילדים</p>

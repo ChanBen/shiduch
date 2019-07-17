@@ -34,33 +34,43 @@
 <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <!------ Include the above in your HEAD tag ---------->
 
-<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css" integrity="sha384-hWVjflwFxL6sNzntih27bfxkr27PmbbK/iSvJ+a4+0owXq79v+lsFkW54bOGbiDQ"
-  crossorigin="anonymous">
-<div class="container"  *ngFor="let user of arrUser;i as index">
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css"
+  integrity="sha384-hWVjflwFxL6sNzntih27bfxkr27PmbbK/iSvJ+a4+0owXq79v+lsFkW54bOGbiDQ" crossorigin="anonymous">
+<div class="container" *ngFor="let u of arrUser;i as index">
 
   <div class="row">
     <div class="col-md-6">
-        <!-- border-primary  -->
+      <!-- border-primary  -->
       <div class="card border-dark flex-md-row mb-4 shadow-sm h-md-250">
 
 
 
         <div class="card-body d-flex flex-column align-items-start">
-            <label>שם פרטי :{{user.FirstName}}</label>
-            <label>גיל : {{ getAgeFromDate(user.BornDate)}}</label>
-            <label>מצב מישפחתי : {{dCandidateService.GetValue(user.Status)}}</label>
-            <label>ארץ מגורים : {{user.CountryId}}</label>
-          
+          <label>שם פרטי :{{u.user.FirstName}}</label>
+          <label>גיל : {{ getAgeFromDate(u.user.BornDate)}}</label>
+          <label>מצב מישפחתי : {{dCandidateService.GetValue(u.user.Status)}}</label>
+          <label>ארץ מגורים : {{u.user.CountryId}}</label>
+
+          <div *ngIf="!u.IsActiv" class="check xed">
+            <span></span>
+            <span></span>
+          </div>
+
+
         </div>
 
 
 
         <div class="card-img-right flex-auto d-none d-lg-block d" style="width: 200px; height: 250px;">
-          <div class="wapperButton">
-          <button (click)="GetDetailByTzToSuggestion(user)">פרטים נוספים</button>
-          <button  (click)="Interested(dCandidateService.currentCandidate.User,user.Tz)">מעונין להיפגש</button>
-          <button (click)="NotInterseted(dCandidateService.currentCandidate.User,user.Tz)">לא מעונין</button>
-        </div>
+          <div  *ngIf="u.IsActiv"  class="wapperButton">
+            <button (click)="GetDetailByTzToSuggestion(u.user)">פרטים נוספים</button>
+            <button (click)="Interested(dCandidateService.secondCandidate.User,u.user.Tz)">מעונין להיפגש</button>
+            <button (click)="NotInterseted(dCandidateService.secondCandidate.User,u.user.Tz)">לא מעונין</button>
+          </div>
+          <div  *ngIf="!u.IsActiv"  class="wapperButton">
+           <div>לא רלוונטי</div>
+            <button (click)="NotInterseted(dCandidateService.secondCandidate.User,u.user.Tz)">להסרה </button>
+          </div>
         </div>
 
 

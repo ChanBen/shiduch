@@ -5,6 +5,8 @@ import { Meeting } from 'src/app/models/meeting';
 import { CalanderService } from 'src/app/Services/calander.service';
 import { Time } from '@angular/common';
 import { dateSelectionJoinTransformer } from '@fullcalendar/core';
+import { CandidateService } from 'src/app/Services/candidate.service';
+import { User } from 'src/app/models/user';
 
 @Component({
   selector: 'app-new-meeting',
@@ -22,10 +24,33 @@ export class NewMeetingComponent implements OnInit {
 
   meetingChanged = new Subject();
   m: Meeting;
-
-  constructor(public bsModalRef: BsModalRef, private CalanderService: CalanderService) { }
+u:User;
+  constructor(public bsModalRef: BsModalRef, private CalanderService: CalanderService,private dCandidateService:CandidateService) { }
 
   ngOnInit() {
+
+
+
+    if (this.dCandidateService.secondCandidate.User.UserId == null) {
+      this.u = new User();
+      this.u.UserId = Number(localStorage.getItem("userId"));
+      this.dCandidateService.GetDetailsByUserId(this.u).subscribe(res => {
+        this.dCandidateService.allowAcceess = res.User.AllowAccess;
+        if (this.dCandidateService.allowAcceess == 1) {//אם זה מועמד
+          this.dCandidateService.secondCandidate = res
+         
+        }
+
+      });
+    }
+   
+
+
+
+
+
+
+
     if (this.kind == 1) {
       this.m = new Meeting()
       this.m.KindMeeting = 1;

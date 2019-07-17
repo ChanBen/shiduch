@@ -2,14 +2,13 @@ import { Injectable, EventEmitter } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { DetaileCandidate } from '../models/detaile-candidate';
 import { environment } from 'src/environments/environment';
-import { RegisterComponent } from '../register/register.component';
 import { User } from '../models/user';
 import 'rxjs';
 import { Observable, Subject } from "rxjs";
 import { Criterion } from '../models/criterion';
 import { ValueList } from "../models/value-list";
-import { ValueListCandidate } from '../models/value-list-candidate';
 import { map } from 'rxjs/operators';
+
 
 // import { HttpClient } from 'selenium-webdriver/http';
 
@@ -19,14 +18,17 @@ import { map } from 'rxjs/operators';
 export class CandidateService {
 
 
-  currentCandidate = new DetaileCandidate();
+  firstRegister: string;
+  cand = new DetaileCandidate();
   secondCandidate = new DetaileCandidate();
+  manager = new User();
   allowAcceess: number;
   onLogined = new Subject();
   arrValue: ValueList[] = [];//מכיל את כל רשימת הערכים
   criterionsArr: Criterion[] = [];//מכיל את כל הקריטריונים
   image: FormData;
-
+  obs: Subject<any> = new Subject();
+  public forms = { criterion: null, person: null };
   // AppUrl:string='http://localhost/'
 
 
@@ -34,24 +36,26 @@ export class CandidateService {
     this.getCr();
   }
 
-  //id=idשל רשימת ערכים
-  //crit=לקריטריון הנוכחי
-  //ברגע שמשנה ערך של קריטריון
-  changeValue(crit: number, id: any) {
-    if (this.currentCandidate.ValueListCandidate.find(p => p.CriteriaId == crit) == null) {
-      var currntValueList = new ValueListCandidate();
-      currntValueList.ValueListId = id;//id.currentTarget.value;
-      currntValueList.CriteriaId = crit;
-      currntValueList.isSelf = true;
-      this.currentCandidate.ValueListCandidate.push(currntValueList);
+  getCand(): Observable<DetaileCandidate> {
+    let userId = localStorage.getItem("userId");
+
+    if (userId) {
+      let u: User = new User();
+      u.UserId = Number(userId);
+
+      return this.GetDetailsByUserId(u).pipe(map(
+        (res: DetaileCandidate) => {
+          res.User.BornDate = new Date(res.User.BornDate);
+          return res;
+        }))
     }
-    else {
-      this.currentCandidate.ValueListCandidate.find(p => p.CriteriaId == crit).ValueListId = id;//.currentTarget.value;
-    }
+
+    return null;
   }
+
   getCritMoreLanguage(numCrit: number) {//מתאים גם לשאר הקריטריונים
 
-    let res = this.currentCandidate.ValueListCandidate.filter(p => p.CriteriaId == numCrit && p.isSelf == true);
+    let res = this.cand.ValueListCandidate.filter(p => p.CriteriaId == numCrit && p.isSelf == true);
     if (res == null || res.length == 0)
       return null;
     return res;
@@ -67,12 +71,13 @@ export class CandidateService {
   GetValue(id) {//מקבל ID ומחזיר את הערך שלו
 
     let a = this.arrValue.find(e => e.ValueListId == id);
+
     return a.Value;
   }
 
   GetIDListById(id) {//מחזיר את הערך שלו ע"פ קוד הערך הקריטריון שקיבל כפרמטר
     let x;
-    let item = this.currentCandidate.ValueListCandidate.find(p => p.CriteriaId == id);//מגיע לקוד הערך 
+    let item = this.cand.ValueListCandidate.find(p => p.CriteriaId == id);//מגיע לקוד הערך 
     if (item)
       x = item.ValueListId;//מגיע לקוד הערך 
     return x;
@@ -80,7 +85,7 @@ export class CandidateService {
 
   GetValueListById(id) {//מחזיר את הערך ע"פ קוד הערך הקריטריון שקיבל כפרמטר
     let x
-    const item = this.currentCandidate.ValueListCandidate.find(p => p.CriteriaId == id);//מגיע לקוד הערך 
+    const item = this.cand.ValueListCandidate.find(p => p.CriteriaId == id);//מגיע לקוד הערך 
     x = item.ValueListId
     return this.arrValue.find(e => e.ValueListId == x).ValueListId;
 
@@ -102,13 +107,13 @@ export class CandidateService {
   login(u: User): Observable<DetaileCandidate> {
     return this.http.post<DetaileCandidate>(environment.api + '/loginCandidate/', u)
       .pipe(map(res => {
-        this.currentCandidate = res;
+        this.cand = res;
         this.allowAcceess = res.User.AllowAccess;
         this.onLogined.next();
         return res
       }));
     // return this.http.get(environment.api + '/loginCandidate?username=' + user.UserName + '&password=' + user.Password)
-    // .pipe(map(res => this.currentCandidate = res));
+    // .pipe(map(res => this.cand = res));
   }
 
   //שולח את כל נתוני המועמד לשמירה
@@ -142,10 +147,34 @@ export class CandidateService {
 
     return this.http.post<DetaileCandidate>(environment.api + '/GetDetailsByTz/', u)
       .pipe(map(res => {
-        this.currentCandidate = res;
+        this.cand = res;
         this.onLogined.next();
         return res;
       }));
+
+  }
+  //הבאת פרטי המועמד ע"י userId.
+  GetDetailsByUserId(u: User): Observable<DetaileCandidate> {
+
+    return this.http.post<DetaileCandidate>(environment.api + '/GetDetailsByUserId/', u).
+      pipe(map((res: DetaileCandidate) => {
+        if (this.allowAcceess != 2 && this.allowAcceess != 3)
+          this.allowAcceess = res.User.AllowAccess;
+        localStorage.setItem("userId", res.User.UserId.toString());
+        if (this.allowAcceess == 2 || this.allowAcceess == 3) {
+          this.manager = res.User;
+        }
+        // if (this.allowAcceess == 1) {
+          if (1) {
+          this.cand = res;
+
+          if (this.cand.Candidate.EnterIn == 2) {
+            this.secondCandidate = res;
+          }
+        }
+
+        return res;
+      }))
 
   }
   onlyGetDetailsByTz(u: User): Observable<DetaileCandidate> {
@@ -153,7 +182,10 @@ export class CandidateService {
     return this.http.post<DetaileCandidate>(environment.api + '/GetDetailsByTz/', u)
 
   }
+  getUseId(u: User): Observable<number> {
+    return this.http.post<number>(environment.api + '/getUseId/', u)
 
+  }
 
 
 
@@ -183,7 +215,6 @@ export class CandidateService {
 
   //מחזיר את ההרשאת גישה של המשתמש
   GetAllowAccess(u: User) {
-
     return this.http.post(environment.api + '/GetAllowAccess', u)
   }
 
@@ -194,5 +225,7 @@ export class CandidateService {
   postFileUpLoad(data: any, id): any {
     return this.http.post('http://localhost:62698/uploadeFile?id=' + id, data);
   }
+
+
 
 }

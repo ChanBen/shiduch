@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit,OnDestroy } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { CandidateService } from 'src/app/Services/candidate.service';
 import { DetaileCandidate } from 'src/app/models/detaile-candidate';
@@ -9,16 +9,25 @@ import { Router } from '@angular/router';
   templateUrl: './documents.component.html',
   styleUrls: ['./documents.component.css']
 })
-export class DocumentsComponent implements OnInit {
+export class DocumentsComponent implements OnInit ,OnDestroy{
+  ngOnDestroy(){
+   
+  /*   this.dCandidateService.saveDetailCandidate(this.cand).subscribe((res:DetaileCandidate)=>{
+    });   */
+  }
 
   constructor(private http: HttpClient,public dCandidateService: CandidateService, public Router: Router) { }
   newFile;
   cand: DetaileCandidate;
   imageName:string;
+  docs:string[]=[];
   ngOnInit() {
-    this.cand = this.dCandidateService.currentCandidate;
-    // this.m.start.toString().split(/T|Z/)[1];
-    this.imageName= this.cand.Candidate.ImageCandidate.split("/")[1];
+    this.cand = this.dCandidateService.cand;
+  
+    this.imageName= this.cand.Candidate.ImageCandidate.split("/")[5];
+    this.cand.Documents.forEach(element => {
+      this.docs.push(element.Describe);
+    });
   }
 
   addImage(event) {
@@ -31,7 +40,7 @@ export class DocumentsComponent implements OnInit {
       let image1: FormData = new FormData();
       this.imageName= this.newFile.name;
       image1.append('uploadFile', this.newFile, this.newFile.name);
-      this.dCandidateService.uploadFile(image1, this.dCandidateService.currentCandidate.User.Tz).subscribe(() => { })
+      this.dCandidateService.uploadFile(image1, this.dCandidateService.cand.User.Tz).subscribe(() => { })
     }
   }
 
@@ -42,9 +51,10 @@ export class DocumentsComponent implements OnInit {
     if (fileList.length > 0) {
       for(let i=0;i<fileList.length;i++){
         this.newFile = fileList[i];
-        image1.append('uploadFile', this.newFile, this.newFile.name);
+        image1.append(i.toString(), this.newFile, this.newFile.name);
+        this.docs.push(this.newFile.name);
       }
-      this.dCandidateService.UploadDoc(image1, this.dCandidateService.currentCandidate.User.Tz).subscribe(() => { })
+      this.dCandidateService.UploadDoc(image1, this.dCandidateService.cand.User.Tz).subscribe(() => { })
     }
   }
 
@@ -52,7 +62,7 @@ export class DocumentsComponent implements OnInit {
   //   if(this.newFile){
   //     let formData: FormData = new FormData();
   //     formData.append('uploadFile', this.newFile, this.newFile.name);
-  //     this.CandidateService.postFileUpLoad(formData,this.CandidateService.currentCandidate.User.Tz).subscribe(()=>{
+  //     this.CandidateService.postFileUpLoad(formData,this.CandidateService.cand.User.Tz).subscribe(()=>{
 
   //       alert('success!');
   //     })

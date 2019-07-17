@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { CandidateService } from 'src/app/Services/candidate.service';
 import { DetaileCandidate } from 'src/app/models/detaile-candidate';
 import { ValueList } from 'src/app/models/value-list';
@@ -10,8 +10,8 @@ import { Router } from '@angular/router';
   templateUrl: './busines.component.html',
   styleUrls: ['./busines.component.css']
 })
-export class BusinesComponent implements OnInit {
-  
+export class BusinesComponent implements OnInit, OnDestroy {
+
   cand: DetaileCandidate;
   valueListID: number;
   numOccupation: number;
@@ -19,7 +19,9 @@ export class BusinesComponent implements OnInit {
   constructor(public dCandidateService: CandidateService, public Router: Router) { }
 
   ngOnInit() {
-    this.cand = this.dCandidateService.currentCandidate;
+    this.cand = this.dCandidateService.cand;
+  }
+  ngOnDestroy() {
   }
 
   addOccupation() {
@@ -70,7 +72,22 @@ export class BusinesComponent implements OnInit {
     // this.router.navigate(['desc'], {relativeTo: this.activatedRoute});
     this.Router.navigate(['/detail-candidate/moreDetailes']);
   }
-f(DegreeKind){
-  console.log(DegreeKind);
-}
+  //id=idשל רשימת ערכים
+  //crit=לקריטריון הנוכחי
+  //ברגע שמשנה ערך של קריטריון
+  changeValue(crit: number, id: any) {
+    if (this.cand.ValueListCandidate.find(p => p.CriteriaId == crit) == null) {
+      var currntValueList = new ValueListCandidate();
+      currntValueList.ValueListId = id;//id.currentTarget.value;
+      currntValueList.CriteriaId = crit;
+      currntValueList.isSelf = true;
+      this.cand.ValueListCandidate.push(currntValueList);
+    }
+    else {
+      this.cand.ValueListCandidate.find(p => p.CriteriaId == crit).ValueListId = id;//.currentTarget.value;
+    }
+  }
+  f(DegreeKind) {
+    console.log(DegreeKind);
+  }
 }

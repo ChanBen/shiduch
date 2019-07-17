@@ -18,6 +18,7 @@
     <form class="input-group-center mb-3" (ngSubmit)="submitloginForm()" >
       <input type="text"  [(ngModel)]="u.UserName"  id="UserName" class=" second" name="UserName" placeholder="שם משתמש">
       <input type="text" [(ngModel)]="u.Password"  id="Password" class=" third" name="Password" placeholder="סיסמה">
+      <p *ngIf="hasErorr">.... אחד מהנתונים שהזנת שגוי! אנא נסה שנית</p>
       <input type="submit" class="w-40 fourth btn btn-warning btn-lg" value="כניסה">
     </form>
 

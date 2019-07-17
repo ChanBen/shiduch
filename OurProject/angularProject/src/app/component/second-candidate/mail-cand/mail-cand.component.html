@@ -1,12 +1,12 @@
-<p>
-  mail-cand works!
-</p>
 
+<form dir="rtl"  (ngSubmit)="mailToMatchMaker(subject,text)"   #myform="ngForm" >
+  
+    <input type="text" placeholder="נושא" name="s" [(ngModel)]="s" #subject="ngModel" required><br>
+    <p *ngIf="subject.invalid && (subject.dirty || subject.touched)">שדה חובה *</p>
+    <input type="text" placeholder="טקסט" name="t" #text="ngModel" [(ngModel)]="t" required>
+    <p *ngIf="text.invalid && (text.dirty || text.touched)">שדה חובה*</p>
+    <input type="submit" value="שלח" [disabled]="!myform.valid">
+  
+    </form>
+    
 
-<form dir="rtl"  (ngSubmit)="mailToMatchMaker(subject,text)">
-
-<input type="text" placeholder="נושא" #subject>
-<input type="text" placeholder="טקסט" #text>
-<input type="submit" value="שלח">
-
-</form>
