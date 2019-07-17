@@ -46,3 +46,9 @@ D:\shiduch\OurProject\DTO\obj\Debug\DTO.csprojAssemblyReference.cache
 D:\shiduch\OurProject\DTO\obj\Debug\DTO.csproj.CoreCompileInputs.cache
 D:\shiduch\OurProject\DTO\obj\Debug\DTO.dll
 D:\shiduch\OurProject\DTO\obj\Debug\DTO.pdb
+D:\-_ester_shiduch\OurProject\DTO\bin\Debug\DTO.dll
+D:\-_ester_shiduch\OurProject\DTO\bin\Debug\DTO.pdb
+D:\-_ester_shiduch\OurProject\DTO\obj\Debug\DTO.csprojAssemblyReference.cache
+D:\-_ester_shiduch\OurProject\DTO\obj\Debug\DTO.csproj.CoreCompileInputs.cache
+D:\-_ester_shiduch\OurProject\DTO\obj\Debug\DTO.dll
+D:\-_ester_shiduch\OurProject\DTO\obj\Debug\DTO.pdb

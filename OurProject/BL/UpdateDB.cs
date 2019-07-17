@@ -108,7 +108,10 @@ namespace BL
                         context.SaveChanges();
                         mechutanim.Remove(me);
                     }
-
+                    else
+                    {
+                        context.Mechutanims.Remove(item);
+                    }
                 }
 
                 context.SaveChanges();
@@ -148,6 +151,10 @@ namespace BL
                         context.SaveChanges();
                         parent.Remove(pa);
                     }
+                    else
+                    {
+                        context.Parents.Remove(item);
+                    }
                 }
 
                 context.SaveChanges();
@@ -184,6 +191,10 @@ namespace BL
                         context.Entry(item).State = EntityState.Modified;
                         context.SaveChanges();
                         child.Remove(ch);
+                    }
+                    else
+                    {
+                        context.Children.Remove(item);
                     }
                 }
 
@@ -230,6 +241,10 @@ namespace BL
                         context.SaveChanges();
                         myValueListCandidate.Remove(VLC);
 
+                    }
+                    else
+                    {
+                        context.ValueListCandidates.Remove(item);
                     }
                 }
 
@@ -289,6 +304,10 @@ namespace BL
                         context.SaveChanges();
                         hospitalization.Remove(hos);
                     }
+                    else
+                    {
+                        context.Hospitalizations.Remove(item);
+                    }
                 }
 
                 context.SaveChanges();
@@ -328,6 +347,10 @@ namespace BL
                         context.Entry(item).State = EntityState.Modified;
                         context.SaveChanges();
                         migbalaCandidate.Remove(migCandidate);
+                    }
+                    else
+                    {
+                        context.MigbalaCandidates.Remove(item);
                     }
                 }
 

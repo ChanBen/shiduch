@@ -1,11 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
-using System.Net;
-using System.Net.Http;
-using System.Text;
-using System.Threading.Tasks;
 using DAL;
 using DTO;
 namespace BL
@@ -65,6 +60,15 @@ namespace BL
 
             }
         }
+        public static int getUserId(User u)
+        {
+            using (shiduchimEntities context = new shiduchimEntities())
+            {
+                int userId = context.Users.FirstOrDefault(p => p.UserName == u.UserName).UserId;
+                return userId;
+            }
+               
+        }
         public static DetailsCandidate LoginCandidate(User user)//בדיקה אם המועמד קיים והחזרת כל פרטיו
         {
             using (shiduchimEntities context = new shiduchimEntities())
@@ -73,6 +77,15 @@ namespace BL
                 {
                     User u = new User();
                     u = context.Users.FirstOrDefault(p => p.Tz == user.Tz);
+                    if (u == null)
+                        return null;
+                    user.Password = u.Password;
+                    user.UserName = u.UserName;
+                }
+                if (user.UserId != 0)
+                {
+                    User u = new User();
+                    u = context.Users.FirstOrDefault(p => p.UserId == user.UserId);
                     if (u == null)
                         return null;
                     user.Password = u.Password;
@@ -107,17 +120,23 @@ namespace BL
 
             }
         }
-        public static bool Register(User user)//בדיקה אם המשתמש קיים אם לא מוסיף חדש ומכניס שם משתמש וסיסמא  ושולח הודעה שהוסף בהצלחה
+        public static int Register(User user)//בדיקה אם המשתמש קיים אם לא מוסיף חדש ומכניס שם משתמש וסיסמא  ושולח הודעה שהוסף בהצלחה
         {
             using (shiduchimEntities context = new shiduchimEntities())
             {
                 if (ExistUserInSql(user.Password, user.UserName))//אם הסיסמה לא תקינה
-                    return false;
+                    return -1;
 
                 user.AllowAccess = 1;
                 context.Users.Add(user);
                 context.SaveChanges();
-                return true;
+                int userId = context.Users.FirstOrDefault(p => p.UserName == user.UserName).UserId;
+
+                Candidate c = new Candidate();
+                c.UserId = userId;
+                context.Candidates.Add(c);
+                context.SaveChanges();
+                return userId;
 
 
 

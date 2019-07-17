@@ -69,7 +69,7 @@ namespace BL
 
         }
 
-        public static void addSuggesrToCandidateMail(string mail)//כשנוספה הצעה חדשה למועמד
+         public static void addSuggesrToCandidateMail(string mail)//כשנוספה הצעה חדשה למועמד
         {
 
            
@@ -79,6 +79,12 @@ namespace BL
 
         }
 
-
+        public static void closeMatch(string mailToSend)
+        {
+            string text = " לקוח יקר מערכת שידוך לעינין מאחלת לכם הרבה מזל טוב ושתזכו להקים בית נאמן בישראל";
+            string subject = "שידוך לעינין";
+            
+            mail3( text,  subject,  mailToSend);
+        }
     }
 }

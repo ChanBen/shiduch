@@ -25,10 +25,10 @@ namespace BL
             if (Search.search(dc) == true)
                 SendMail.addSuggesrToCandidateMail(dc.User.Mail);
         }
-        public static List<UserDTO> GetListUserOfSuggestByTz(string Tz)//מחזירה את כל ההצעות של משתמש מסוים ע"פ ת.ז.
+        public static List<userToSuggest> GetListUserOfSuggestByTz(string Tz)//מחזירה את כל ההצעות של משתמש מסוים ע"פ ת.ז.
         {
             List<Meeting> lm = new List<Meeting>();
-            List<UserDTO> lu = new List<UserDTO>();
+            List<userToSuggest> lu = new List<userToSuggest>();
             User u = context.Users.FirstOrDefault(p => p.Tz == Tz);
             bool gender = u.Gender == true;
             if (gender)//אם זה זכר
@@ -39,14 +39,13 @@ namespace BL
             foreach (var item in lm)
             {
                 string hisTz = gender ? item.tzBride : item.tzGroom;
-                lu.Add(Conversions.UserDaltoDTo(context.Users.FirstOrDefault(p => p.Tz == hisTz)));
+                bool isActive = gender ? !(item.StatusBride == 3 || context.Candidates.FirstOrDefault(p=>p.UserId==context.Users.FirstOrDefault(p1 => p1.Tz == hisTz).UserId).EnterIn==3) : !(item.StatusGroom == 3 || context.Candidates.FirstOrDefault(p => p.UserId == context.Users.FirstOrDefault(p1 => p1.Tz == hisTz).UserId).EnterIn == 3);
+                UserDTO us = Conversions.UserDaltoDTo(context.Users.FirstOrDefault(p => p.Tz == hisTz));
+                lu.Add(new userToSuggest(us, isActive));
             }
             return lu;
 
         }
-
-
-
         public static List<Meeting> GetAllSuggests()//מחזירה את כל ההצעות.
         {
             List<Meeting> m = context.Meetings.Where(p => p.KindMeeting == 1).ToList();
@@ -56,6 +55,31 @@ namespace BL
 
         public static void EditMeeting(Meeting m)//מעדכן שינויים בפגישה
         {
+            Meeting mSql = context.Meetings.FirstOrDefault(p => p.MeetingId == m.MeetingId);
+            if (m.StatusBride != mSql.StatusBride)
+            {
+                User u = context.Users.FirstOrDefault(p => p.Tz == m.tzBride);
+                if (m.StatusBride == 2)//שינה סטטוס למעונין
+                    SendMail.interestingSuggestMail(u, m.tzGroom);
+                if (m.StatusBride == 5)//סגירת שידוך
+                { SendMail.closeMatch(u.Mail);
+                    Candidate c = context.Candidates.FirstOrDefault(p => p.UserId == u.UserId);
+                    c.EnterIn = 3;
+                } 
+            }
+            if (m.StatusGroom != mSql.StatusGroom)
+            {
+                User u = context.Users.FirstOrDefault(p => p.Tz == m.tzGroom);
+                if (m.StatusGroom == 2)//שינה סטטוס למעונין
+                    SendMail.interestingSuggestMail(u, m.tzBride);
+                if (m.StatusGroom == 5)//סגירת שידוך
+                {
+                    SendMail.closeMatch(u.Mail);
+                    Candidate c = context.Candidates.FirstOrDefault(p => p.UserId == u.UserId);
+                    c.EnterIn = 3;
+                    context.Entry(c).State = EntityState.Modified;
+                }
+            }
             context.Entry(m).State = EntityState.Modified;
             context.SaveChanges();
 
@@ -66,7 +90,7 @@ namespace BL
         public static List<User> getAllCandidate()//מחזיר את כל המועמדים
         {
             List<User> l = context.Users.ToList();
-            return context.Users.Where(p => context.Candidates.FirstOrDefault(o => o.UserId == p.UserId)!=null).ToList();
+            return context.Users.Where(p =>p.AllowAccess==1).ToList();
 
 
         }

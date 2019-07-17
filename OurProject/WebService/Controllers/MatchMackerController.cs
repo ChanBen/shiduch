@@ -1,4 +1,5 @@
-﻿using DAL;
+﻿using BL;
+using DAL;
 using DTO;
 using System;
 using System.Collections.Generic;
@@ -35,7 +36,7 @@ namespace WebService.Controllers
 
         [Route("api/GetListUserOfSuggestByTz")]
         [HttpGet]
-        [ResponseType(typeof(UserDTO))]
+        [ResponseType(typeof(userToSuggest))]
         public HttpResponseMessage GetSuggestByTz(string Tz)//מחזיר רשימת משתמשים של הצעות למישהו מסוים ע"י ת.ז.
         {
            var AllSuggests= BL.matchMaker.GetListUserOfSuggestByTz(Tz);
@@ -93,7 +94,7 @@ namespace WebService.Controllers
         [HttpPost]
         public IHttpActionResult saveDetailsMatchMaker(User user)//יצירת משתמש חדש השומר את שם המשתמש וסיסמה 
         {
-             BL.matchMaker.saveDetailsMatchMaker(user);
+            matchMaker.saveDetailsMatchMaker(user);
                 return Ok("success");
         }
 
@@ -102,13 +103,19 @@ namespace WebService.Controllers
         [HttpPost]
         public IHttpActionResult GetDetailsMatchMaker(User user)// שליחת פרטי השדכן לאנגולר 
         {
-          User u=  BL.matchMaker.GetDetailsMatchMaker(user);
+          User u= matchMaker.GetDetailsMatchMaker(user);
             if(u!=null)
             return Ok(u);
             return BadRequest("User exists in the system");
 
         }
-
+        [Route("api/mailToCandidate")]
+        [HttpGet]
+        public IHttpActionResult mailToCandidate(string subject, string text,string m)//שליחת מייל למועמד
+        {
+            SendMail.mail3(text, subject, m);
+            return Ok("success");
+        }
 
     }
 }

@@ -19,15 +19,25 @@ namespace WebService.Controllers
         [Route("api/register")]
         [HttpPost]
         public IHttpActionResult register(User user)//יצירת משתמש חדש השומר את שם המשתמש וסיסמה 
-        {
-            if (BL.CandidateUser.Register(user) == true)
-
-                return Ok("user add sucssesfully");
-            else
+        { int userId;
+            userId = BL.CandidateUser.Register(user) ;
+            if (userId==-1)
                 return BadRequest("userName exist dont valid");
+            return Ok(userId.ToString());
+          
+               
 
         }
+        [Route("api/getUseId")]
+        [HttpPost]
+        [ResponseType(typeof(int))]
+        public IHttpActionResult getUseId(User user)//אם הכן המשתמש קיים שולח לקלינט  את כל פרטיו
+        {
+            int userId = BL.CandidateUser.getUserId(user);
+            return Ok(userId);
 
+
+        }
 
         [Route("api/loginCandidate")]
         [HttpPost]
@@ -41,7 +51,15 @@ namespace WebService.Controllers
             return Request.CreateResponse(HttpStatusCode.BadRequest, "user dont exists");
         }
 
+        [Route("api/GetDetailsByUserId")]
+        [HttpPost]
+        [ResponseType(typeof(DetailsCandidate))]
+        public HttpResponseMessage GetDetailsByUserId(User user)//שולח לקלינט  את כל פרטי המשתמש)מקבל userId
+        {
+            var currentDetailsCandidate = BL.CandidateUser.LoginCandidate(user);
 
+            return Request.CreateResponse(HttpStatusCode.OK, currentDetailsCandidate);
+        }
         [Route("api/saveDetailsCandidate")]
         [HttpPost]
         public IHttpActionResult saveDetailsCandidate(DetailsCandidate dc)//שמירת כל פרטי המועמד
@@ -94,6 +112,7 @@ namespace WebService.Controllers
             {
                 foreach (string file in httpRequest.Files)
                 {
+                     pathToSql = " http://localhost:62698/UploadFile/";
                     var postedFile = httpRequest.Files[file];
                     var directoryPath = HttpContext.Current.Server.MapPath("~/UploadFile/");
                     Directory.CreateDirectory(directoryPath + id);
@@ -122,6 +141,7 @@ namespace WebService.Controllers
             {
                 foreach (string file in httpRequest.Files)
                 {
+                    pathToSql = " http://localhost:62698/UploadFile/";
                     var postedFile = httpRequest.Files[file];
                     var directoryPath = HttpContext.Current.Server.MapPath("~/UploadFile/");
                     Directory.CreateDirectory(directoryPath + id);
